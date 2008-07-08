@@ -24,15 +24,16 @@ namespace SGR.BP.Bases
             }
         }
 
-        protected bool AlterarBase(System.Data.IDbCommand pCommand)
+        protected bool AlterarBase(System.Data.IDbCommand pCommand, IDataParameterCollection pParameterColection)
         {
+            
             if(pCommand.Connection.State != System.Data.ConnectionState.Open)
                 throw new Exception("A conexão deve ser aberta antes de alterar um Objeto");
 
             return (pCommand.ExecuteNonQuery() > 0);
         }
 
-        protected bool ExcluirBase(System.Data.IDbCommand pCommand)
+        protected bool ExcluirBase(System.Data.IDbCommand pCommand, IDataParameterCollection pParameterColection)
         {
             if (pCommand.Connection.State != System.Data.ConnectionState.Open)
                 throw new Exception("A conexão deve ser aberta antes de apagar um Objeto");
@@ -40,7 +41,7 @@ namespace SGR.BP.Bases
             return (pCommand.ExecuteNonQuery() > 0);
         }
 
-        protected int IncluirBase(System.Data.IDbCommand pCommand)
+        protected int IncluirBase(System.Data.IDbCommand pCommand, IDataParameterCollection pParameterColection)
         {
             if (pCommand.Connection.State != System.Data.ConnectionState.Open)
                 throw new Exception("A conexão deve ser aberta antes de alterar um Objeto");
@@ -48,7 +49,7 @@ namespace SGR.BP.Bases
             return (int)pCommand.ExecuteScalar();
         }
 
-        protected static List<T> Lista<T>(System.Data.IDbCommand pCommand) where T : ObjectBase
+        protected static List<T> ListaBase<T>(System.Data.IDbCommand pCommand, IDataParameterCollection pParameterColection) where T : ObjectBase
         {
             if (pCommand.Connection.State != System.Data.ConnectionState.Open)
                 throw new Exception("A conexão deve ser aberta antes de alterar um Objeto");

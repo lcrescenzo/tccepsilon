@@ -35,7 +35,7 @@ namespace SGR.BP.Objetos
 
         internal override void PreencheObjeto(System.Data.IDataReader reader)
         {
-            throw new Exception("The method or operation is not implemented.");
+            
         }
     }
 }
