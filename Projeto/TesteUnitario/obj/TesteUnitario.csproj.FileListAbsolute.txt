@@ -1,0 +1,8 @@
+C:\TCC\TesteUnitario\bin\Release\TesteUnitario.exe
+C:\TCC\TesteUnitario\bin\Release\TesteUnitario.pdb
+C:\TCC\TesteUnitario\obj\Release\ResolveAssemblyReference.cache
+C:\TCC\TesteUnitario\obj\Release\TesteUnitario.Form1.resources
+C:\TCC\TesteUnitario\obj\Release\TesteUnitario.Properties.Resources.resources
+C:\TCC\TesteUnitario\obj\Release\TesteUnitario.csproj.GenerateResource.Cache
+C:\TCC\TesteUnitario\obj\Release\TesteUnitario.exe
+C:\TCC\TesteUnitario\obj\Release\TesteUnitario.pdb
