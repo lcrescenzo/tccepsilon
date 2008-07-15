@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using SGR.BP.Objetos;
 
 namespace TesteUnitario
 {
@@ -13,6 +14,12 @@ namespace TesteUnitario
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Residuo a = new Residuo();
+            propertyGrid1.SelectedObject = a;
         }
     }
 }

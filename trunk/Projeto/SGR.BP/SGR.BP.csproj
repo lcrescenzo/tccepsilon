@@ -33,10 +33,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bases\DaoBase.cs" />
     <Compile Include="Bases\IDao.cs" />
+    <Compile Include="Bases\IListDao.cs" />
     <Compile Include="Bases\ObjectBase.cs" />
-    <Compile Include="Bases\StructureObject.cs" />
+    <Compile Include="Util\DaoUtil.cs" />
     <Compile Include="Util\EStateObject.cs" />
     <Compile Include="Dao\DaoMovimentacao.cs" />
     <Compile Include="Dao\DaoTransporte.cs" />
@@ -45,8 +45,6 @@
     <Compile Include="Objeto\Residuo.cs" />
     <Compile Include="Objeto\Transporte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\DataBaseParameters.cs" />
-    <Compile Include="Util\ETypeDataBase.cs" />
     <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>

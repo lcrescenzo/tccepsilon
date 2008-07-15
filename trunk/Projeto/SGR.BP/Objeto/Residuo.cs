@@ -6,8 +6,19 @@ using SGR.BP.Bases;
 
 namespace SGR.BP.Objetos
 {
-    class Residuo : SGR.BP.Bases.ObjectBase, IDataObject<DaoResiduo>
+    public class Residuo : SGR.BP.Bases.ObjectBase
     {
+        #region Construtores
+        public Residuo()
+        { 
+        }
+        
+        public Residuo(int pID)
+        {
+
+        }
+        #endregion
+
         #region Propriedades
         private string _nome;
 
@@ -16,18 +27,17 @@ namespace SGR.BP.Objetos
             get { return _nome; }
             set { _nome = value; }
         }
+
+
         #endregion
 
-        #region Netodos de Dados
+        #region Dados
         /// <summary>
         /// Faz a inclusão do Resíduo no Banco de Dados.
         /// </summary>
         public override void Inserir()
         {
-            DaoResiduo dao = new DaoResiduo();
-            dao.Incluir(this);
-            
-            throw new Exception("The method or operation is not implemented.");
+            Dao.Incluir(this);
         }
 
         /// <summary>
@@ -54,22 +64,18 @@ namespace SGR.BP.Objetos
         {
             throw new Exception("The method or operation is not implemented.");
         }
-        #endregion
-
-
-
-        #region IDataObject<DaoResiduo> Members
-
-        public DaoResiduo Dao
+        
+        private DaoResiduo _dao = null;
+        DaoResiduo Dao
         {
             get
             {
-                throw new Exception("The method or operation is not implemented.");
+                if(_dao == null)
+                    _dao = new DaoResiduo();
+
+                return _dao;
             }
-            set
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
+            
         }
 
         #endregion

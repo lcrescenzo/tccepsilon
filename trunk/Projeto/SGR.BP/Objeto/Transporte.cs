@@ -5,7 +5,7 @@ using SGR.BP.Bases;
 
 namespace SGR.BP.Objetos
 {
-    class Transporte : ObjectBase
+    public class Transporte : ObjectBase
     {
         private int _quantidade;
 
