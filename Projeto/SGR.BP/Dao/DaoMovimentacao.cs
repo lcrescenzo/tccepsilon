@@ -3,16 +3,48 @@ using System.Collections.Generic;
 using System.Text;
 using SGR.BP.Bases;
 using SGR.BP.Objetos;
+using System.Data;
+using SGR.BP.Util;
 
 namespace SGR.BP.Dao
 {
-    class DaoMovimentacao : DaoBase, IDao<Movimentacao>
+    class DaoMovimentacao : IDao<Movimentacao>
     {
-        #region IDao<Movimentacao> Members
+        
 
         public void Incluir(Movimentacao objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            using (IDbConnection connection = DaoUtil.DataBase.GetConnectionObject())
+            {
+                IDbTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+
+                    using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "proc_name", ParametrosIncluir(objeto)))
+                    {
+
+                        if (DaoUtil.IncluirBase(comm) > 0)
+                        {
+                            DaoTransporte dao = new DaoTransporte();
+                            foreach (Transporte transporte in objeto.Transportes)
+                            {
+                                dao.Incluir(transporte, connection);
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
         }
 
         public void Alterar(Movimentacao objeto)
@@ -40,6 +72,11 @@ namespace SGR.BP.Dao
             throw new Exception("The method or operation is not implemented.");
         }
 
-        #endregion
+        public void Carregar(int pId)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        
     }
 }

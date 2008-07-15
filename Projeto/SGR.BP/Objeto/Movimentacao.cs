@@ -5,7 +5,7 @@ using SGR.BP.Bases;
 
 namespace SGR.BP.Objetos
 {
-    class Movimentacao : ObjectBase
+    public class Movimentacao : ObjectBase
     {
         
         
