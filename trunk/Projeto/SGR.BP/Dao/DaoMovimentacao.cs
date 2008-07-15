@@ -34,7 +34,7 @@ namespace SGR.BP.Dao
                             }
                         }
                     }
-
+                    transaction.Commit();
                 }
                 catch (Exception e)
                 {
