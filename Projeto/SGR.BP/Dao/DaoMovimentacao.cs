@@ -39,6 +39,7 @@ namespace SGR.BP.Dao
                 catch (Exception e)
                 {
                     transaction.Rollback();
+                    throw e;
                 }
                 finally
                 {
