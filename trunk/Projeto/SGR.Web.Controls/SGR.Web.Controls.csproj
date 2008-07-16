@@ -1,0 +1,129 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C757C8F0-34E8-4244-8921-2F187B70BDFE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SGR.Web.Controls</RootNamespace>
+    <AssemblyName>SGR.Web.Controls</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=1.0.20229.20821, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Extensions.Design, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ajax\AccordionExtender.cs" />
+    <Compile Include="Ajax\AlwaysVisibleControlExtender.cs" />
+    <Compile Include="Ajax\AnimationExtender.cs" />
+    <Compile Include="Ajax\AutoCompleteExtender.cs" />
+    <Compile Include="Ajax\BulletedList.cs" />
+    <Compile Include="Ajax\CalendarExtender.cs" />
+    <Compile Include="Ajax\CascadingDropDown.cs" />
+    <Compile Include="Ajax\CollapsiblePanelExtender.cs" />
+    <Compile Include="Ajax\ConfirmButtonExtender.cs" />
+    <Compile Include="Ajax\DraggableListItemExtender.cs" />
+    <Compile Include="Ajax\DragPanelExtender.cs" />
+    <Compile Include="Ajax\DropDownExtender.cs" />
+    <Compile Include="Ajax\DropShadowExtender.cs" />
+    <Compile Include="Ajax\DropWatcherExtender.cs" />
+    <Compile Include="Ajax\DynamicPopulateExtender.cs" />
+    <Compile Include="Ajax\FilteredTextBoxExtender.cs" />
+    <Compile Include="Ajax\HoverExtender.cs" />
+    <Compile Include="Ajax\HoverMenuExtender.cs" />
+    <Compile Include="Ajax\ListSearchExtender.cs" />
+    <Compile Include="Ajax\MaskedEditExtender.cs" />
+    <Compile Include="Ajax\ModalPopupExtender.cs" />
+    <Compile Include="Ajax\MutuallyExclusiveCheckBoxExtender.cs" />
+    <Compile Include="Ajax\NoBotExtender.cs" />
+    <Compile Include="Ajax\NumericUpDownExtender.cs" />
+    <Compile Include="Ajax\PagingBulletedListExtender.cs" />
+    <Compile Include="Ajax\PasswordStrength.cs" />
+    <Compile Include="Ajax\PopupControlExtender.cs" />
+    <Compile Include="Ajax\PopupExtender.cs" />
+    <Compile Include="Ajax\RatingExtender.cs" />
+    <Compile Include="Ajax\ReorderList.cs" />
+    <Compile Include="Ajax\ResizableControlExtender.cs" />
+    <Compile Include="Ajax\RoundedCornersExtender.cs" />
+    <Compile Include="Ajax\Slide.cs" />
+    <Compile Include="Ajax\SliderExtender.cs" />
+    <Compile Include="Ajax\SlideShowExtender.cs" />
+    <Compile Include="Ajax\TabContainer.cs" />
+    <Compile Include="Ajax\TabPanel.cs" />
+    <Compile Include="Ajax\TextBoxWatermarkExtender.cs" />
+    <Compile Include="Ajax\ToggleButtonExtender.cs" />
+    <Compile Include="Ajax\UpdatePanelAnimationExtender.cs" />
+    <Compile Include="Ajax\ValidatorCalloutExtender.cs" />
+    <Compile Include="Common\BulletedList.cs" />
+    <Compile Include="Common\Button.cs" />
+    <Compile Include="Common\CheckBox.cs" />
+    <Compile Include="Common\CheckBoxList.cs" />
+    <Compile Include="Common\CompareValidator.cs" />
+    <Compile Include="Common\CustomValidator.cs" />
+    <Compile Include="Common\DataGrid.cs" />
+    <Compile Include="Common\DataList.cs" />
+    <Compile Include="Common\DetailsView.cs" />
+    <Compile Include="Common\DropDownList.cs" />
+    <Compile Include="Common\FileUpload.cs" />
+    <Compile Include="Common\FormView.cs" />
+    <Compile Include="Common\GridView.cs" />
+    <Compile Include="Common\HiddenField.cs" />
+    <Compile Include="Common\HyperLink.cs" />
+    <Compile Include="Common\Image.cs" />
+    <Compile Include="Common\ImageButton.cs" />
+    <Compile Include="Common\ImageMap.cs" />
+    <Compile Include="Common\Label.cs" />
+    <Compile Include="Common\LinkButton.cs" />
+    <Compile Include="Common\ListBox.cs" />
+    <Compile Include="Common\Literal.cs" />
+    <Compile Include="Common\Menu.cs" />
+    <Compile Include="Common\ObjectDataSource.cs" />
+    <Compile Include="Common\Panel.cs" />
+    <Compile Include="Common\PlaceHolder.cs" />
+    <Compile Include="Common\RadioButton.cs" />
+    <Compile Include="Common\Repeater.cs" />
+    <Compile Include="Common\RequiredFieldValidator.cs" />
+    <Compile Include="Common\Table.cs" />
+    <Compile Include="Common\TreeView.cs" />
+    <Compile Include="Common\ValidationSummary.cs" />
+    <Compile Include="Common\Wizard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\TextBox.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

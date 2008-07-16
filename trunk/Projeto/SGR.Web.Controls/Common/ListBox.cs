@@ -1,0 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SGR.Web.Controls.Common
+{
+    public class ListBox : System.Web.UI.WebControls.ListBox
+    {
+    }
+}
