@@ -42,11 +42,12 @@ namespace SGR.DataBaseFactory
             {
                 case DataBaseType.MySql: returnObject = new MySqlDataBase(dataBase.ConnectionString); break;
                 case DataBaseType.SqlServer: returnObject = new SqlDataBase(dataBase.ConnectionString); break;
-                case DataBaseType.Oracle: throw new Exception("Tipo de Base não implementada"); break;
-                case DataBaseType.PostgreSql: throw new Exception("Tipo de Base não implementada"); break;
-                case DataBaseType.Firebird: throw new Exception("Tipo de Base não implementada"); break;
-                default: throw new Exception("Tipo de Base não implementada"); break;
+                case DataBaseType.Oracle: throw new Exception("Tipo de Base não implementada"); 
+                case DataBaseType.PostgreSql: throw new Exception("Tipo de Base não implementada"); 
+                case DataBaseType.Firebird: throw new Exception("Tipo de Base não implementada"); 
+                default: throw new Exception("Tipo de Base não implementada"); 
             }
+            
             return returnObject;
         }
     }

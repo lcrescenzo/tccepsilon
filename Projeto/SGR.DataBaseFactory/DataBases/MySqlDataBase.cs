@@ -94,34 +94,34 @@ namespace SGR.Data.DataBases
         {
             switch (pType)
             {
-                case DbType.AnsiString: return MySqlDbType.String; break;
-                case DbType.AnsiStringFixedLength: return MySqlDbType.VarChar; break;
-                case DbType.Binary: return MySqlDbType.Binary; break;
-                case DbType.Boolean: return MySqlDbType.Bit; break;
-                case DbType.Byte: return MySqlDbType.Byte; break;
-                case DbType.Currency: return MySqlDbType.Decimal; break;
-                case DbType.Date: return MySqlDbType.Date; break;
-                case DbType.DateTime: return MySqlDbType.DateTime; break;
-                case DbType.DateTime2: return MySqlDbType.Datetime; break;
-                case DbType.DateTimeOffset: return MySqlDbType.Datetime; break;
-                case DbType.Decimal: return MySqlDbType.Decimal; break;
-                case DbType.Double: return MySqlDbType.Double; break;
-                case DbType.Guid: return MySqlDbType.String; break;
-                case DbType.Int16: return MySqlDbType.Int16; break;
-                case DbType.Int32: return MySqlDbType.Int32; break;
-                case DbType.Int64: return MySqlDbType.Int64; break;
-                case DbType.Object: throw new Exception("Tipo não suportado"); break;
-                case DbType.SByte: return MySqlDbType.UByte; break;
-                case DbType.Single: return MySqlDbType.Float; break;
-                case DbType.String: return MySqlDbType.String; break;
-                case DbType.StringFixedLength: return MySqlDbType.VarChar; break;
-                case DbType.Time: return MySqlDbType.Time; break;
-                case DbType.UInt16: return MySqlDbType.UInt16; break;
-                case DbType.UInt32: return MySqlDbType.UInt32; break;
-                case DbType.UInt64: return MySqlDbType.UInt64; break;
-                case DbType.VarNumeric: return MySqlDbType.LongBlob; break;
-                case DbType.Xml: return MySqlDbType.LongText; break;
-                default: throw new Exception("Tipo não suportado"); break;
+                case DbType.AnsiString: return MySqlDbType.String; 
+                case DbType.AnsiStringFixedLength: return MySqlDbType.VarChar; 
+                case DbType.Binary: return MySqlDbType.Binary; 
+                case DbType.Boolean: return MySqlDbType.Bit; 
+                case DbType.Byte: return MySqlDbType.Byte; 
+                case DbType.Currency: return MySqlDbType.Decimal; 
+                case DbType.Date: return MySqlDbType.Date; 
+                case DbType.DateTime: return MySqlDbType.DateTime; 
+                case DbType.DateTime2: return MySqlDbType.DateTime; 
+                case DbType.DateTimeOffset: return MySqlDbType.DateTime; 
+                case DbType.Decimal: return MySqlDbType.Decimal; 
+                case DbType.Double: return MySqlDbType.Double; 
+                case DbType.Guid: return MySqlDbType.String; 
+                case DbType.Int16: return MySqlDbType.Int16; 
+                case DbType.Int32: return MySqlDbType.Int32; 
+                case DbType.Int64: return MySqlDbType.Int64; 
+                case DbType.Object: throw new Exception("Tipo não suportado"); 
+                case DbType.SByte: return MySqlDbType.UByte; 
+                case DbType.Single: return MySqlDbType.Float; 
+                case DbType.String: return MySqlDbType.String; 
+                case DbType.StringFixedLength: return MySqlDbType.VarChar; 
+                case DbType.Time: return MySqlDbType.Time; 
+                case DbType.UInt16: return MySqlDbType.UInt16; 
+                case DbType.UInt32: return MySqlDbType.UInt32; 
+                case DbType.UInt64: return MySqlDbType.UInt64; 
+                case DbType.VarNumeric: return MySqlDbType.LongBlob; 
+                case DbType.Xml: return MySqlDbType.LongText; 
+                default: throw new Exception("Tipo não suportado"); 
             }
         }
 

@@ -55,12 +55,12 @@ namespace SGR.DataBaseFactory.Configuration
         {
             XmlNode a = _node.Attributes.RemoveNamedItem(_attribute);
             if(a==null)
-                throw new ConfigurationException("Attribute required: " + _attribute);
+                throw new ConfigurationErrorsException("Attribute required: " + _attribute);
             
             if(Enum.IsDefined(_enumType, a.Value))
                 _val = (int)Enum.Parse(_enumType,a.Value);
             else
-                throw new ConfigurationException("Invalid Level",a);
+                throw new ConfigurationErrorsException("Invalid Level", a);
             
             return a;
         }
@@ -69,7 +69,7 @@ namespace SGR.DataBaseFactory.Configuration
         {
             XmlNode a = _node.Attributes.RemoveNamedItem(_attribute);
             if(a==null)
-                throw new ConfigurationException("Attribute required: " + _attribute);
+                throw new ConfigurationErrorsException("Attribute required: " + _attribute);
             else
                 _val = a.Value;
             return a;		
