@@ -95,34 +95,34 @@ namespace SGR.Data.DataBases
         {
             switch (pType)
             {
-                case DbType.AnsiString: return SqlDbType.VarChar; break;
-                case DbType.AnsiStringFixedLength: return SqlDbType.NChar; break;
-                case DbType.Binary: return SqlDbType.Binary; break;
-                case DbType.Boolean: return SqlDbType.Bit; break;
-                case DbType.Byte: return SqlDbType.Binary; break;
-                case DbType.Currency: return SqlDbType.Money; break;
-                case DbType.Date: return SqlDbType.Date; break;
-                case DbType.DateTime: return SqlDbType.DateTime; break;
-                case DbType.DateTime2: return SqlDbType.DateTime2; break;
-                case DbType.DateTimeOffset: return SqlDbType.DateTimeOffset; break;
-                case DbType.Decimal: return SqlDbType.Decimal; break;
-                case DbType.Double: return SqlDbType.Decimal; break;
-                case DbType.Guid: return SqlDbType.UniqueIdentifier; break;
-                case DbType.Int16: return SqlDbType.SmallInt; break;
-                case DbType.Int32: return SqlDbType.Int; break;
-                case DbType.Int64: return SqlDbType.BigInt; break;
-                case DbType.Object: return SqlDbType.Variant; break;
-                case DbType.SByte: return SqlDbType.VarBinary; break;
-                case DbType.Single: return SqlDbType.Float; break;
-                case DbType.String: return SqlDbType.VarChar; break;
-                case DbType.StringFixedLength: return SqlDbType.NVarChar; break;
-                case DbType.Time: return SqlDbType.Time; break;
-                case DbType.UInt16: return SqlDbType.SmallInt; break;
-                case DbType.UInt32: return SqlDbType.Int; break;
-                case DbType.UInt64: return SqlDbType.BigInt; break;
-                case DbType.VarNumeric: return SqlDbType.Decimal; break;
-                case DbType.Xml: return SqlDbType.Xml; break;
-                default: throw new Exception("Tipo não suportado!"); break;
+                case DbType.AnsiString: return SqlDbType.VarChar; 
+                case DbType.AnsiStringFixedLength: return SqlDbType.NChar; 
+                case DbType.Binary: return SqlDbType.Binary; 
+                case DbType.Boolean: return SqlDbType.Bit; 
+                case DbType.Byte: return SqlDbType.Binary; 
+                case DbType.Currency: return SqlDbType.Money; 
+                case DbType.Date: return SqlDbType.Date; 
+                case DbType.DateTime: return SqlDbType.DateTime; 
+                case DbType.DateTime2: return SqlDbType.DateTime2; 
+                case DbType.DateTimeOffset: return SqlDbType.DateTimeOffset; 
+                case DbType.Decimal: return SqlDbType.Decimal; 
+                case DbType.Double: return SqlDbType.Decimal; 
+                case DbType.Guid: return SqlDbType.UniqueIdentifier; 
+                case DbType.Int16: return SqlDbType.SmallInt; 
+                case DbType.Int32: return SqlDbType.Int; 
+                case DbType.Int64: return SqlDbType.BigInt; 
+                case DbType.Object: return SqlDbType.Variant; 
+                case DbType.SByte: return SqlDbType.VarBinary;
+                case DbType.Single: return SqlDbType.Float; 
+                case DbType.String: return SqlDbType.VarChar; 
+                case DbType.StringFixedLength: return SqlDbType.NVarChar; 
+                case DbType.Time: return SqlDbType.Time; 
+                case DbType.UInt16: return SqlDbType.SmallInt; 
+                case DbType.UInt32: return SqlDbType.Int; 
+                case DbType.UInt64: return SqlDbType.BigInt; 
+                case DbType.VarNumeric: return SqlDbType.Decimal; 
+                case DbType.Xml: return SqlDbType.Xml; 
+                default: throw new Exception("Tipo não suportado!"); 
             }
         }
 
