@@ -24,7 +24,7 @@ namespace SGR.Data.DataBases
         #endregion
 
         #region Command
-        public IDbCommand GetCommandProcObject(System.Data.IDbConnection pConnection, string pProcName, IDataParameterCollection pParameters)
+        public IDbCommand GetCommandProcObject(System.Data.IDbConnection pConnection, string pProcName, List<IDataParameter> pParameters)
         {
             IDbCommand comm = new MySqlCommand();
             comm.CommandType = CommandType.StoredProcedure;
@@ -38,7 +38,7 @@ namespace SGR.Data.DataBases
             return comm;
         }
 
-        public IDbCommand GetCommandQueryObject(System.Data.IDbConnection pConnection, string pQuery, IDataParameterCollection pParameters)
+        public IDbCommand GetCommandQueryObject(System.Data.IDbConnection pConnection, string pQuery, List<IDataParameter> pParameters)
         {
             IDbCommand comm = new MySqlCommand();
             comm.CommandType = CommandType.Text;

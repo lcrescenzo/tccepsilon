@@ -9,15 +9,10 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
-public partial class Telas_Manutencao_Residuos_Consulta : System.Web.UI.Page
+public partial class Telas_Manutencao_Residuos_Manutencao : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-    }
 
-    protected void btnNovo_Click(object sender, EventArgs e)
-    {
-        Server.Transfer("Manutencao.aspx");
     }
 }

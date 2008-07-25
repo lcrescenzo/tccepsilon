@@ -6,7 +6,7 @@ using SGR.BP.Bases;
 
 namespace SGR.BP.Objetos
 {
-    public class Residuo : SGR.BP.Bases.ObjectBase
+    public class Residuo : ObjectBase
     {
         #region Construtores
         public Residuo()
@@ -31,7 +31,7 @@ namespace SGR.BP.Objetos
 
         #endregion
 
-        #region Dados
+        #region Data
         /// <summary>
         /// Faz a inclusão do Resíduo no Banco de Dados.
         /// </summary>

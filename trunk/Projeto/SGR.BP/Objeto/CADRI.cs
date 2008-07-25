@@ -2,22 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SGR.BP.Bases;
+using SGR.BP.Objetos;
 
-namespace SGR.BP.Objetos
+namespace SGR.BP.Objeto
 {
-    public class Movimentacao : ObjectBase
+    public class CADRI : ObjectBase
     {
-        #region Data
-        private static List<Transporte> _transportes = null;
+        #region Atributos
+        private List<Residuo> residuos;
         #endregion
 
         #region Propriedades
-        public List<Transporte> Transportes
+        public List<Residuo> Residuos
         {
-            get
-            {
-                return _transportes;   
-            }
+            get { return residuos; }
+            set { residuos = value; }
         }
         #endregion
 
@@ -39,7 +38,7 @@ namespace SGR.BP.Objetos
 
         internal override void PreencheObjeto(System.Data.IDataReader reader)
         {
-
+            throw new Exception("The method or operation is not implemented.");
         }
         #endregion
     }

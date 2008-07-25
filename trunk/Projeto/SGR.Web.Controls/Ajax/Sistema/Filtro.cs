@@ -27,9 +27,7 @@ namespace SGR.Web.Controls.Ajax.Sistema
             panelMain = new Panel();
             panelMain.ID = "PanelMain";
             panelMain.Width = new Unit(100, UnitType.Percentage);
-            panelMain.BorderColor = Color.Black;
-            panelMain.BorderWidth = new Unit(1);
-
+            
             Panel panelTitulo = new Panel();
             panelTitulo.ID = "panelTitulo";
             panelTitulo.Width = new Unit(100, UnitType.Percentage);
@@ -91,6 +89,7 @@ namespace SGR.Web.Controls.Ajax.Sistema
             Ajax.RoundedCornersExtender rounded = new RoundedCornersExtender();
             rounded.TargetControlID = panelMain.ID;
             rounded.Radius = 5;
+            rounded.BorderColor = Color.Black;
             rounded.Corners = AjaxControlToolkit.BoxCorners.All;
 
             Ajax.CollapsiblePanel collapsi = new CollapsiblePanel();
