@@ -29,7 +29,7 @@ namespace SGR.Data.DataBases
             return new SqlCommand();
         }
 
-        public IDbCommand GetCommandQueryObject(IDbConnection pConnection, string pQuery, IDataParameterCollection pParameters)
+        public IDbCommand GetCommandQueryObject(IDbConnection pConnection, string pQuery, List<IDataParameter> pParameters)
         {
             IDbCommand comm = new SqlCommand();
             comm.CommandType = CommandType.Text;
@@ -43,7 +43,7 @@ namespace SGR.Data.DataBases
             return comm;
         }
 
-        public IDbCommand GetCommandProcObject(IDbConnection pConnection, string pProcName, IDataParameterCollection pParameters)
+        public IDbCommand GetCommandProcObject(IDbConnection pConnection, string pProcName, List<IDataParameter> pParameters)
         {
             IDbCommand comm = new SqlCommand();
             comm.CommandType = CommandType.StoredProcedure;

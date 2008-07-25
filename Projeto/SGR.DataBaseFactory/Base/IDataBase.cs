@@ -9,8 +9,8 @@ namespace SGR.Data.Interfaces
     {
         IDbConnection GetConnectionObject();
         IDbCommand GetCommandObject();
-        IDbCommand GetCommandQueryObject(System.Data.IDbConnection pConnection, string pQuery, IDataParameterCollection pParameters);
-        IDbCommand GetCommandProcObject(System.Data.IDbConnection pConnection, string pProcName, IDataParameterCollection pParameters);
+        IDbCommand GetCommandQueryObject(System.Data.IDbConnection pConnection, string pQuery, List<IDataParameter> pParameters);
+        IDbCommand GetCommandProcObject(System.Data.IDbConnection pConnection, string pProcName, List<IDataParameter> pParameters);
         IDbTransaction GetTransactionObject(IDbCommand pCommand);
         IDataParameter NewParameter();
         IDataParameter NewParameter(string pParameterName, DbType pType,object pValue);

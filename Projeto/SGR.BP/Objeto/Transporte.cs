@@ -7,15 +7,19 @@ namespace SGR.BP.Objetos
 {
     public class Transporte : ObjectBase
     {
+        #region Atributos
         private int _quantidade;
+        #endregion
 
+        #region Propriedades
         public int Quantidade
         {
             get { return _quantidade; }
             set { _quantidade = value; }
         }
+        #endregion
 
-
+        #region Data
         public override void Inserir()
         {
             throw new Exception("The method or operation is not implemented.");
@@ -35,6 +39,6 @@ namespace SGR.BP.Objetos
         {
             this.Quantidade = (int)reader["quantidade"];
         }
-       
+        #endregion
     }
 }

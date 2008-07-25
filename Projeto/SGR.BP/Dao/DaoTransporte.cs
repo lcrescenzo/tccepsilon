@@ -47,17 +47,17 @@ namespace SGR.BP.Dao
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public IDataParameterCollection ParametrosIncluir(Transporte objeto)
+        public List<IDataParameter> ParametrosIncluir(Transporte objeto)
         {
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public IDataParameterCollection ParametrosExcluir(Transporte objeto)
+        public List<IDataParameter> ParametrosExcluir(Transporte objeto)
         {
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public IDataParameterCollection ParametrosAlterar(Transporte objeto)
+        public List<IDataParameter> ParametrosAlterar(Transporte objeto)
         {
             
             throw new Exception("The method or operation is not implemented.");

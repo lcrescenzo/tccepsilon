@@ -39,17 +39,17 @@ namespace SGR.BP.Dao
             //DaoUtil.ExcluirBase(comm, this.ParametrosExcluir(objeto));
         }
 
-        public IDataParameterCollection ParametrosIncluir(Residuo objeto)
+        public List<IDataParameter> ParametrosIncluir(Residuo objeto)
         {
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public IDataParameterCollection ParametrosExcluir(Residuo objeto)
+        public List<IDataParameter> ParametrosExcluir(Residuo objeto)
         {
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public IDataParameterCollection ParametrosAlterar(Residuo objeto)
+        public List<IDataParameter> ParametrosAlterar(Residuo objeto)
         {
             throw new Exception("The method or operation is not implemented.");
         }
