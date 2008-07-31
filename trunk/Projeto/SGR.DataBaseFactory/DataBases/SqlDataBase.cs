@@ -73,7 +73,7 @@ namespace SGR.Data.DataBases
 
         public IDataParameter NewParameter(string pParameterName, DbType pType, object pValue)
         {
-            IDbDataParameter parameter = new SqlParameter(pParameterName, pType);
+            IDbDataParameter parameter = new SqlParameter(PrefixParameter + pParameterName, pType);
             if (pValue != null)
                 parameter.Value = pValue;
             else
@@ -84,7 +84,7 @@ namespace SGR.Data.DataBases
 
         public IDataParameter NewOutputParameter(string pParameterName, DbType pType, object pValue)
         {
-            IDataParameter parameter = NewParameter(pParameterName, pType, pValue);
+            IDataParameter parameter = NewParameter(PrefixParameter + pParameterName, pType, pValue);
             parameter.Direction = ParameterDirection.Output;
             
             return parameter;
@@ -126,5 +126,14 @@ namespace SGR.Data.DataBases
             }
         }
 
+
+        #region IDataBase Members
+
+        public string PrefixParameter
+        {
+            get { return "@"; }
+        }
+
+        #endregion
     }
 }

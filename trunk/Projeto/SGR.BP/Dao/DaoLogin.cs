@@ -26,7 +26,12 @@ namespace SGR.BP.Dao
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public void Carregar(int pId)
+        public IDataReader Carregar(int pId)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public IDataReader Carregar(string login, string senha)
         {
             throw new Exception("The method or operation is not implemented.");
         }

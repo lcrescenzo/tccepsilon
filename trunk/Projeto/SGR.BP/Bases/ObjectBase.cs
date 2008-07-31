@@ -11,9 +11,19 @@ namespace SGR.BP.Bases
         private EStateObject _estado;
         private int _id;
 
-        public abstract void Inserir();
-        public abstract void Alterar();
-        public abstract void Excluir();
+        public virtual void Inserir()
+        {
+            _dao.Incluir(this);
+        }
+        public virtual void Alterar()
+        {
+            _dao.Alterar(this);
+        }
+        public virtual void Excluir()
+        {
+            _dao.Excluir(this);
+        }
+
         internal abstract void PreencheObjeto(IDataReader reader);
 
         public int ID
@@ -27,6 +37,9 @@ namespace SGR.BP.Bases
                 _id = value;
             }
         }
+
+        internal IDao<ObjectBase> _dao;
+
         internal EStateObject Estado
         {
             get { return _estado; }
