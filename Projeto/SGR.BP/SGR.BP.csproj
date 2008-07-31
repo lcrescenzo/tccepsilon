@@ -48,6 +48,7 @@
     <Compile Include="Objeto\CADRI.cs" />
     <Compile Include="Objeto\Classe.cs" />
     <Compile Include="Objeto\Estado.cs" />
+    <Compile Include="Objeto\ETipoRecurso.cs" />
     <Compile Include="Objeto\GrupoResiduo.cs" />
     <Compile Include="Objeto\Login.cs" />
     <Compile Include="Objeto\Perfil.cs" />

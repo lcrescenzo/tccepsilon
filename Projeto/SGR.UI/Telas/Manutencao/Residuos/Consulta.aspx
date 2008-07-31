@@ -12,7 +12,7 @@
     
         <cc1:Filtro ID="Filtro1" runat="server" CollapsedImage="~/images/Padrao/mais.gif" ExpandedImage="~/images/Padrao/menos.gif">
             <MainControls>
-                        <asp:Label ID="Label2" runat="server" Text="Nome: "></asp:Label>
+                        <cc2:Label ID="Label2" runat="server" Text="Nome: "></cc2:Label>
                         <cc2:TextBox ID="TextBox1" runat="server" Width="749px"></cc2:TextBox>
             </MainControls>
             <AdvancedControls>

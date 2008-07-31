@@ -47,27 +47,36 @@ namespace SGR.BP.Util
             return (int)pCommand.ExecuteScalar();
         }
 
-        internal static T Carregar<T>(string pProcName,int pID, string pParameterNameID) where T : ObjectBase
+        internal static IDataReader Carregar(string pProcName,int pID, string pParameterNameID) //where T : ObjectBase
         {
-            IDbCommand comm = DaoUtil.DataBase.GetCommandObject();
-            IDbDataParameter parameter = comm.CreateParameter();
+            using(IDbConnection connection = DataBase.GetConnectionObject())
+            {
+                IDataReader reader = null;
+                try
+                {
+                    connection.Open();
+                    
+                    List<IDataParameter> parameter = new List<IDataParameter>();
+                    parameter.Add(DataBase.NewParameter(pParameterNameID, DbType.Int32, pID));
 
-            comm.CommandType = CommandType.StoredProcedure;
-            comm.CommandText = pProcName;
+                    IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, pProcName, parameter);
+                    
+                    reader = comm.ExecuteReader();
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    connection.Close();
+                }
 
-            parameter.DbType = DbType.Int32;
-            parameter.ParameterName = pParameterNameID;
-            parameter.Value = pID;
-            
-            IDataReader reader = comm.ExecuteReader();
-            
-            T objeto = (T)(typeof(T).Assembly.CreateInstance(typeof(T).ToString()));
-            objeto.PreencheObjeto(reader);
-
-            return objeto;
+                return reader;
+            }
         }
 
-        internal static List<T> ListaBase<T>(System.Data.IDbCommand pCommand, IDataParameterCollection pParameterColection) where T : ObjectBase
+        internal static List<T> ListaBase<T>(System.Data.IDbCommand pCommand) where T : ObjectBase
         {
             if (pCommand.Connection.State != System.Data.ConnectionState.Open)
                 throw new Exception("A conexão deve ser aberta antes de alterar um Objeto");

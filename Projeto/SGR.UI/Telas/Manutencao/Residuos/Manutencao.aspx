@@ -16,14 +16,13 @@
         </cc1:DropDownList>
         <cc1:CheckBox ID="CheckBox1" runat="server" Text="Auditoria" /></cc1:Panel>
     <cc1:Panel ID="Panel1" runat="server" Width="100%">
-        <cc1:Label id="Label1" runat="server">Tipo de Resíduo:</cc1:label>&nbsp;
+        <cc1:Label id="Label1" runat="server">Tipo de Resíduo:</cc1:label>
         <cc1:DropDownList id="DropDownList1" runat="server"></cc1:dropdownlist>
         <cc1:Label id="Label3" runat="server">Estado físico:</cc1:label>
         <cc1:RadioButton id="RadioButton2" runat="server" checked="True" groupname="grpEstadoFisico"
             text="Líquido"></cc1:radiobutton>
         <cc1:RadioButton id="RadioButton1" runat="server" groupname="grpEstadoFisico" text="Sólido"></cc1:radiobutton>
-        <cc1:RadioButton id="RadioButton3" runat="server" groupname="grpEstadoFisico" text="Gasoso"></cc1:radiobutton>
-    </cc1:Panel>
+        <cc1:RadioButton id="RadioButton3" runat="server" groupname="grpEstadoFisico" text="Gasoso"></cc1:radiobutton></cc1:Panel>
     <br />
     <cc1:Button ID="btnGravar" runat="server" Text="Gravar" />
     <cc1:Button ID="btnCancelar" runat="server" Text="Cancelar" />

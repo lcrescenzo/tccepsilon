@@ -42,7 +42,12 @@ namespace SGR.BP.Dao
         }
 
 
-        public void Carregar(int pId)
+        public IDataReader Carregar(int pId)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public IDataReader Carregar(DateTime data)
         {
             throw new Exception("The method or operation is not implemented.");
         }

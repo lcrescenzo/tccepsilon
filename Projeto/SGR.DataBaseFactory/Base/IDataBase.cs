@@ -7,6 +7,7 @@ namespace SGR.Data.Interfaces
 {
     public interface IDataBase
     {
+        string PrefixParameter{ get; }
         IDbConnection GetConnectionObject();
         IDbCommand GetCommandObject();
         IDbCommand GetCommandQueryObject(System.Data.IDbConnection pConnection, string pQuery, List<IDataParameter> pParameters);
