@@ -14,7 +14,9 @@ namespace SGR.Data.Interfaces
         IDbCommand GetCommandProcObject(System.Data.IDbConnection pConnection, string pProcName, List<IDataParameter> pParameters);
         IDbTransaction GetTransactionObject(IDbCommand pCommand);
         IDataParameter NewParameter();
+        IDataParameter NewParameter(string pParameterName, object pValue);
         IDataParameter NewParameter(string pParameterName, DbType pType,object pValue);
         IDataParameter NewOutputParameter(string pParameterName, DbType pType, object pValue);
+        
     }
 }

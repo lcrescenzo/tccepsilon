@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SGR.BP.Bases;
-using SGR.BP.Objetos;
+using SGR.BP.Objeto;
 using System.Data;
 using SGR.BP.Util;
 
@@ -10,10 +10,11 @@ namespace SGR.BP.Dao
 {
     class DaoMovimentacao : IDao<Movimentacao>
     {
-        
 
-        public void Incluir(Movimentacao objeto)
+
+        public int Incluir(Movimentacao objeto)
         {
+            int id = 0;
             using (IDbConnection connection = DaoUtil.DataBase.GetConnectionObject())
             {
                 IDbTransaction transaction = null;
@@ -24,14 +25,13 @@ namespace SGR.BP.Dao
 
                     using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "proc_name", ParametrosIncluir(objeto)))
                     {
-
-                        if (DaoUtil.IncluirBase(comm) > 0)
+                        
+                        id = (int)DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Incluir); 
+                            
+                        DaoTransporte dao = new DaoTransporte();
+                        foreach (Transporte transporte in objeto.Transportes)
                         {
-                            DaoTransporte dao = new DaoTransporte();
-                            foreach (Transporte transporte in objeto.Transportes)
-                            {
-                                dao.Incluir(transporte, connection);
-                            }
+                            dao.Incluir(transporte, connection);
                         }
                     }
                     transaction.Commit();
@@ -46,16 +46,17 @@ namespace SGR.BP.Dao
                     connection.Close();
                 }
             }
+            return id;
         }
 
         public void Alterar(Movimentacao objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            DaoUtil.Execute("proc_name", ParametrosAlterar(objeto), DaoUtil.ETipoExecucao.Alterar);
         }
 
         public void Excluir(Movimentacao objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            DaoUtil.Execute("proc_name", ParametrosExcluir(objeto), DaoUtil.ETipoExecucao.Excluir);
         }
 
         public List<IDataParameter> ParametrosIncluir(Movimentacao objeto)
@@ -73,15 +74,16 @@ namespace SGR.BP.Dao
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public IDataReader Carregar(int pId)
+        public IDataReader Carregar(int pId, Movimentacao objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            return DaoUtil.Carregar("proc_name", pId, "parameternameid", objeto);
         }
 
         public void CarregarTransportes(Movimentacao objeto)
         {
             throw new Exception("The method or operation is not implemented.");
         }
-        
+
+
     }
 }

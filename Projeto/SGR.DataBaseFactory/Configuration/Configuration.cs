@@ -1,79 +1,242 @@
 using System;
-using System.Web;
-using System.Xml;
+using System.Collections.Generic;
+using System.Text;
 using System.Configuration;
-using SGR.Data.DataBases;
+using SGR.DataBaseFactory.DataBases;
+using System.Xml;
 
 namespace SGR.DataBaseFactory.Configuration
 {
-    public enum DataBaseType
+    #region Element
+    public sealed class DataBaseElement : ConfigurationElement
     {
-        MySql,
-        SqlServer,
-        Oracle,
-        PostgreSql,
-        Firebird
-    }
+        public DataBaseElement(string newChave, string newConnectionString, ETypeDataBase newType)
+        {
+            Chave = newChave;
+            ConnectionString = newConnectionString;
+            Type = newType;
 
-    public class DataBaseSectionHandler : IConfigurationSectionHandler
-    {
-        public virtual object Create(object parent, object configContext, XmlNode section)
-        {
-            int iLevel = 0;
-            string sName = string.Empty;
-    	
-            ConfigHelper.GetEnumValue(section, "type", typeof(DataBaseType), ref iLevel);
-            ConfigHelper.GetStringValue(section, "connectionstring", ref sName);
-            return new DataBaseSection((DataBaseType)iLevel, sName);
         }
-    }
-    
-    public class DataBaseSection
-    {
-        private DataBaseType _dataBaseType = DataBaseType.SqlServer;
-        private string _connectionString = string.Empty;
-      
-        public DataBaseSection(DataBaseType pDataBaseType, string pConnectionString)
+
+        public DataBaseElement()
         {
-            _dataBaseType = pDataBaseType;
-            _connectionString = pConnectionString;
+
         }
-        public DataBaseType Type
+
+        public DataBaseElement(string elementName)
         {
-            get {return _dataBaseType;}
+            Chave = elementName;
         }
-        
+
+        [ConfigurationProperty("chave", DefaultValue = "database", IsRequired = true, IsKey = true)]
+        public string Chave
+        {
+            get
+            {
+                return (string)this["chave"];
+            }
+            set
+            {
+                this["chave"] = value;
+            }
+        }
+
+        [ConfigurationProperty("connectionstring", DefaultValue = "", IsRequired = true)]
         public string ConnectionString
         {
-            get {return _connectionString;}
+            get
+            {
+                return (string)this["connectionstring"];
+            }
+            set
+            {
+                this["connectionstring"] = value;
+            }
+        }
+
+        [ConfigurationProperty("type", DefaultValue = ETypeDataBase.SqlServer, IsRequired = true)]
+        public ETypeDataBase Type
+        {
+            get
+            {
+                return (ETypeDataBase)this["type"];
+            }
+            set
+            {
+                this["type"] = value;
+            }
+        }
+
+        protected override void DeserializeElement(XmlReader reader, bool serializeCollectionKey)
+        {
+            base.DeserializeElement(reader, serializeCollectionKey);
         }
     }
-    
-    internal class ConfigHelper
+    #endregion
+
+    #region Collection
+
+    public sealed class DataBasesCollection : ConfigurationElementCollection
     {
-        public static XmlNode GetEnumValue(XmlNode _node, string _attribute,Type _enumType, ref int _val)
+        public DataBasesCollection()
         {
-            XmlNode a = _node.Attributes.RemoveNamedItem(_attribute);
-            if(a==null)
-                throw new ConfigurationErrorsException("Attribute required: " + _attribute);
-            
-            if(Enum.IsDefined(_enumType, a.Value))
-                _val = (int)Enum.Parse(_enumType,a.Value);
-            else
-                throw new ConfigurationErrorsException("Invalid Level", a);
-            
-            return a;
+            DataBaseElement database = (DataBaseElement)CreateNewElement();
+            // Add the element to the collection.
+            Add(database);
+        }
+
+        public override ConfigurationElementCollectionType CollectionType
+        {
+            get
+            {
+                return ConfigurationElementCollectionType.AddRemoveClearMap;
+            }
+        }
+
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new DataBaseElement();
         }
         
-        public static XmlNode GetStringValue(XmlNode _node, string _attribute, ref string _val)
+        protected override ConfigurationElement CreateNewElement(string elementName)
         {
-            XmlNode a = _node.Attributes.RemoveNamedItem(_attribute);
-            if(a==null)
-                throw new ConfigurationErrorsException("Attribute required: " + _attribute);
-            else
-                _val = a.Value;
-            return a;		
+            return new DataBaseElement(elementName);
+        }
+        
+        protected override Object GetElementKey(ConfigurationElement element)
+        {
+            return ((DataBaseElement)element).Chave;
+        }
+        
+        public new string AddElementName
+        {
+            get
+            { return base.AddElementName; }
+
+            set
+            { base.AddElementName = value; }
+
+        }
+
+        public new string ClearElementName
+        {
+            get
+            { return base.ClearElementName; }
+
+            set
+            { base.AddElementName = value; }
+
+        }
+
+        public new string RemoveElementName
+        {
+            get
+            { return base.RemoveElementName; }
+
+
+        }
+
+        public new int Count
+        {
+            get { return base.Count; }
+        }
+        
+        public DataBaseElement this[int indice]
+        {
+            get
+            {
+                return (DataBaseElement)BaseGet(indice);
+            }
+            set
+            {
+                if (BaseGet(indice) != null)
+                {
+                    BaseRemoveAt(indice);
+                }
+                BaseAdd(indice, value);
+            }
+        }
+
+        new public DataBaseElement this[string Chave]
+        {
+            get
+            {
+                return (DataBaseElement)BaseGet(Chave);
+            }
+        }
+
+        public int IndexOf(DataBaseElement dataBase)
+        {
+            return BaseIndexOf(dataBase);
+        }
+
+        public void Add(DataBaseElement dataBase)
+        {
+            BaseAdd(dataBase);
+
+            // Add custom code here.
+        }
+
+        protected override void BaseAdd(ConfigurationElement element)
+        {
+            BaseAdd(element, false);
+            //TODO: Avaliar
+        }
+
+        public void Remove(DataBaseElement dataBase)
+        {
+            if (BaseIndexOf(dataBase) >= 0)
+                BaseRemove(dataBase.Chave);
+        }
+
+        public void RemoveAt(int indice)
+        {
+            BaseRemoveAt(indice);
+        }
+
+        public void Remove(string chave)
+        {
+            BaseRemove(chave);
+        }
+
+        public void Clear()
+        {
+            BaseClear();
+            
         }
     }
+    #endregion
+
+    #region Section
+    public sealed class DataBasesSection : ConfigurationSection
+    {
+        DataBaseElement dataBase;
+
+        public DataBasesSection()
+        {
+            dataBase = new DataBaseElement();
+        }
+
+        [ConfigurationProperty("databases", IsDefaultCollection = false)]
+        public DataBasesCollection DataBases
+        {
+            get
+            {
+                DataBasesCollection dataBasesCollection = (DataBasesCollection)base["databases"];
+                return dataBasesCollection;
+            }
+        }
+
+        protected override void DeserializeSection(System.Xml.XmlReader reader)
+        {
+            base.DeserializeSection(reader);
+        }
+
+        protected override string SerializeSection(ConfigurationElement parentElement, string name, ConfigurationSaveMode saveMode)
+        {
+            return base.SerializeSection(parentElement, name, saveMode);
+        }
+
+    }
+    #endregion
 }
-	

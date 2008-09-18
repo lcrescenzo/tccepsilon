@@ -135,5 +135,16 @@ namespace SGR.Data.DataBases
         }
 
         #endregion
+
+
+        #region IDataBase Members
+
+
+        public IDataParameter NewParameter(string pParameterName, object pValue)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #endregion
     }
 }
