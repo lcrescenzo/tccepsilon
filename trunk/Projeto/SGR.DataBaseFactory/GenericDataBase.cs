@@ -5,6 +5,10 @@ using SGR.Data.Interfaces;
 using SGR.DataBaseFactory.Configuration;
 using SGR.Data.DataBases;
 using System.Configuration;
+using System.Xml;
+using SGR.DataBaseFactory.Collection;
+using System.Web.Configuration;
+using SGR.DataBaseFactory.DataBases;
 
 
 namespace SGR.DataBaseFactory
@@ -13,42 +17,59 @@ namespace SGR.DataBaseFactory
     
     public class GenericDataBase
     {
-
-        private static IDataBase _dataBase = null;
-        
-        public static IDataBase DataBase
+        private static DataBaseCollection _dataBases;
+     
+        public static DataBaseCollection DataBase
         {
             get
             {
 
-                if (_dataBase == null)
-                    _dataBase = GetDataBase();
+                if (_dataBases == null)
+                    _dataBases = GetDataBase();
 
-                return _dataBase;
+                return _dataBases;
             }
-            internal set 
-            {
-                _dataBase = value;
-            }
-
         }
 
-        private static IDataBase GetDataBase()
+        private static DataBaseCollection GetDataBase()
         {
-            IDataBase returnObject;
-            DataBaseSection dataBase = (DataBaseSection)ConfigurationManager.GetSection("system.web/myConfig");
+            DataBasesSection section = GetSection();
 
-            switch (dataBase.Type)
+            DataBaseCollection collection = new DataBaseCollection();
+
+            foreach (DataBaseElement element in section.DataBases)
             {
-                case DataBaseType.MySql: returnObject = new MySqlDataBase(dataBase.ConnectionString); break;
-                case DataBaseType.SqlServer: returnObject = new SqlDataBase(dataBase.ConnectionString); break;
-                case DataBaseType.Oracle: throw new Exception("Tipo de Base não implementada"); 
-                case DataBaseType.PostgreSql: throw new Exception("Tipo de Base não implementada"); 
-                case DataBaseType.Firebird: throw new Exception("Tipo de Base não implementada"); 
-                default: throw new Exception("Tipo de Base não implementada"); 
+                collection.Add(element.Chave, CreateDataBase(element.Type, element.ConnectionString));
             }
             
+            return collection;
+        }
+
+        private static IDataBase CreateDataBase(ETypeDataBase type, string connection)
+        {
+            IDataBase returnObject = null;
+            switch (type)
+            {
+                case ETypeDataBase.MySql: returnObject = new MySqlDataBase(connection); break;
+                case ETypeDataBase.SqlServer: returnObject = new SqlDataBase(connection); break;
+                case ETypeDataBase.Oracle: throw new Exception("Tipo de Base não implementada");
+                case ETypeDataBase.PostgreSQL: throw new Exception("Tipo de Base não implementada");
+                case ETypeDataBase.FireBird: throw new Exception("Tipo de Base não implementada"); 
+                default: throw new Exception("Tipo de Base não implementada"); 
+            }
             return returnObject;
+        }
+
+        private static DataBasesSection GetSection()
+        {
+            DataBasesSection section = (DataBasesSection)ConfigurationManager.GetSection("databasefactory");
+            if (section == null)
+                section = (DataBasesSection)WebConfigurationManager.GetSection("databasefactory");
+            
+            if (section == null)
+                return null;
+
+            return section;
         }
     }
 }

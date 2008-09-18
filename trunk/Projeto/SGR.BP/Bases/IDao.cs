@@ -7,10 +7,10 @@ namespace SGR.BP.Bases
 {
     internal interface IDao<T> where T : ObjectBase
     {
-        void Incluir(T objeto);
+        int Incluir(T objeto);
         void Alterar(T objeto);
         void Excluir(T objeto);
-        IDataReader Carregar(int pId);
+        IDataReader Carregar(int pId, T objeto);
         List<IDataParameter> ParametrosIncluir(T objeto);
         List<IDataParameter> ParametrosExcluir(T objeto);
         List<IDataParameter> ParametrosAlterar(T objeto);

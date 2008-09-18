@@ -115,6 +115,7 @@
     <Compile Include="Common\RadioButton.cs" />
     <Compile Include="Common\Repeater.cs" />
     <Compile Include="Common\RequiredFieldValidator.cs" />
+    <Compile Include="Common\Sistema\Titulo.cs" />
     <Compile Include="Common\Table.cs" />
     <Compile Include="Common\TreeView.cs" />
     <Compile Include="Common\ValidationSummary.cs" />

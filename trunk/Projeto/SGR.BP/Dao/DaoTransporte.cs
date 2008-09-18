@@ -2,49 +2,50 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SGR.BP.Bases;
-using SGR.BP.Objetos;
+using SGR.BP.Objeto;
 using System.Data;
 using SGR.BP.Util;
 
 namespace SGR.BP.Dao
 {
-    class DaoTransporte : IDao<Transporte>, IListDao<Transporte>
+    internal class DaoTransporte : IDao<Transporte>, IListDao<Transporte>
     {
 
-        public void Incluir(Transporte objeto)
+        public int Incluir(Transporte objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            List<IDataParameter> returnParam = DaoUtil.Execute("proc_name", ParametrosIncluir(objeto), DaoUtil.ETipoExecucao.Incluir);
+            return (int)returnParam[0].Value;
         }
 
         public void Incluir(Transporte objeto, IDbConnection pConnection)
         {
-            DaoUtil.IncluirBase(DaoUtil.DataBase.GetCommandProcObject(pConnection, "proc_name", ParametrosIncluir(objeto)));
+            DaoUtil.ExecuteQuery(DaoUtil.DataBase.GetCommandProcObject(pConnection, "proc_name", ParametrosIncluir(objeto)), DaoUtil.ETipoExecucao.Incluir);
         }
-      
+
         public void Alterar(Transporte objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            DaoUtil.Execute("proc_name", ParametrosAlterar(objeto), DaoUtil.ETipoExecucao.Alterar);
         }
 
         public void Alterar(Transporte objeto, IDbConnection pConnection)
         {
-            throw new Exception("The method or operation is not implemented.");
+            DaoUtil.ExecuteQuery(DaoUtil.DataBase.GetCommandProcObject(pConnection, "proc_name", ParametrosAlterar(objeto)), DaoUtil.ETipoExecucao.Alterar);
         }
 
         public void Excluir(Transporte objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            DaoUtil.Execute("proc_name", ParametrosExcluir(objeto), DaoUtil.ETipoExecucao.Excluir);
         }
 
         public void Excluir(Transporte objeto, IDbConnection pConnection)
         {
-            throw new Exception("The method or operation is not implemented.");
+            DaoUtil.ExecuteQuery(DaoUtil.DataBase.GetCommandProcObject(pConnection, "proc_name", ParametrosExcluir(objeto)), DaoUtil.ETipoExecucao.Excluir);
         }
 
 
-        public IDataReader Carregar(int pId)
+        public IDataReader Carregar(int pId, Transporte objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            return DaoUtil.Carregar("proc_name", pId, "parameternameid", objeto);
         }
 
         public IDataReader Carregar(DateTime data)
@@ -54,7 +55,7 @@ namespace SGR.BP.Dao
 
         public List<IDataParameter> ParametrosIncluir(Transporte objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            return null;
         }
 
         public List<IDataParameter> ParametrosExcluir(Transporte objeto)

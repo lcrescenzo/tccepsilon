@@ -10,20 +10,12 @@ namespace SGR.BP.Bases
     {
         private EStateObject _estado;
         private int _id;
+        private bool _carregarTotal = true;
 
-        public virtual void Inserir()
-        {
-            _dao.Incluir(this);
-        }
-        public virtual void Alterar()
-        {
-            _dao.Alterar(this);
-        }
-        public virtual void Excluir()
-        {
-            _dao.Excluir(this);
-        }
-
+        public abstract void Inserir();
+        public abstract void Alterar();
+        public abstract void Excluir();
+        
         internal abstract void PreencheObjeto(IDataReader reader);
 
         public int ID
@@ -37,8 +29,21 @@ namespace SGR.BP.Bases
                 _id = value;
             }
         }
+        
+        internal bool CarregarTotal
+        {
+            get
+            {
+                return _carregarTotal;
+            }
+            set
+            {
+                _carregarTotal = value;
+            }
+        }
 
-        internal IDao<ObjectBase> _dao;
+
+        internal object _dao;
 
         internal EStateObject Estado
         {

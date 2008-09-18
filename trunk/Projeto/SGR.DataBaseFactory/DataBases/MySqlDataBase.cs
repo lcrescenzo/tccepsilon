@@ -30,11 +30,13 @@ namespace SGR.Data.DataBases
             comm.CommandType = CommandType.StoredProcedure;
             comm.CommandText = pProcName;
             comm.Connection = pConnection;
+            
             foreach(IDataParameter parameter in pParameters)
             {
+                comm.CreateParameter();
                 comm.Parameters.Add(parameter);
             }
-
+            
             return comm;
         }
 
@@ -44,6 +46,7 @@ namespace SGR.Data.DataBases
             comm.CommandType = CommandType.Text;
             comm.CommandText = pQuery;
             comm.Connection = pConnection;
+            
             foreach (IDataParameter parameter in pParameters)
             {
                 comm.Parameters.Add(parameter);
@@ -71,20 +74,35 @@ namespace SGR.Data.DataBases
             return new MySqlParameter();
         }
 
+
+        public IDataParameter NewParameter(string pParameterName, object pValue)
+        {
+            IDataParameter parameter = null;
+            if (pValue == null)
+            {
+                parameter = new MySqlParameter();
+                parameter.ParameterName = PrefixParameter + pParameterName;
+            }
+            else
+                parameter = new MySqlParameter(PrefixParameter + pParameterName, pValue);
+            
+            return parameter;
+        }
+
         public IDataParameter NewParameter(string pParameterName, DbType pType,object pValue)
         {
             IDataParameter parameter = new MySqlParameter(PrefixParameter + pParameterName, ConvertDbType(pType));
             if (pValue != null)
+            {
                 parameter.Value = pValue;
-            else
-                parameter.Value = DBNull.Value;
-
+            }
+            
             return parameter;
         }
 
         public IDataParameter NewOutputParameter(string pParameterName, DbType pType, object pValue)
         {
-            IDataParameter parameter = NewParameter(PrefixParameter + pParameterName, pType, pValue);
+            IDataParameter parameter = NewParameter(pParameterName, pType, pValue);
             parameter.Direction = ParameterDirection.Output;
             return parameter;
         }
@@ -113,7 +131,7 @@ namespace SGR.Data.DataBases
                 case DbType.Object: throw new Exception("Tipo não suportado"); 
                 case DbType.SByte: return MySqlDbType.UByte; 
                 case DbType.Single: return MySqlDbType.Float; 
-                case DbType.String: return MySqlDbType.String; 
+                case DbType.String: return MySqlDbType.VarChar; 
                 case DbType.StringFixedLength: return MySqlDbType.VarChar; 
                 case DbType.Time: return MySqlDbType.Time; 
                 case DbType.UInt16: return MySqlDbType.UInt16; 
@@ -126,13 +144,11 @@ namespace SGR.Data.DataBases
         }
 
 
-        #region IDataBase Members
-
+        
         public string PrefixParameter
         {
-            get { return "@"; }
+            get { return string.Empty; }
         }
 
-        #endregion
     }
 }
