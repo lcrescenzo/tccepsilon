@@ -7,10 +7,10 @@ using System.Web.Security;
 
 public class PageLogedBase : PageBase
 {
-	public PageLogedBase()
-	{
-		
-	}
+    public PageLogedBase()
+    {
+
+    }
 
     protected override void OnInit(EventArgs e)
     {
