@@ -4,8 +4,11 @@ USE SGR;
 -- P = Página
 -- A = Ação
 
+-- Avaliar se irá existir(Backup)
+INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (0, 'P', NULL, 'Avisos', '~/Telas/Home.aspx');
+
 -- -- -- Manutenção
-INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (1, 'M', NULL, 'Manutenção', 'mnuManutencao');
+INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (1, 'M', NULL, 'Cadastros', 'mnuManutencao');
 -- CADRI
 INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (1100, 'P', 1, 'CADRI', '~/Telas/Manutencao/CADRI/Consulta.aspx');
 INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (1101, 'A', 1100, 'Consultar', '');
@@ -39,12 +42,14 @@ INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, component
 INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (3202, 'A', 3200, 'Manter', '');
 
 -- Dados do usuário (Meus Dados) 
-INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (4, 'P', NULL, 'Meus Dados', '~/Telas/MeusDados.aspx');
+-- INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (4, 'P', NULL, 'Meus Dados', '~/Telas/MeusDados.aspx');
 
 -- Avaliar se irá existir(Backup)
-INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (5, 'P', NULL, 'Backup', '~/Telas/Backup.aspx');
+-- INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (5, 'P', NULL, 'Backup', '~/Telas/Backup.aspx');
 
 -- Info Sistema 
-INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (6, 'M', NULL, 'Sistema', 'mnuSistema');
-INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (6100, 'P', 6, 'Sobre', '~/Telas/Sistema/Sobre.aspx');
-INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (6200, 'P', 6, 'Sair', '~/Telas/Sistema/Sair.aspx');
+INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (6, 'P', NULL, 'Sobre o Sistema', '~/Telas/Sistema/Sobre.aspx');
+-- INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (6100, 'P', 6, 'Sobre', '~/Telas/Sistema/Sobre.aspx');
+
+-- Sair
+INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (7, 'P', NULL, 'Sair', '~/Telas/Sistema/Sair.aspx');

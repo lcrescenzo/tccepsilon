@@ -28,6 +28,7 @@ BEGIN
 	' AND tra.dataSaida	BETWEEN ? AND ? ', 
 	' GROUP BY ',
 	' 	mov.idResiduo ',
+	' ORDER BY percentual DESC '
 	' LIMIT ? '	);
 	
 	PREPARE STMT FROM @query;
