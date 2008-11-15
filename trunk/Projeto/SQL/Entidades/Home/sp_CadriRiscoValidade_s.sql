@@ -20,9 +20,9 @@ BEGIN
 			cad.OI, 
 			cad.validade,
 			CASE
-				WHEN cad.validade > @p_dataInicial AND cad.validade > @p_dataFinal THEN
+				WHEN cad.validade > @p_dataAtual AND cad.validade < @p_dataFinal THEN
 					0
-				WHEN cad.validade > @p_dataAtual AND cad.validade > @p_dataInicial THEN
+				WHEN cad.validade < @p_dataAtual AND cad.validade > @p_dataInicial THEN
 					1
 				ELSE
 					2
