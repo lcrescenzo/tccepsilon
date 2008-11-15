@@ -131,7 +131,7 @@
                             <sgr:Label id="Label11" runat="server">Logotipo</sgr:Label></td>
                         <td>
                             <sgr:Label ID="Label12" runat="server">Cor do Topo:</sgr:Label>
-                            <SGR:TextBox ID="txtCor" runat="server" Width="107px" Enabled="False"></SGR:TextBox></td>
+                            <input runat="server" id="txtCor" disabled="disabled" type="text" enableviewstate="false" /></td>
                     </tr>
                     <tr>
                         <td valign="top">

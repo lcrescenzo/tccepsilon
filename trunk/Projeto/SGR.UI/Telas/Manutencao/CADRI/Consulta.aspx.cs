@@ -22,7 +22,9 @@ public partial class Telas_Manutencao_CADRI_Consulta : PageBaseConsulta
     #endregion
 
     #region Eventos
-    protected void Page_Load(object sender, EventArgs e) { }
+    protected void Page_Load(object sender, EventArgs e) 
+    { 
+    }
 
     protected void btnNovo_Click(object sender, EventArgs e)
     {
@@ -42,9 +44,6 @@ public partial class Telas_Manutencao_CADRI_Consulta : PageBaseConsulta
             ImageButton imgExcluir = (ImageButton)e.Row.FindControl("imgExcluir");
             imgEditar.CommandArgument =
             imgExcluir.CommandArgument = ((CADRI)e.Row.DataItem).ID.ToString();
-
-
-
         }
     }
 

@@ -58,8 +58,8 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
             txtCADRI.Text = configuracao["Home.CADRI"];
             ddlMesesGrafico.SelectedValue = configuracao["Home.GrafMeses"];
             ddlQtdResiduos.SelectedValue = configuracao["Home.GrafQtdResiduo"];
-            txtCor.Text = configuracao["Apar.CorTopo"];
-            txtCor.BackColor = Color.FromName(configuracao["Apar.CorTopo"]);
+            txtCor.Value = configuracao["Apar.CorTopo"];
+            txtCor.Style.Add(HtmlTextWriterStyle.BackgroundColor, configuracao["Apar.CorTopo"]);
             //configuracao["Apar.LogoNomeArq"];
             //configuracao["Apar.LogoTop"] = "10";
             //configuracao["Apar.LogoLeft"] = "10";
@@ -74,7 +74,7 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
         configuracao["Home.CADRI"] = txtCADRI.Text;
         configuracao["Home.GrafMeses"] = ddlMesesGrafico.SelectedValue;
         configuracao["Home.GrafQtdResiduo"] = ddlQtdResiduos.SelectedValue;
-        configuracao["Apar.CorTopo"] = txtCor.Text;
+        configuracao["Apar.CorTopo"] = txtCor.Value;
         string filename = GravarImagem();
         if (filename != string.Empty)
             configuracao["Apar.LogoNomeArq"] = filename;
