@@ -27,7 +27,7 @@
                                                 <sgr:Label ID="Label5" runat="server">Resíduo</sgr:Label>
                                             </td>
                                             <td>
-                                                <sgr:Label ID="Label6" runat="server">Transportado</sgr:Label>
+                                                <sgr:Label ID="Label6" runat="server">Qtd. transportado</sgr:Label>
                                             </td>
                                             <td>
                                                 <sgr:Label ID="Label7" runat="server">Permitido</sgr:Label>
@@ -35,32 +35,38 @@
                                         </tr>
                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <tr>
+                                        <tr runat="server" id="trMovimentacao" >
                                             <td>
-                                                <sgr:Panel ID="pnlMovimentacao" runat="server" Width="100%">
-                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                                        <tr>
-                                                            <td>
-                                                                <sgr:Label ID="lblCadri" runat="server"></sgr:Label>
-                                                            </td>
-                                                            <td>
-                                                                <sgr:Label ID="lblResiduo" runat="server"></sgr:Label>
-                                                            </td>
-                                                            <td>
-                                                                <sgr:Label ID="lblUtilizados" runat="server"></sgr:Label>
-                                                            </td>
-                                                            <td>
-                                                                <sgr:Label ID="lblPermitido" runat="server"></sgr:Label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </sgr:Panel>
+                                                <sgr:Label ID="lblCadri" runat="server"></sgr:Label>
+                                            </td>
+                                            <td>
+                                                <sgr:Label ID="lblResiduo" runat="server"></sgr:Label>
+                                            </td>
+                                            <td>
+                                                <sgr:Label ID="lblUtilizados" runat="server"></sgr:Label>
+                                            </td>
+                                            <td>
+                                                <sgr:Label ID="lblPermitido" runat="server"></sgr:Label>
                                             </td>
                                         </tr>
                                     </ItemTemplate>
                                     </sgr:Repeater>
                             </table>
                         </td>
+                    </tr>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td bgcolor="#ffaaaa" style="width: 20px; height: 21px;">
+                        </td>
+                        <td>
+                            <sgr:Label ID="lblLegendaVermelhoMovimentacao" runat="server"></sgr:Label></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#eeee77" style="width: 20px">
+                        </td>
+                        <td>
+                            <sgr:Label ID="lblLegendaAmareloMovimentacao" runat="server"></sgr:Label></td>
                     </tr>
                 </table>
     </TD>
@@ -73,34 +79,45 @@
                     </tr>
                     <tr>
                         <td>
-                        <table width="100%" cellpadding="2">
-                                <tr>
-                                    <sgr:Repeater ID="rptCadri" runat="server" OnItemDataBound="rptCadri_ItemDataBound">
-                                    <ItemTemplate>
-                                        
-                                            <td>
-                                                <sgr:Panel ID="pnlCadri" runat="server" Width="100%">
-                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                                        <tr>
-                                                            <td>
-                                                                <sgr:Label ID="lblCadri" runat="server"></sgr:Label>
-                                                            </td>
-                                                            <td>
-                                                                <sgr:Label ID="lblData" runat="server"></sgr:Label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </sgr:Panel>
-                                            </td>
-                                        
-                                    </ItemTemplate>
-                                    </sgr:Repeater>
-                                </tr>
+                            <table width="100%" cellpadding="2">
+                                <sgr:Repeater ID="rptCadri" runat="server" OnItemDataBound="rptCadri_ItemDataBound">
+                                <ItemTemplate>
+                                    <tr id="trCadri" runat="server">
+                                        <td>
+                                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <sgr:Label ID="lblCadri" runat="server"></sgr:Label>
+                                                    </td>
+                                                    <td>
+                                                        <sgr:Label ID="lblData" runat="server"></sgr:Label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>                                        
+                                </ItemTemplate>
+                                </sgr:Repeater>
+
                             </table>
                             
                         </td>
                     </tr>
                 </table>
+        <table width="100%">
+            <tr>
+                <td bgcolor="#ffaaaa" style="width: 20px">
+                </td>
+                <td>
+                    <sgr:Label ID="lblLegendaVermelhoCadri" runat="server"></sgr:Label></td>
+            </tr>
+            <tr>
+                <td bgcolor="#eeee77" style="width: 20px">
+                </td>
+                <td>
+                    <sgr:Label ID="lblLegendaAmareloCadri" runat="server"></sgr:Label></td>
+            </tr>
+        </table>
         </td>
         <td rowspan="3" valign="top" style="width: 225px">
                 <table cellpadding="0" cellspacing="0" style="width: 100%">

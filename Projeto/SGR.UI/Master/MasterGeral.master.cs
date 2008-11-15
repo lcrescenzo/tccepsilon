@@ -25,15 +25,8 @@ public partial class MasterGeral : System.Web.UI.MasterPage
         {
             MenuLateral1.CarregarMenu(MenuTopo1.MenuSelecionado);
         }
-
-        CarregarEstilo();
-        
     }
 
-    private void CarregarEstilo()
-    {
-        ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "stylesheet", "<link href='" + Util.UrlUtil.ResolveServerUrl("~/App_Themes/Css/geral.css") + "' type='text/css' />", false);
-    }
 
     void MenuTopo1_MenuAcionado(int id)
     {

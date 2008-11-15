@@ -96,7 +96,8 @@ public partial class Telas_Manutencao_CADRI_Manutencao : PageBaseManutencao<CADR
         if(!IsPostBack)
         {
             cldValidade.Format = Util.Formatacao.Data.ShortDatePattern;
-            cldValidade.SelectedDate = DateTime.Now.AddYears(1);
+            if(base.TipoManutencao != ETipoManutencao.Alteracao)
+                cldValidade.SelectedDate = DateTime.Now.AddYears(1);
             CriaCamposNumerico();
         }
     }

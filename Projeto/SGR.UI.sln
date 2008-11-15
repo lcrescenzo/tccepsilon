@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Web Developer Express 2005
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\SGR.UI\", "SGR.UI\", "{A342C6EF-AD37-4388-9CE1-5AE6A111DE20}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.VirtualPath = "/SGR.UI"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\TCC2\Projeto\SGR.UI\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\SGR.UI\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/SGR.UI"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\TCC2\Projeto\SGR.UI\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\SGR.UI\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "2110"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A342C6EF-AD37-4388-9CE1-5AE6A111DE20}.Debug|.NET.ActiveCfg = Debug|.NET
+		{A342C6EF-AD37-4388-9CE1-5AE6A111DE20}.Debug|.NET.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
