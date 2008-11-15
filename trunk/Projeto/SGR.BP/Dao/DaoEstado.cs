@@ -27,9 +27,9 @@ namespace SGR.BP.Dao
             DaoUtil.Execute("proc_name", ParametrosExcluir(objeto), DaoUtil.ETipoExecucao.Excluir);
         }
 
-        public IDataReader Carregar(int pId, Estado objeto)
+        public void Carregar(int pId, Estado objeto)
         {
-            return DaoUtil.Carregar("proc_name", pId, "parameternameid", objeto);
+            DaoUtil.Carregar("proc_name", pId, "parameternameid", objeto);
         }
 
         public List<IDataParameter> ParametrosIncluir(Estado objeto)

@@ -1,0 +1,125 @@
+﻿body {
+}
+
+.mensagem
+{
+    background-color:Gray;
+    filter:alpha(opacity=40);
+    opacity:0.4;
+}  
+
+/***************************************************************/
+/**  Home                                                     **/
+/***************************************************************/
+
+.tituloInfo
+{
+    background-color: GrayText;
+    color:White;
+}
+
+/***************************************************************/
+/**  Home                                                     **/
+/***************************************************************/
+.menu
+{
+   padding-left:4px;
+}
+.menu a
+{
+    border:solid 1px gainsboro;
+    cursor: hand;
+    text-decoration:none;
+    background-color:gainsboro;
+    font-size:10px;
+    font-family:Verdana;
+    color: black;
+    height:16px;
+    padding:1px;
+}
+.menu a:hover
+{
+    border:solid 1px gray;
+    cursor: hand;
+    text-decoration:none;
+    font-family:Verdana;
+    background-color:darkgray;
+    font-size:10px;
+    color: white;
+    height:16px;
+    padding:1px;
+}
+
+.menu a.selected
+{
+    border:solid 1px gray;
+    cursor: hand;
+    text-decoration:none;
+    font-family:Verdana;
+    background-color:darkgray;
+    font-size:10px;
+    color: white;
+    height:16px;
+    padding:1px;
+}
+
+.submenu
+{
+    width: 100%;
+    line-height: 20px;
+    padding-left:4px;
+}
+.submenu a
+{
+    border:solid 1px whitesmoke;
+    cursor: hand;
+    text-decoration:none;
+    background-color:WhiteSmoke;
+    font-size:10px;
+    font-family:Verdana;
+    color: black;
+    height:18px;
+    padding:2px;
+    width: 100%;
+    
+}
+.submenu a:hover
+{
+    border:solid 1px gray;
+    text-decoration:none;
+    cursor: hand;
+    font-family:Verdana;
+    background-color:Gainsboro;
+    font-size:10px;
+    color: black;
+    height:18px;
+    padding:2px;
+    width: 100%;
+
+}
+
+
+/*Configuracao do sistema*/
+.frameImage
+{
+    width:130px;
+    height:65px;
+    overflow:hidden;
+    float:left;
+    padding:3px;
+}
+.Resizable
+{
+    padding:0px;
+    border-style:solid;
+    border-width:3px;
+    border-color:#B4D35D;
+}
+.ResizableHandler
+{
+    width:15px;
+    height:16px;
+    background-image:url(../../../Images/Padrao/editar.gif);
+    overflow:hidden;
+    cursor:se-resize;
+}

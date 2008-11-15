@@ -9,7 +9,7 @@ CREATE PROCEDURE sp_Configuracao_d
 BEGIN
 	
 	DELETE FROM sgr.configuracao 
-	WHERE idUsuario = p_idUsuario
+	WHERE ((p_idUsuario IS NULL AND idUsuario IS NULL) OR (idUsuario = p_idUsuario))
 	;
 
 END

@@ -9,7 +9,12 @@ namespace SGR.BP.Objeto
     {
         internal override void PreencheObjeto(System.Data.IDataReader reader)
         {
-            throw new Exception("The method or operation is not implemented.");
+            base.ID = Convert.ToInt32(reader["idTransporte"]);
+            this.Data = (DateTime)reader["dataSaida"];
+            this.LoginUltimaAlteracao = new Login((int)reader["idUsuario"], this.CarregarTotal);
+            this.Movimentacao = new Movimentacao((int)reader["idMovimentacao"], this.CarregarTotal);
+            this.Quantidade = Convert.ToDouble(reader["qtdSaida"]);
+            this.Transportadora = reader["transportadora"].ToString();
         }
 
         public override void Inserir()

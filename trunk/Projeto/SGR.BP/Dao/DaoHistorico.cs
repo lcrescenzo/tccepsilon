@@ -33,9 +33,9 @@ namespace SGR.BP.Dao
         #endregion
 
         #region Carregar
-        public IDataReader Carregar(int pId, Historico objeto)
+        public void Carregar(int pId, Historico objeto)
         {
-            return DaoUtil.Carregar("proc_name", pId, "parameternameid", objeto);
+            DaoUtil.Carregar("proc_name", pId, "parameternameid", objeto);
         }
         #endregion
 

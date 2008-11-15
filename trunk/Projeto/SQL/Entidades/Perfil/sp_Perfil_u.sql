@@ -12,7 +12,7 @@ BEGIN
 	UPDATE sgr.perfil 
 	SET descricao = p_descricao 
 	WHERE 
-		idPerfil = idPerfil
+		idPerfil = p_idPerfil
 	;
 
 END

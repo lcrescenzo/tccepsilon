@@ -63,7 +63,12 @@ namespace SGR.BP.Util
             if (pCommand.Connection.State != System.Data.ConnectionState.Open)
                 throw new Exception("A conexão deve ser aberta antes de alterar um Objeto");
 
-            return (int)pCommand.ExecuteScalar();
+            object retorno = pCommand.ExecuteScalar();
+            
+            if (retorno == null)
+                retorno = int.MinValue;
+            
+            return (int)retorno;
         }
 
         /// <summary>
@@ -190,7 +195,19 @@ namespace SGR.BP.Util
                 return outParametars;
             }
         }
-        
+
+        /// <summary>
+        /// Executa comando do tipo definido, com tratamento de transação.
+        /// </summary>
+        /// <param name="pProcName">Nome da procedure a ser executada.</param>
+        /// <param name="pParameters">Parametros da procedure.</param>
+        /// <param name="tipo">Tipo da execução.</param>
+        internal static IDataReader Execute(IDbCommand command)
+        {
+            return command.ExecuteReader();
+        }
+
+
         /// <summary>
         /// Executa query definida no command.
         /// </summary>
@@ -200,9 +217,9 @@ namespace SGR.BP.Util
         {
             switch (tipo)
 	        {
-                case ETipoExecucao.Excluir: return ExcluirBase(command); break;
-                case ETipoExecucao.Incluir: return IncluirBase(command); break;
-                case ETipoExecucao.Alterar: return AlterarBase(command); break;
+                case ETipoExecucao.Excluir: return ExcluirBase(command); 
+                case ETipoExecucao.Incluir: return IncluirBase(command); 
+                case ETipoExecucao.Alterar: return AlterarBase(command); 
                 default: throw new Exception("Tipo de execução não definido.");
                 
 	        }

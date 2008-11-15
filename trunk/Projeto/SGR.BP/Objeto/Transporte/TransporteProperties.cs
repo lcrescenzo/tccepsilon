@@ -14,10 +14,18 @@ namespace SGR.BP.Objeto
         {
         }
 
-        public Transporte(DateTime data)
+        public Transporte(int pId)
         {
-            this.Data = data;
-            this.PreencheObjeto(Dao.Carregar(data));
+            this.ID = pId;
+            Dao.Carregar(this.ID, this);
+        }
+
+        public Transporte(int pId, bool carregarTotal)
+        {
+            this.ID = pId;
+            this.CarregarTotal = carregarTotal;
+            if(CarregarTotal)
+                Dao.Carregar(this.ID, this);
         }
         #endregion
 
@@ -29,8 +37,8 @@ namespace SGR.BP.Objeto
         private string _transportadora;
 
         #region OnDemand
-        private int _idLoginUltimaAlteracao;
-        private int _idMovimentacao;
+        private int _idLoginUltimaAlteracao = int.MinValue;
+        private int _idMovimentacao = int.MinValue;
         #endregion
 
         #endregion
@@ -82,11 +90,11 @@ namespace SGR.BP.Objeto
         {
             get 
             { 
-                return Transportadora; 
+                return _transportadora; 
             }
             set 
             { 
-                Transportadora = value; 
+                _transportadora = value; 
             }
         }
 

@@ -59,9 +59,9 @@ namespace SGR.BP.Dao
         #endregion
 
         #region Carregar
-        public IDataReader Carregar(int pId, Classe objeto)
+        public void Carregar(int pId, Classe objeto)
         {
-            return DaoUtil.Carregar("sp_ClasseById_s", pId, "p_idClasse", objeto);
+            DaoUtil.Carregar("sp_ClasseById_s", pId, "p_idClasse", objeto);
         }
         #endregion
 

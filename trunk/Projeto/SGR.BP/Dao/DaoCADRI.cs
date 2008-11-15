@@ -5,12 +5,65 @@ using SGR.BP.Objeto;
 using SGR.BP.Bases;
 using System.Data;
 using SGR.BP.Util;
+using SGR.BP.Objeto.Filtro;
 
 
 namespace SGR.BP.Dao
 {
     internal class DaoCADRI : IDao<CADRI>
     {
+        #region Lista
+        public static List<CADRI> Lista(FiltroCADRI filtroCADRI)
+        {
+            IDbConnection connection = DaoUtil.DataBase.GetConnectionObject();
+
+            List<IDataParameter> listParams = ParametrosLista(filtroCADRI);
+            try
+            {
+                connection.Open();
+                using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_Cadri_s", listParams))
+                {
+                    return DaoUtil.ListaBase<CADRI>(comm);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public static List<CADRI> Lista(Residuo residuo)
+        {
+            IDbConnection connection = DaoUtil.DataBase.GetConnectionObject();
+
+            List<IDataParameter> listParams = ParametrosListaPorResiduo(residuo);
+            try
+            {
+                connection.Open();
+                using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_CadriPorResiduo_s", listParams))
+                {
+                    return DaoUtil.ListaBase<CADRI>(comm);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+        
+      
+        #endregion
+
         #region Incluir
         public int Incluir(CADRI objeto)
         {
@@ -22,10 +75,10 @@ namespace SGR.BP.Dao
                 {
                     transaction = DaoUtil.OpenConnection(connection);// Seta transaçao
                     
-                    using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "p_Cadri_i", ParametrosIncluir(objeto)))// Inclusão do CADRI
+                    using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_Cadri_i", ParametrosIncluir(objeto)))// Inclusão do CADRI
                     {
 
-                        id = (int)DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Incluir);
+                        objeto.ID = (int)DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Incluir);
                         foreach (Residuo residuo in objeto.Residuos)
                         {
                             IncluirResiduos(objeto, residuo,  connection);// Inclusão de Residuos para o CADRI
@@ -68,7 +121,7 @@ namespace SGR.BP.Dao
                     
                     transaction = DaoUtil.OpenConnection(connection);// Seta transação
 
-                    using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "p_Cadri_u", ParametrosAlterar(objeto)))
+                    using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_Cadri_u", ParametrosAlterar(objeto)))
                     {
 
                         DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Alterar);
@@ -134,7 +187,7 @@ namespace SGR.BP.Dao
 
         public void ExcluirResíduos(CADRI objetoCADRI, Residuo objetoResiduo, IDbConnection connection)
         {
-            using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "p_ResiduoCadri_d", ParametrosExcluirResiduos(objetoCADRI, objetoResiduo))) // Exclui Residuos da Aplicação
+            using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_ResiduoCadri_d", ParametrosExcluirResiduos(objetoCADRI, objetoResiduo))) // Exclui Residuos da Aplicação
             {
                 DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Excluir);
             }
@@ -142,9 +195,9 @@ namespace SGR.BP.Dao
         #endregion
 
         #region Carregar
-        public IDataReader Carregar(int pId, CADRI objeto)
+        public void Carregar(int pId, CADRI objeto)
         {
-            return DaoUtil.Carregar("p_Cadri_s", pId, "p_idCadri", objeto);
+            DaoUtil.Carregar("sp_CadriById_s", pId, "p_idCadri", objeto);
         }
 
         public void CarregarResiduos(CADRI objeto)
@@ -155,7 +208,7 @@ namespace SGR.BP.Dao
                 {
                     connection.Open();
 
-                    IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "p_ResiduoCadri_s", ParametrosCarregarResiduos(objeto));
+                    IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_ResiduoCadri_s", ParametrosCarregarResiduos(objeto));
                     objeto.Residuos = DaoUtil.ListaBase<Residuo>(comm);
                 }
                 finally
@@ -167,7 +220,21 @@ namespace SGR.BP.Dao
         #endregion
 
         #region Parametros
-        
+        private static List<IDataParameter> ParametrosLista(FiltroCADRI filtroCADRI)
+        {
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_numero", DbType.Int32, filtroCADRI.Numero));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_destino", DbType.String, filtroCADRI.Destino));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_validade", DbType.DateTime, filtroCADRI.Validade));
+            return parameters;
+        }
+
+        private static List<IDataParameter> ParametrosListaPorResiduo(Residuo residuo)
+        {
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idResiduo", DbType.Int32, residuo.ID));
+            return parameters;
+        }
 
         private List<IDataParameter> ParametrosCarregarResiduos(CADRI objetoCADRI)
         {
@@ -213,6 +280,7 @@ namespace SGR.BP.Dao
         public List<IDataParameter> ParametrosAlterar(CADRI objeto)
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idCadri", DbType.Int32, objeto.ID));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_numero", DbType.Int32, objeto.Numero));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_destino", DbType.String, objeto.Destino));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_OI", DbType.Int32, objeto.OI));
@@ -220,6 +288,8 @@ namespace SGR.BP.Dao
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_validade", DbType.DateTime, objeto.Validade));
             return parameters;
         }
+
+
         #endregion
 
     }

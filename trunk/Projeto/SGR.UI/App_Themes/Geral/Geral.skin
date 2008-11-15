@@ -1,0 +1,6 @@
+<sgr:TextBox 
+    runat="server" 
+    BorderColor="Black" 
+    BorderStyle="Solid" 
+    BorderWidth="1px">
+</sgr:TextBox>

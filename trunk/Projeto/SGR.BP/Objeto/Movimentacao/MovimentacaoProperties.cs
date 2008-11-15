@@ -19,10 +19,18 @@ namespace SGR.BP.Objeto
             this.ID = id;
             Dao.Carregar(id, this);
         }
+
+        public Movimentacao(int id, bool carregarTotal)
+        {
+            this.ID = id;
+            this.CarregarTotal = carregarTotal;
+            if(this.CarregarTotal)
+                Dao.Carregar(id, this);
+        }
         #endregion
 
         #region Atributos
-        private static List<Transporte> _transportes = null;
+        //private static List<Transporte> _transportes = null;
         private CADRI _cadri;
         private Residuo _residuo;
         private Login _login;
@@ -39,9 +47,9 @@ namespace SGR.BP.Objeto
         {
             get
             {
-                if (Util.General.IsNullOrDisposed(_transportes))
-                    Dao.CarregarTransportes(this);
-                return _transportes;   
+                //if (Util.General.IsNullOrDisposed(_transportes))
+
+                return Dao.CarregarTransportes(this);   
             }
         }
 

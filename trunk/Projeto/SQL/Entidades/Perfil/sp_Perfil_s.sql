@@ -4,7 +4,7 @@ DROP PROCEDURE IF EXISTS sp_Perfil_s;
 
 CREATE PROCEDURE sp_Perfil_s 
 (
-  P_idPerfil INT	
+	p_descricao VARCHAR(40)
 )
 BEGIN
 
@@ -14,6 +14,6 @@ BEGIN
 	FROM 
 		sgr.perfil
 	WHERE
-		((idPerfil IS NULL) OR (idPerfil = P_idPerfil))
+		((p_descricao IS NULL) OR (descricao LIKE CONCAT('%', p_descricao, '%')))
 	;
 END

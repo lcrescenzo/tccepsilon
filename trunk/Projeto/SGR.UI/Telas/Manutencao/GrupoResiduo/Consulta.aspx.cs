@@ -20,10 +20,7 @@ public partial class Telas_Manutencao_GrupoResiduos_Consulta : PageBaseConsulta
     #endregion
 
     #region Eventos
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        
-    }
+    protected void Page_Load(object sender, EventArgs e) { }
 
     protected void btnNovo_Click(object sender, EventArgs e)
     {
@@ -82,11 +79,13 @@ public partial class Telas_Manutencao_GrupoResiduos_Consulta : PageBaseConsulta
         txtNome.Text = oFiltro.Nome;
     }
 
+    protected override WebControl BotaoNovo
+    {
+        get { return btnNovo; }
+    }
     #endregion
 
     #region Metodos
-
-
     protected override void CarregaLista(IFiltro filtro)
     {
         gdvLista.DataSource = GrupoResiduo.Lista((FiltroGrupoResiduo)filtro);

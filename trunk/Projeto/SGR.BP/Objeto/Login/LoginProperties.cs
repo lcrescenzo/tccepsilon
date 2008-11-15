@@ -17,10 +17,22 @@ namespace SGR.BP.Objeto
         {
             Dao.Carregar(id, this);
         }
+
+        public Login(int id, bool carregarTotal)
+        {
+            this.ID = id;
+            this.CarregarTotal = carregarTotal;
+            if(carregarTotal)
+                Dao.Carregar(id, this);
+        }
+
         public Login(string login, string senha)
         {
-            this.PreencheObjeto(Dao.Carregar(login, senha));
+            this.Usuario = login;
+            this.Senha = senha;
+            Dao.Autenticar(login, senha, this);
         }
+
         #endregion
 
         #region Atributos
