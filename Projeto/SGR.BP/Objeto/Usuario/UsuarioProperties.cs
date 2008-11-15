@@ -18,6 +18,14 @@ namespace SGR.BP.Objeto
             this.ID = id;
             Dao.Carregar(id, this);
         }
+
+        public Usuario(int id, bool carregarTotal)
+        {
+            this.ID = id;
+            this.CarregarTotal = carregarTotal;
+            if(this.CarregarTotal)
+                Dao.Carregar(id, this);
+        }
         #endregion
 
         #region Atributos
@@ -27,20 +35,20 @@ namespace SGR.BP.Objeto
         private string _email;
         private string _telefone;
         private string _endereco;
+        private Login _login;
 
         #region OnDemand
-        private int _idPerfil;
+        private int _idPerfil = int.MinValue;
         #endregion
         #endregion
 
         #region Propriedades
 
-        //HACK: Avaliar se o perfil pode ser multiplo
         public Perfil Perfil
         {
             get 
             {
-                if (Util.General.IsNullOrDisposed(_perfil))
+                if (Util.General.IsNullOrDisposed(_perfil) && this.ID > 0)
                     _perfil = new Perfil(_idPerfil);
 
                 return _perfil; 
@@ -79,6 +87,21 @@ namespace SGR.BP.Objeto
         {
             get { return _endereco; }
             set { _endereco = value; }
+        }
+
+        public Login Login
+        {
+            get 
+            {
+                if (Util.General.IsNullOrDisposed(_login) && (this.ID > 0))
+                    _login = new Login(this.ID);
+                    
+                return _login; 
+            }
+            set 
+            { 
+                _login = value; 
+            }
         }
 
         #endregion

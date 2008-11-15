@@ -1,31 +1,28 @@
 <%@ Page Language="C#" MasterPageFile="~/Master/MasterGeral.master" AutoEventWireup="true" CodeFile="Consulta.aspx.cs" Inherits="Telas_Manutencao_GrupoResiduos_Consulta" Title="Untitled Page" %>
-
-<%@ Register Assembly="SGR.Web.Controls" Namespace="SGR.Web.Controls.Ajax" TagPrefix="cc3" %>
-
-<%@ Register Assembly="SGR.Web.Controls" Namespace="SGR.Web.Controls.Common" TagPrefix="cc2" %>
-
 <%@ Register Assembly="SGR.Web.Controls" Namespace="SGR.Web.Controls.Ajax.Sistema"
     TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:ScriptManager id="ScriptManager1" runat="server" />
-    
+    <ajax:ScriptManager id="ScriptManager1" runat="server" />
+        <sgr:Label id="lblTitulo" runat="server" Text="Grupo de Resíduos"></sgr:Label>
+        <br />
+        <br />
         <cc1:Filtro ID="Filtro1" runat="server" CollapsedImage="~/images/Padrao/mais.gif" ExpandedImage="~/images/Padrao/menos.gif">
             <MainControls>
-                        <cc2:Label ID="Label2" runat="server" Text="Nome: "></cc2:Label>
-                        <cc2:TextBox ID="txtNome" runat="server" Width="100%"></cc2:TextBox>
+                        <sgr:Label ID="Label2" runat="server" Text="Nome: "></sgr:Label>
+                        <sgr:TextBox ID="txtNome" runat="server" Width="100%"></sgr:TextBox>
             </MainControls>
         </cc1:Filtro>
     <br />
-    <cc2:Panel ID="Panel3" runat="server" HorizontalAlign="Right" Width="100%">
+    <sgr:Panel ID="Panel3" runat="server" HorizontalAlign="Right" Width="100%">
     
     
-        <cc2:Button ID="btnNovo" runat="server" OnClick="btnNovo_Click" Text="Novo" />
-        <cc2:Button ID="btnPesquisar" runat="server" Text="Pesquisar" OnClick="btnPesquisar_Click" /></cc2:Panel>
+        <sgr:Button ID="btnNovo" runat="server" OnClick="btnNovo_Click" Text="Novo" />
+        <sgr:Button ID="btnPesquisar" runat="server" Text="Pesquisar" OnClick="btnPesquisar_Click" /></sgr:Panel>
         <br />
-    <asp:UpdatePanel id="UpdatePanel1" runat="server" UpdateMode="Conditional">
+    <ajax:UpdatePanel id="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <contenttemplate>
-            <cc2:GridView id="gdvLista" runat="server" Width="100%" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" >
+            <sgr:GridView id="gdvLista" runat="server" Width="100%" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" >
             <Columns>
                 <asp:BoundField DataField="Nome" HeaderText="Nome" />
                 <asp:TemplateField ShowHeader="False">
@@ -41,12 +38,12 @@
                     <itemstyle width="20px" />
                 </asp:TemplateField>
             </Columns>
-        </cc2:GridView>
+        </sgr:GridView>
 </contenttemplate>
         <triggers>
-<asp:AsyncPostBackTrigger ControlID="btnPesquisar" EventName="Click"></asp:AsyncPostBackTrigger>
+<ajax:AsyncPostBackTrigger ControlID="btnPesquisar" EventName="Click"></ajax:AsyncPostBackTrigger>
 </triggers>
-    </asp:UpdatePanel>
+    </ajax:UpdatePanel>
     
 </asp:Content>
 

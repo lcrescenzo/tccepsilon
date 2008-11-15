@@ -19,12 +19,21 @@ namespace SGR.BP.Objeto
             this.ID = id;
             Dao.Carregar(id, this);
         }
+
+        public Perfil(int id, bool carregarTotal)
+        {
+            this.ID = id;
+            this.CarregarTotal = carregarTotal;
+            if(CarregarTotal)
+                Dao.Carregar(id, this);
+        }
         #endregion
 
         #region Atributos
 
         private string _nome;
 
+        private List<Recurso> _menu;
         #endregion
 
         #region Propriedades
@@ -38,6 +47,35 @@ namespace SGR.BP.Objeto
             set 
             { 
                 _nome = value; 
+            }
+        }
+
+        public List<Recurso> Menu
+        {
+            get
+            {
+                if (Util.General.IsNullOrDisposed(_menu))
+                    _menu = Dao.CarregarMenu(this, null);
+
+                return _menu;
+            }
+
+        }
+
+        private List<Recurso> _recursos = null;
+
+        public List<Recurso> Recursos
+        {
+            get 
+            {
+                if(Util.General.IsNullOrDisposed(_recursos))
+                    _recursos = Dao.Recursos(this);
+
+                return _recursos; 
+            }
+            set 
+            { 
+                _recursos = value; 
             }
         }
 

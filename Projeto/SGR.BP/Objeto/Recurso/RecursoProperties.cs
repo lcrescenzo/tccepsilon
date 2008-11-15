@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SGR.BP.Bases;
 using SGR.BP.Dao;
+using SGR.BP.Util;
 
 namespace SGR.BP.Objeto
 {
@@ -18,6 +19,15 @@ namespace SGR.BP.Objeto
             this.ID = id;
             Dao.Carregar(id, this);
         }
+
+        public Recurso(int id, bool carregaTotal)
+        {
+            this.ID = id;
+            this.CarregarTotal = carregaTotal;
+            if(carregaTotal)
+                Dao.Carregar(id, this);
+        }
+        
         #endregion
 
         #region Atributos
@@ -76,8 +86,17 @@ namespace SGR.BP.Objeto
 
 	    public List<Recurso> Filhos
 	    {
-		    get { return _filhos;}
-		    set { _filhos = value;}
+		    get 
+            {
+                if (Util.General.IsNullOrDisposed(_filhos))
+                    _filhos = Dao.CarregarFilhos(this.ID);
+
+                return _filhos;
+            }
+		    set 
+            { 
+                _filhos = value;
+            }
 	    }
 
         #endregion

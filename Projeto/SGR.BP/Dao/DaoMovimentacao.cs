@@ -10,7 +10,73 @@ namespace SGR.BP.Dao
 {
     class DaoMovimentacao : IDao<Movimentacao>
     {
+        public static Movimentacao Carregar(CADRI cadri, Residuo residuo)
+        {
+            IDbConnection connection = DaoUtil.DataBase.GetConnectionObject();
 
+            List<IDataParameter> listParams = ParametrosCarregar(cadri, residuo);
+            try
+            {
+                connection.Open();
+                using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_Movimentacao_s", listParams))
+                {
+                    List<Movimentacao> movimentacao = new List<Movimentacao>();
+                    movimentacao = DaoUtil.ListaBase<Movimentacao>(comm);
+                    if (movimentacao.Count > 0)
+                        return movimentacao[0];
+                    else
+                        return null;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void Carregar(int pId, Movimentacao objeto)
+        {
+            DaoUtil.Carregar("sp_MovimentacaoById_s", pId, "p_idMovimentacao", objeto);
+        }
+
+       
+
+
+        public List<Transporte> CarregarUltimosTransportes(Movimentacao objeto, int quantidade)
+        {
+            IDbConnection connection = DaoUtil.DataBase.GetConnectionObject();
+
+            List<IDataParameter> listParams = ParametrosCarregarUltimosTransportes(objeto, quantidade);
+            try
+            {
+                connection.Open();
+                using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_UltimosTransportes_s", listParams))
+                {
+                    return DaoUtil.ListaBase<Transporte>(comm);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
+
+        private List<IDataParameter> ParametrosCarregarUltimosTransportes(Movimentacao objeto, int quantidade)
+        {
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idMovimentacao", DbType.Int32, objeto.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_Ultimos", DbType.Int32, quantidade));
+            return parameters;
+        }
 
         public int Incluir(Movimentacao objeto)
         {
@@ -23,16 +89,16 @@ namespace SGR.BP.Dao
                     connection.Open();
                     transaction = connection.BeginTransaction();
 
-                    using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "proc_name", ParametrosIncluir(objeto)))
+                    using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_Movimentacao_i", ParametrosIncluir(objeto)))
                     {
                         
                         id = (int)DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Incluir); 
                             
-                        DaoTransporte dao = new DaoTransporte();
-                        foreach (Transporte transporte in objeto.Transportes)
-                        {
-                            dao.Incluir(transporte, connection);
-                        }
+                        //DaoTransporte dao = new DaoTransporte();
+                        //foreach (Transporte transporte in objeto.Transportes)
+                        //{
+                        //    dao.Incluir(transporte, connection);
+                        //}
                     }
                     transaction.Commit();
                 }
@@ -51,22 +117,57 @@ namespace SGR.BP.Dao
 
         public void Alterar(Movimentacao objeto)
         {
-            DaoUtil.Execute("proc_name", ParametrosAlterar(objeto), DaoUtil.ETipoExecucao.Alterar);
+            //DaoUtil.Execute("", ParametrosAlterar(objeto), DaoUtil.ETipoExecucao.Alterar);
         }
 
         public void Excluir(Movimentacao objeto)
         {
-            DaoUtil.Execute("proc_name", ParametrosExcluir(objeto), DaoUtil.ETipoExecucao.Excluir);
+            using (IDbConnection connection = DaoUtil.DataBase.GetConnectionObject())
+            {
+                IDbTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+
+                    using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_Movimentacao_d", ParametrosExcluir(objeto)))
+                    {
+                        DaoTransporte dao = new DaoTransporte();
+                        foreach (Transporte transporte in objeto.Transportes)
+                        {
+                            dao.Excluir(transporte, connection);
+                        }
+
+                        DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Incluir);
+                    }
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw e;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
         }
 
         public List<IDataParameter> ParametrosIncluir(Movimentacao objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idResiduo", DbType.Int32, objeto.Residuo.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idCadri", DbType.Int32, objeto.CADRI.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.Login.ID));
+            return parameters;
         }
 
         public List<IDataParameter> ParametrosExcluir(Movimentacao objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idMovimentacao", DbType.Int32, objeto.ID));
+            return parameters;
         }
 
         public List<IDataParameter> ParametrosAlterar(Movimentacao objeto)
@@ -74,16 +175,18 @@ namespace SGR.BP.Dao
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public IDataReader Carregar(int pId, Movimentacao objeto)
+        private static List<IDataParameter> ParametrosCarregar(CADRI cadri, Residuo residuo)
         {
-            return DaoUtil.Carregar("proc_name", pId, "parameternameid", objeto);
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idMovimentacao", DbType.Int32, null));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idCadri", DbType.Int32, cadri.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idResiduo", DbType.Int32, residuo.ID));
+            return parameters;
         }
-
-        public void CarregarTransportes(Movimentacao objeto)
+                
+        public List<Transporte> CarregarTransportes(Movimentacao movimentacao)
         {
-            throw new Exception("The method or operation is not implemented.");
+            return DaoTransporte.Carregar(movimentacao);
         }
-
-
     }
 }

@@ -21,6 +21,15 @@ namespace SGR.BP.Objeto
             this.ID = id;
             Dao.Carregar(id, this);
         }
+
+        public Residuo(int id, bool carregaTotal)
+        {
+            this.ID = id;
+            this.CarregarTotal = carregaTotal;
+            if(this.CarregarTotal)
+                Dao.Carregar(id, this);
+
+        }
         #endregion
 
         #region Atributos

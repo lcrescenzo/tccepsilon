@@ -19,7 +19,7 @@ BEGIN
 	SET 
 		idTipoResiduo = p_idTipoResiduo, 
 		idClasse = p_idClasse, 
-		idGrupoResíduo = p_idGrupoResíduo, 
+		idGrupoResiduo = p_idGrupoResiduo, 
 		nome = p_nome, 
 		estFisico = p_estFisico, 
 		auditoria = p_auditoria, 

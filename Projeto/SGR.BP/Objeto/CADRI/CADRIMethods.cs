@@ -2,19 +2,32 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SGR.BP.Bases;
+using SGR.BP.Dao;
+using SGR.BP.Objeto.Filtro;
+using SGR.BP.Objeto.Home.Entidade;
 
 namespace SGR.BP.Objeto
 {
     public partial class CADRI : ObjectBase
     {
-        public static List<CADRI> Lista()
+        #region Lista
+        public static List<CADRI> Lista(FiltroCADRI filtroCADRI)
         {
-            return new List<CADRI>();
+            return DaoCADRI.Lista(filtroCADRI);
         }
+
+        public static List<CADRI> Lista(Residuo residuo)
+        {
+            return DaoCADRI.Lista(residuo);
+        }
+
+       
+        #endregion
 
         #region Data
         internal override void PreencheObjeto(System.Data.IDataReader reader)
         {
+            base.ID = Convert.ToInt32(reader["idCadri"]);
             this.Destino = reader["destino"].ToString();
             this.Numero = Convert.ToInt32(reader["numero"]);
             this.OI = Convert.ToInt32(reader["OI"]);

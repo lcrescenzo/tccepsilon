@@ -10,7 +10,7 @@ namespace SGR.BP.Bases
         int Incluir(T objeto);
         void Alterar(T objeto);
         void Excluir(T objeto);
-        IDataReader Carregar(int pId, T objeto);
+        void Carregar(int pId, T objeto);
         List<IDataParameter> ParametrosIncluir(T objeto);
         List<IDataParameter> ParametrosExcluir(T objeto);
         List<IDataParameter> ParametrosAlterar(T objeto);

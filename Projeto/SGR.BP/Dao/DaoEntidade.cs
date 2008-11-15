@@ -23,7 +23,7 @@ namespace SGR.BP.Dao
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public System.Data.IDataReader Carregar(int pId, Entidade objeto)
+        public void Carregar(int pId, Entidade objeto)
         {
             throw new Exception("The method or operation is not implemented.");
         }

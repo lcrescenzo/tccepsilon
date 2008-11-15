@@ -36,6 +36,32 @@ namespace SGR.BP.Dao
             }
         }
         
+        public static List<Residuo> Lista(CADRI cadri)
+        {
+            IDbConnection connection = DaoUtil.DataBase.GetConnectionObject();
+
+            List<IDataParameter> listParams = ParametrosListaPorCadri(cadri);
+            try
+            {
+                connection.Open();
+                using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_ResiduoPorCadri_s", listParams))
+                {
+                    return DaoUtil.ListaBase<Residuo>(comm);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+
+
         public int Incluir(Residuo objeto)
         {
             List<IDataParameter> returnParam = DaoUtil.Execute("sp_Residuo_i", ParametrosIncluir(objeto), DaoUtil.ETipoExecucao.Incluir);
@@ -59,7 +85,7 @@ namespace SGR.BP.Dao
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idClasse", DbType.Int32, objeto.Classe.ID));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idGrupoResiduo", DbType.Int32, objeto.Grupo.ID));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_nome", DbType.String, objeto.Nome));
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_estFisico", DbType.String, objeto.EstadoFisico)); 
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_estFisico", DbType.String, CapturaFlagEstadoFisico(objeto.EstadoFisico))); 
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_auditoria", DbType.Boolean, objeto.Auditoria));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_unidadeMedida", DbType.String, objeto.UnidadeMedida));
             return parameters;
@@ -80,7 +106,7 @@ namespace SGR.BP.Dao
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idClasse", DbType.Int32, objeto.Classe.ID));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idGrupoResiduo", DbType.Int32, objeto.Grupo.ID));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_nome", DbType.String, objeto.Nome));
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_estFisico", DbType.String, objeto.EstadoFisico)); 
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_estFisico", DbType.String, CapturaFlagEstadoFisico(objeto.EstadoFisico))); 
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_auditoria", DbType.Boolean, objeto.Auditoria));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_unidadeMedida", DbType.String, objeto.UnidadeMedida));
             return parameters;
@@ -90,18 +116,30 @@ namespace SGR.BP.Dao
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idTipoResiduo", DbType.Int32, filtroResiduo.TipoResiduo));
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idClasse", DbType.Int32, null));//TODO: Carregar este filtro futuramente
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idGrupoResiduo", DbType.Int32, null));//TODO: Carregar este filtro futuramente
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idClasse", DbType.Int32, filtroResiduo.Classe));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idGrupoResiduo", DbType.Int32, filtroResiduo.Grupo));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_nome", DbType.String, filtroResiduo.Nome));
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_estFisico", DbType.String, null));//TODO: Carregar este filtro futuramente
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_auditoria", DbType.Boolean, null));//TODO: Carregar este filtro futuramente
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_unidadeMedida", DbType.String, null));//TODO: Carregar este filtro futuramente
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_estFisico", DbType.String, filtroResiduo.EstadoFisico));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_auditoria", DbType.Boolean, filtroResiduo.Auditoria));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_unidadeMedida", DbType.String, filtroResiduo.UnidadeMedida));
             return parameters;
         }
 
-        public IDataReader Carregar(int pId, Residuo objeto)
+        private static List<IDataParameter> ParametrosListaPorCadri(CADRI cadri)
         {
-            return DaoUtil.Carregar("p_ResiduoById_s", pId, "p_idResiduo", objeto);   
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idCadri", DbType.Int32, cadri.ID));
+            return parameters;
+        }
+        
+        public void Carregar(int pId, Residuo objeto)
+        {
+            DaoUtil.Carregar("sp_ResiduoById_s", pId, "p_idResiduo", objeto);   
+        }
+
+        private string CapturaFlagEstadoFisico(EEstadoFisico estadoFisico)
+        {
+            return estadoFisico.ToString().Substring(0, 1);
         }
 
     }

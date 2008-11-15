@@ -15,17 +15,37 @@ namespace SGR.BP.Objeto
             return DaoResiduo.Lista(filtroResiduo);
         }
 
+        public static List<Residuo> Lista(CADRI cadri)
+        {
+            return DaoResiduo.Lista(cadri);
+        }
 
         #region Data
 
+        private EEstadoFisico ConverteEstadoFisico(string estadoFisico)
+        {
+            EEstadoFisico retornoEstadoFisico = EEstadoFisico.Liquido;
+            switch (estadoFisico)
+            {
+                case "G": retornoEstadoFisico = EEstadoFisico.Gasoso; break;
+                case "L": retornoEstadoFisico = EEstadoFisico.Liquido; break;
+                case "S": retornoEstadoFisico = EEstadoFisico.Solido; break;
+
+                default:
+                    break;
+            }
+            return retornoEstadoFisico;
+        }
+
         internal override void PreencheObjeto(System.Data.IDataReader reader)
         {
-            this.Auditoria = (bool)reader["auditoria"];
-            this._idClasse = (int)reader["idClasse"];
-            this.EstadoFisico = ((EEstadoFisico)((int)reader["estFisico"]));
-            this._idGrupoResiduo = (int)reader["idGrupoResíduo"];
+            base.ID = Convert.ToInt32(reader["idResiduo"]);
+            this.Auditoria = Convert.ToBoolean(reader["auditoria"]);
+            this._idClasse = Convert.ToInt32(reader["idClasse"]);
+            this.EstadoFisico = (ConverteEstadoFisico(reader["estFisico"].ToString()));
+            this._idGrupoResiduo = Convert.ToInt32(reader["idGrupoResiduo"]);
             this.Nome = (string)reader["nome"];
-            this._idTipoResiduo = (int)reader["idTipoResiduo"];
+            this._idTipoResiduo = Convert.ToInt32(reader["idTipoResiduo"]);
             this.UnidadeMedida = (string)reader["unidadeMedida"];
         }
 

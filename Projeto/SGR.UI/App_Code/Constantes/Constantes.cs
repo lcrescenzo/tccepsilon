@@ -6,9 +6,11 @@ using System.Web.Security;
 
 namespace Constantes
 {
-    internal class UserLogin
+    public class UserLogin
     {
         public readonly static string userCookieKey = "userCookieID";
         public readonly static double userCookieExpire = 20;
+        public readonly static string userSessionID = "userID";
+        public readonly static string userSessionKey = "userSessionID";
     }
 }

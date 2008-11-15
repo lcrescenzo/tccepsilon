@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
+using System.Net.Mail;
 
 namespace SGR.BP.Util
 {
@@ -35,6 +36,19 @@ namespace SGR.BP.Util
 
             return false;
                  
+        }
+
+        public static void EnviarEmail(string assunto, string conteudo, string remetente, string destinatario)
+        {
+            SmtpClient smtp = new SmtpClient();
+
+            MailMessage message = new MailMessage(remetente, destinatario);
+
+            message.Subject = assunto;
+            message.IsBodyHtml = true;
+            message.Body = conteudo;
+
+            smtp.Send(message);
         }
     }
 }

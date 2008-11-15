@@ -23,6 +23,7 @@ public abstract class PageBaseConsulta : PageLogedBase
         CapturaControles();
         if (!IsPostBack)
         {
+            CarregaRecurso();
             CarregaControles();
             AplicarFiltro();
         }
@@ -30,6 +31,46 @@ public abstract class PageBaseConsulta : PageLogedBase
         base.OnLoad(e);
     }
 
+    private void CarregaRecurso()
+    {
+        int id = -1;
+        if (Session["id"] != null)
+        {
+            id = (int)Session["id"];
+            Session.Remove("id");
+        }
+
+        if(Session["admin"] == null)
+            ValidaRecurso(id);
+    }
+
+    private void ValidaRecurso(int id)
+    {
+        SGR.BP.Objeto.Recurso filhoConsultar, filhoManutencao;
+        SGR.BP.Objeto.Recurso recurso = new SGR.BP.Objeto.Recurso(id);
+        if (recurso.Filhos.Count > 0)
+        {
+            filhoConsultar = recurso.Filhos.Find(delegate(SGR.BP.Objeto.Recurso recursoFilho)
+                {
+                    return ((recursoFilho.TipoRecurso == SGR.BP.Objeto.ETipoRecurso.Acao) &&
+                        (recursoFilho.Nome == "Consultar"));
+                }
+            );
+
+            filhoManutencao = recurso.Filhos.Find(delegate(SGR.BP.Objeto.Recurso recursoFilho)
+                {
+                    return ((recursoFilho.TipoRecurso == SGR.BP.Objeto.ETipoRecurso.Acao) &&
+                        (recursoFilho.Nome == "Manter"));
+                }
+            );
+
+            if (filhoConsultar == null)
+                Response.Redirect("~/Erro/SemPermissao.aspx");
+
+            BotaoNovo.Enabled = (filhoManutencao != null);
+        }
+    }
+    
     protected void Novo()
     {
         Context.Items["TipoManutencao"] = (int)ETipoManutencao.Inclusao;
@@ -70,5 +111,7 @@ public abstract class PageBaseConsulta : PageLogedBase
     protected abstract IFiltro MontaFiltro();
 
     protected abstract void CarregaFiltro(IFiltro filtro);
+
+    protected abstract WebControl BotaoNovo { get; }
 
 }

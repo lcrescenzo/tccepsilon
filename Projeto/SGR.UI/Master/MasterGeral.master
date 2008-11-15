@@ -1,17 +1,37 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterGeral.master.cs" Inherits="Master_MasterGeral" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterGeral.master.cs" Inherits="MasterGeral" %>
+<%@ Register Src="Controls/Cabecalho.ascx" TagName="Cabecalho" TagPrefix="uc2" %>
+<%@ Register Src="Controls/MenuTopo.ascx" TagName="MenuTopo" TagPrefix="uc3" %>
+<%@ Register Src="Controls/MenuLateral.ascx" TagName="MenuLateral" TagPrefix="uc4" %>
+<%@ Register Src="../Controles/Mensagem.ascx" TagName="Mensagem" TagPrefix="uc1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>Untitled Page</title>
+    
 </head>
-<body>
+<body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0">
     <form id="form1" runat="server">
-    <div>
+        <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%">
+            <tr>
+                <td colspan="2" valign="top">
+                    <uc2:Cabecalho ID="Cabecalho1" runat="server" />
+                    <uc3:MenuTopo ID="MenuTopo1" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: whitesmoke; vertical-align:text-top; width: 150px;" valign="top">
+                    <uc4:MenuLateral ID="MenuLateral1" runat="server" />
+                    &nbsp;</td>
+                <td style="width: 100%">
         <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
         </asp:contentplaceholder>
-    </div>
+                    <uc1:Mensagem ID="Mensagem1" runat="server" />
+        
+                </td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>

@@ -53,9 +53,9 @@ namespace SGR.BP.Dao
             DaoUtil.Execute("sp_TipoResiduo_d", ParametrosExcluir(objeto), DaoUtil.ETipoExecucao.Excluir);
         }
 
-        public IDataReader Carregar(int pId, TipoResiduo objeto)
+        public void Carregar(int pId, TipoResiduo objeto)
         {
-            return DaoUtil.Carregar("sp_TipoResiduoById_s", pId, "p_idTipoResiduo", objeto);
+            DaoUtil.Carregar("sp_TipoResiduoById_s", pId, "p_idTipoResiduo", objeto);
         }
 
         private static List<IDataParameter> ParametrosLista(FiltroTipoResiduo filtroTipoResiduo)

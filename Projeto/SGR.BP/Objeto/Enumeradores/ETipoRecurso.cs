@@ -10,6 +10,7 @@ namespace SGR.BP.Objeto
         Pagina = 0,
         ItemMenu = 1, 
         Botao = 2,
+        Acao = 3,
         Outros = -1
     }
 }

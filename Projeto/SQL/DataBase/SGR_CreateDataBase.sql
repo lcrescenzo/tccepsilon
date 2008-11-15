@@ -71,7 +71,7 @@ CREATE TABLE Entidade (
 CREATE TABLE Recurso (
   idRecurso INT NOT NULL,
   idTipoRecurso CHAR(1) NOT NULL,
-  idRecursoPai INT NOT NULL,
+  idRecursoPai INT NULL,
   nome VARCHAR(50) NULL,
   componente VARCHAR(50) NULL,
   PRIMARY KEY(idRecurso),
@@ -292,11 +292,13 @@ INSERT INTO Manutencao VALUES (1, 'Incluir');
 INSERT INTO Manutencao VALUES (2, 'Alterar'); 
 INSERT INTO Manutencao VALUES (3, 'Excluir'); 
 
-
+-- Tipo de Recurso
 INSERT INTO TipoRecurso VALUES ('M', 'Menu');
 INSERT INTO TipoRecurso VALUES ('P', 'Página');
 INSERT INTO TipoRecurso VALUES ('B', 'Botão');
+INSERT INTO TipoRecurso VALUES ('A', 'Ação');
 
 -- Usuário admin
 INSERT INTO Usuario VALUES (-1, 'Grupo Epsilon', NULL, '000000000000', 'grupoepsilon@gmail.com', '00000000', 'USCS - Universidade de São Caetano do Sul');
-INSERT INTO Login VALUES (-1, 'epsilon', '846c81d2255f2922e3c5ad9bbaa70c2');-- sgrweb
+INSERT INTO Login VALUES (-1, 'epsilon', '846c81d2255f2922e3c5ad9bbaa70c2a');-- sgrweb
+																					

@@ -10,46 +10,140 @@ namespace SGR.BP.Dao
 {
     class DaoLogin : IDao<Login>
     {
-
+        
         public int Incluir(Login objeto)
         {
-            List<IDataParameter> returnParam = DaoUtil.Execute("proc_name", ParametrosIncluir(objeto), DaoUtil.ETipoExecucao.Incluir);
+            List<IDataParameter> returnParam = DaoUtil.Execute("sp_Login_i", ParametrosIncluir(objeto), DaoUtil.ETipoExecucao.Incluir);
             return (int)returnParam[0].Value;
+        }
+
+        public void Incluir(Login objeto, IDbConnection connection)
+        {
+            using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_Login_i", ParametrosIncluir(objeto)))
+            {
+                DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Incluir);
+            }
         }
 
         public void Alterar(Login objeto)
         {
-            DaoUtil.Execute("proc_name", ParametrosAlterar(objeto), DaoUtil.ETipoExecucao.Alterar);
+            DaoUtil.Execute("sp_Login_u", ParametrosAlterar(objeto), DaoUtil.ETipoExecucao.Alterar);
+        }
+
+        public void Excluir(Login objeto, IDbConnection connection)
+        {
+            using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_Login_d", ParametrosExcluir(objeto)))
+            {
+                DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Excluir);
+            }
         }
 
         public void Excluir(Login objeto)
         {
-            DaoUtil.Execute("proc_name", ParametrosExcluir(objeto), DaoUtil.ETipoExecucao.Excluir);
+            DaoUtil.Execute("sp_Login_d", ParametrosExcluir(objeto), DaoUtil.ETipoExecucao.Excluir);
         }
 
-        public IDataReader Carregar(int pId, Login objeto)
+        public void Carregar(int pId, Login objeto)
         {
-            return DaoUtil.Carregar("proc_name", pId, "parameternameid", objeto);
+            DaoUtil.Carregar("sp_LoginById_s", pId, "p_idUsuario", objeto);
+            if (objeto.Senha == null)
+            {
+                throw new SGRErroException("Usuário não encontrado!");
+            }
         }
 
-        public IDataReader Carregar(string login, string senha)
+        public void Autenticar(string login, string senha, Login objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            using (IDbConnection connection = DaoUtil.DataBase.GetConnectionObject())
+            {
+                try
+                {
+                    connection.Open();
+
+                    IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_AutenticarLogin_s", ParametrosAutenticar(objeto));
+                    IDataReader reader = DaoUtil.Execute(comm);
+                    if (reader.Read())
+                    {
+                        objeto.PreencheObjeto(reader);
+                    }
+                    else
+                    {
+                        throw new SGRErroException("Usuário ou Senha inválidos!");
+                    }
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public void CarregarPorEmail(string login, string email, Login objeto)
+        {
+            using (IDbConnection connection = DaoUtil.DataBase.GetConnectionObject())
+            {
+                try
+                {
+                    connection.Open();
+
+                    IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_AutenticarLoginEmail_s", ParametrosCarregarPorEmail(login, email));
+                    IDataReader reader = DaoUtil.Execute(comm);
+                    if (reader.Read())
+                    {
+                        objeto.PreencheObjeto(reader);
+                    }
+                    else
+                    {
+                        throw new SGRErroException("Usuário e e-mail inválidos!");
+                    }
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        private List<IDataParameter> ParametrosCarregarPorEmail(string usuario, string email)
+        {
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_login", DbType.String, usuario));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_email", DbType.String, email));
+            return parameters;
+        }
+
+        private List<IDataParameter> ParametrosAutenticar(Login objeto)
+        {
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_login", DbType.String, objeto.Usuario));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_senha", DbType.String, objeto.Senha));
+            return parameters;
+           
         }
 
         public List<IDataParameter> ParametrosIncluir(Login objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_login", DbType.String, objeto.Usuario));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_senha", DbType.String, objeto.Senha));
+            return parameters;
         }
 
         public List<IDataParameter> ParametrosExcluir(Login objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.ID));
+            return parameters;
         }
 
         public List<IDataParameter> ParametrosAlterar(Login objeto)
         {
-            throw new Exception("The method or operation is not implemented.");
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_login", DbType.String, objeto.Usuario));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_senha", DbType.String, objeto.Senha));
+            return parameters;
         }
 
     }

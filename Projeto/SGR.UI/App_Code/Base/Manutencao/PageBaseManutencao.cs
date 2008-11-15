@@ -68,6 +68,9 @@ public abstract class PageBaseManutencao<T> : PageLogedBase where T : ObjectBase
     #region Metodos Gerais
     private void Inicializar()
     {
+        if ((Session["TipoManutencao"] == null) && Context.Items["TipoManutencao"] == null)
+            Server.Transfer("Consulta.aspx");
+
         TipoManutencao = (Session["TipoManutencao"] == null) ? (ETipoManutencao)((int)Context.Items["TipoManutencao"]) : (ETipoManutencao)((int)Session["TipoManutencao"]);
         CarregarCampos();
         GuardarFiltro();
@@ -115,7 +118,9 @@ public abstract class PageBaseManutencao<T> : PageLogedBase where T : ObjectBase
 
     private void Incluir()
     {
-        ((ObjectBase)PreparaObjeto()).Inserir();
+        T obj = PreparaObjeto();
+        obj.Inserir();
+        Objeto = obj;
     }
 
     private void Alterar()
@@ -137,6 +142,7 @@ public abstract class PageBaseManutencao<T> : PageLogedBase where T : ObjectBase
     protected abstract void CarregarCampos();
 
     protected abstract T CarregarObjeto(int id);
+    
     #endregion
 
 }

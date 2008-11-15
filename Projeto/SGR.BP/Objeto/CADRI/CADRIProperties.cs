@@ -10,13 +10,23 @@ namespace SGR.BP.Objeto
     {
         #region Construtores
         public CADRI()
-        { 
+        {
+            //Todo CADRI tem validade de um ano, esta data pode ser alterada
+            _validade = DateTime.Now.AddYears(1);
         }
 
         public CADRI(int id)
         {
             this.ID = id;
             Dao.Carregar(ID, this);
+        }
+
+        public CADRI(int id, bool carregaTotal)
+        {
+            this.ID = id;
+            this.CarregarTotal = carregaTotal;
+            if(CarregarTotal)
+                Dao.Carregar(ID, this);
         }
         #endregion
 

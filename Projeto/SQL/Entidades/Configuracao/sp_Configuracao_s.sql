@@ -16,7 +16,7 @@ BEGIN
 	FROM 
 		sgr.configuracao
 	WHERE  
-			idUsuario = p_idUsuario 
+			(p_idUsuario IS NULL AND idUsuario IS NULL) OR (idUsuario = p_idUsuario)
 	AND	((p_chave IS NULL) OR (chave = p_chave))
 	;
 END
