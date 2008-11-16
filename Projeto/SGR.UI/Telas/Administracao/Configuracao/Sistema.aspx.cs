@@ -23,15 +23,15 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
             CarregarTipoResiduo();
             CarregarClasse();
             CarregaConfiguracao();
-            //Cores();
+           //PreviewLogo();
         }
     }
 
-    //private void Cores()
+    //private void PreviewLogo()
     //{
-    //    tblCores.Attributes["onclick"] = "tblCores_onclick(event.srcElement.bgColor,'" + txtCor.ClientID + "');";
+    //    fluLogo.Attributes.Add("onchange", "previewImagem(this,document.getElementById('" + imgView.ClientID + "'));"); 
     //}
-        
+
     #region Metodos de Carga
     private void CarregarTipoResiduo()
     {

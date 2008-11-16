@@ -20,6 +20,7 @@ BEGIN
 	INNER JOIN sgr.residuocadri rec
 	ON rec.idCadri = cad.idCadri
 	WHERE   
-			((p_idResiduo = NULL) OR (rec.idResiduo = p_idResiduo));
+			((p_idResiduo = NULL) OR (rec.idResiduo = p_idResiduo))
+	AND cad.validade > NOW();
 	
 END

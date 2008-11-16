@@ -66,19 +66,16 @@ function ValidarKeyPressInteger(inputNumeric, casas)
 }
 
 
-// Seleção de cores
-function tblCores_onclick(color, txtName)
-{
-    var txt = document.getElementById(txtName);
-    txt.style.backgroundColor = color
-    txt.value = color;
-}
+// Configuracao
 
 function previewImagem(field, image) 
 {
-    path = 'file://'+ field;
-    path = path.replace(/\\/, '/'); // Fix Windows paths
-    image.src = path;
+    path = 'file://'+ field.value;
+    
+    var img = new Image();
+    img.src = path;
+    //path = path.replace(/\\/, '/'); // Fix Windows paths
+    image.src = img.src;
     //image.style.display = 'block';
     //image.style.width = "200px";
     //image.style.height = "150px";

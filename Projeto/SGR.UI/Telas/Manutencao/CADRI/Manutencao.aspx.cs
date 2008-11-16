@@ -18,7 +18,13 @@ public partial class Telas_Manutencao_CADRI_Manutencao : PageBaseManutencao<CADR
     #region Eventos
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        ManterData();
+    }
+
+    private void ManterData()
+    {
+        if(txtValidade.Text != string.Empty)
+            cldValidade.SelectedDate = DateTime.Parse(txtValidade.Text, Util.Formatacao.Data);
     }
 
     protected void btnGravar_Click(object sender, EventArgs e)
