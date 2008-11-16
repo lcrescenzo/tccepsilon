@@ -85,7 +85,13 @@ public partial class Controles_ListaResiduos : System.Web.UI.UserControl
         ddlResiduo.DataTextField = "Nome";
         ddlResiduo.DataValueField = "ID";
         ddlResiduo.DataBind();
+        AdicionaItemBranco();
         RemoveSelecionados();
+    }
+
+    private void AdicionaItemBranco()
+    {
+        ddlResiduo.Items.Insert(0, new ListItem("Selecione um Resíduo...", string.Empty));
     }
 
     private void RemoveSelecionados()
@@ -100,10 +106,13 @@ public partial class Controles_ListaResiduos : System.Web.UI.UserControl
 
     protected void btnAdicionarResiduo_Click(object sender, EventArgs e)
     {
-        int id = int.Parse(ddlResiduo.SelectedValue);
-        this.Adicionar(ddlResiduo.SelectedItem.Text, id);
-        ddlResiduo.Items.Remove(ddlResiduo.SelectedItem);
-        ddlResiduo.SelectedIndex = -1;
+        if (ddlResiduo.SelectedValue != string.Empty)
+        {
+            int id = int.Parse(ddlResiduo.SelectedValue);
+            this.Adicionar(ddlResiduo.SelectedItem.Text, id);
+            ddlResiduo.Items.Remove(ddlResiduo.SelectedItem);
+            ddlResiduo.SelectedIndex = -1;
+        }
     }
 
     private void Adicionar(string texto, int id)

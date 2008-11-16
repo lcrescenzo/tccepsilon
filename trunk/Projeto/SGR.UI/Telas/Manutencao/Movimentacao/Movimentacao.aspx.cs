@@ -15,7 +15,7 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
 {
 
     #region Atributos
-    private const int _quantidadeTransportes = 30;
+    private const int _quantidadeTransportes = 60;
     
     private Movimentacao _movimentacao;
     private Transporte _tranporte;
@@ -40,20 +40,18 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
             {
                 ApagarTransporte((int)ViewState["idExcluir"]);
                 
-            }
+            } 
+            CarregarMovimentacao(MovimentacaoSelecionada);
         }
-        CarregarMovimentacao(MovimentacaoSelecionada);
+       
     }
 
     
     protected void ddlResiduo_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddlCadri.SelectedValue != string.Empty)
+        if (ddlResiduo.SelectedValue != string.Empty)
         {
-            if (ddlResiduo.SelectedValue != string.Empty)
-            {
-                CarregarCadri(CADRI.Lista(new Residuo(int.Parse(ddlResiduo.SelectedValue), false)));
-            }
+            CarregarCadri(CADRI.Lista(new Residuo(int.Parse(ddlResiduo.SelectedValue), false)));
         }
         else 
         {
@@ -64,12 +62,9 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
 
     protected void ddlCadri_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddlResiduo.SelectedValue != string.Empty)
+        if (ddlCadri.SelectedValue != string.Empty)
         {
-            if (ddlCadri.SelectedValue != string.Empty)
-            {
-                CarregarResiduo(Residuo.Lista(new CADRI(int.Parse(ddlCadri.SelectedValue), false)));
-            }
+            CarregarResiduo(Residuo.Lista(new CADRI(int.Parse(ddlCadri.SelectedValue), false)));
         }
         else
         {
@@ -112,6 +107,7 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
             Manutencao = ETipoManutencao.Inclusao;
             LimparTransporte();
             txtData.Enabled = true;
+            txtData.Text = DateTime.Now.ToString(Util.Formatacao.Data.ShortDatePattern);
         }
     }
     #endregion
@@ -241,7 +237,7 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
         {
             transportados += item.Quantidade;
         }
-
+        txtData.Text = DateTime.Now.ToString(Util.Formatacao.Data.ShortDatePattern);
         lblTransportados.Text = transportados.ToString("#0.00", Util.Formatacao.Numero) + " " + lblUnidadeMedida.Text;
         CriaCampoNumerico(transportados, cadri.Quantidade);
     }

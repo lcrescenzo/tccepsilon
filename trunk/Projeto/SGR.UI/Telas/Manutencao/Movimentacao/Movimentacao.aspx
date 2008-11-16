@@ -138,7 +138,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <sgr:Label ID="Label4" runat="server">Últimas movimentações</sgr:Label></td>
+                                                        <sgr:Label ID="Label4" runat="server">Últimos transportes</sgr:Label></td>
                                                     <td style="width: 6px">
                                                     </td>
                                                     <td align="right">
