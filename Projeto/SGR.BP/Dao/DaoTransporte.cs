@@ -42,7 +42,6 @@ namespace SGR.BP.Dao
             DaoUtil.ExecuteQuery(DaoUtil.DataBase.GetCommandProcObject(pConnection, "sp_Transporte_d", ParametrosExcluir(objeto)), DaoUtil.ETipoExecucao.Excluir);
         }
 
-
         public void Carregar(int pId, Transporte objeto)
         {
             DaoUtil.Carregar("sp_TransporteById_s", pId, "p_idTransporte", objeto);

@@ -125,7 +125,9 @@ namespace SGR.BP.Dao
                     {
 
                         DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Alterar);
-                        
+
+                        ExcluirResiduosPeloCadri(objeto, connection);
+
                         foreach (Residuo residuo in objeto.Residuos)
                         {
                             AlterarResiduos(objeto, residuo, connection);
@@ -147,9 +149,11 @@ namespace SGR.BP.Dao
 
         public void AlterarResiduos(CADRI objetoCADRI, Residuo objetoResiduo, IDbConnection connection)
         {
-            ExcluirResíduos(objetoCADRI, objetoResiduo, connection);
-
-            IncluirResiduos(objetoCADRI, objetoResiduo, connection);
+            Movimentacao movimentacao = Movimentacao.Carregar(objetoCADRI, objetoResiduo);
+            if (movimentacao == null)
+            {
+                IncluirResiduos(objetoCADRI, objetoResiduo, connection);
+            }
         }
         #endregion
 
@@ -165,7 +169,7 @@ namespace SGR.BP.Dao
 
                     foreach (Residuo residuo in objeto.Residuos)
                     {
-                        ExcluirResíduos(objeto, residuo, connection);
+                        ExcluirResiduos(objeto, residuo, connection);
                     }
 
                     IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_Cadri_d", ParametrosExcluir(objeto));
@@ -185,9 +189,17 @@ namespace SGR.BP.Dao
             }
         }
 
-        public void ExcluirResíduos(CADRI objetoCADRI, Residuo objetoResiduo, IDbConnection connection)
+        public void ExcluirResiduos(CADRI objetoCADRI, Residuo objetoResiduo, IDbConnection connection)
         {
-            using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_ResiduoCadri_d", ParametrosExcluirResiduos(objetoCADRI, objetoResiduo))) // Exclui Residuos da Aplicação
+            using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_ResiduoCadri_d", ParametrosExcluirResiduos(objetoCADRI, objetoResiduo))) // Exclui Residuos do Cadri
+            {
+                DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Excluir);
+            }
+        }
+
+        public void ExcluirResiduosPeloCadri(CADRI objetoCADRI, IDbConnection connection)
+        {
+            using (IDbCommand comm = DaoUtil.DataBase.GetCommandProcObject(connection, "sp_RemoveResiduosCadri_d", ParametrosExcluirResiduosPeloCadri(objetoCADRI))) // Exclui Residuos do Cadri
             {
                 DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Excluir);
             }
@@ -289,7 +301,12 @@ namespace SGR.BP.Dao
             return parameters;
         }
 
-
+        private List<IDataParameter> ParametrosExcluirResiduosPeloCadri(CADRI objetoCADRI)
+        {
+            List<IDataParameter> parameters = new List<IDataParameter>();
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idCadri", DbType.Int32, objetoCADRI.ID));
+            return parameters;
+        }
         #endregion
 
     }

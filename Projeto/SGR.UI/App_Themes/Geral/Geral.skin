@@ -2,5 +2,44 @@
     runat="server" 
     BorderColor="Black" 
     BorderStyle="Solid" 
-    BorderWidth="1px">
+    BorderWidth="1px"
+    Font-Names="Lucida Sans Unicode" 
+    Font-Size="12px">
+    
 </sgr:TextBox>
+
+<sgr:Button 
+    runat="server" 
+    BackColor="Gainsboro" 
+    BorderColor="DarkGray" 
+    BorderWidth="2px" 
+    Font-Names="Lucida Sans Unicode" 
+    Font-Size="12px">
+</sgr:Button>
+
+<sgr:GridView runat="server" Width="100%" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" >
+    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+    <RowStyle BackColor="#F7F6F3" Font-Names="Lucida Sans Unicode" Font-Size="12px" ForeColor="#333333" />
+    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" Font-Names="Lucida Sans Unicode"
+        Font-Size="12px" ForeColor="White" />
+    <EditRowStyle BackColor="#999999" />
+    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+</sgr:GridView>
+
+<sgr:Label 
+    SkinID="lblTitulo" 
+    runat="server" 
+    Font-Bold="True" 
+    Font-Italic="True" 
+    Font-Names="Lucida Sans Unicode" 
+    Font-Size="X-Large" 
+    ForeColor="Gray">
+</sgr:Label>
+
+<sgr:Label 
+    runat="server" 
+    Font-Names="Lucida Sans Unicode" 
+    Font-Size="12px">
+    </sgr:Label>

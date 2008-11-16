@@ -5,6 +5,7 @@ using SGR.BP.Bases;
 using SGR.BP.Dao;
 using SGR.BP.Objeto.Filtro;
 using SGR.BP.Objeto.Home.Entidade;
+using SGR.BP.Util;
 
 namespace SGR.BP.Objeto
 {
@@ -47,7 +48,20 @@ namespace SGR.BP.Objeto
 
         public override void Excluir()
         {
-            Dao.Excluir(this);
+            bool possuimovimentacao = false;
+            foreach(Residuo residuo in Residuos)
+            {
+                Movimentacao movimentacao = Movimentacao.Carregar(this, residuo);
+                if(movimentacao != null)
+                {
+                    possuimovimentacao = true;
+                    break;
+                }
+            }
+            if (!possuimovimentacao)
+                Dao.Excluir(this);
+            else
+                throw new SGRErroException("Este CADRI Possui uma movimentação, não é permitido excluí-lo");
         }
         #endregion
 

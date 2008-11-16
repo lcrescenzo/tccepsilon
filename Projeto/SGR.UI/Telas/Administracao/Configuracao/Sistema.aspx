@@ -131,74 +131,40 @@
                             <sgr:Label id="Label11" runat="server">Logotipo</sgr:Label></td>
                         <td>
                             <sgr:Label ID="Label12" runat="server">Cor do Topo:</sgr:Label>
-                            <input runat="server" id="txtCor" disabled="disabled" type="text" enableviewstate="false" /></td>
+                            <select style="font-size: 10px; width: 120px; height: 18px" id="ddlCor" runat="server">
+                                <option style="background-color:green;" value="green" selected="selected"></option>
+                                <option style="background-color:lime;" value="lime"></option>
+                                <option style="background-color:teal;" value="teal"></option>
+                                <option style="background-color:aqua;" value="aqua"></option>
+                                <option style="background-color:navy;" value="navy"></option>
+                                <option style="background-color:blue;" value="blue"></option>
+                                <option style="background-color:purple;" value="purple"></option>
+                                <option style="background-color:fuchsia;" value="fuchsia"></option>
+                                <option style="background-color:maroon;" value="maroon"></option>
+                                <option style="background-color:red;" value="red"></option>
+                                <option style="background-color:olive;" value="olive"></option>
+                                <option style="background-color:yellow;" value="yellow"></option>
+                                <option style="background-color:white;" value="white"></option>
+                                <option style="background-color:silver;" value="silver"></option>
+                                <option style="background-color:gray;" value="gray"></option>
+                                <option style="background-color:black;" value=""></option>
+                                <option style="background-color:#336699;" value="#336699"></option>
+                                <option style="background-color:#ff9933;" value="#ff9933" ></option>
+                                <option style="background-color:#66ff66;" value="#66ff66"></option>
+                                <option style="background-color:lightskyblue" value="lightskyblue"></option>
+                                <option style="background-color:#ffffcc;" value="#ffffcc"></option>
+                                <option style="background-color:#cc66ff;" value="#cc66ff"></option>
+                                <option style="background-color:#66ffcc;" value="#66ffcc"></option>
+                                <option style="background-color:orange;" value="orange"></option>
+                                <option style="background-color:tan;" value="tan"></option>
+                             </select>
+
+                      </td>
                     </tr>
                     <tr>
                         <td valign="top">
                             <sgr:FileUpload ID="fluLogo" runat="server" Width="100%" /></td>
                         <td rowspan="5" valign="top">
-                            <table id="tblCores"  border="1" bordercolor="black" cellpadding="0" style="width: 120px; height: 120px"  runat="server" >
-                                <tr runat="server">
-                                    <td bgcolor="green" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="lime" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="teal" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="aqua" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="navy" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                </tr>
-                                <tr runat="server">
-                                    <td bgcolor="blue" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="purple" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="fuchsia" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="maroon" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="red" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                </tr>
-                                <tr runat="server">
-                                    <td bgcolor="olive" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="yellow" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="white" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="silver" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="gray" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                </tr>
-                                <tr runat="server">
-                                    <td bgcolor="black" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="#336699" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td bgcolor="#ff9933" style="width: 15px; cursor: hand;" runat="server">
-                                    </td>
-                                    <td style="width: 15px; cursor: hand;" bgcolor="#66ff66" runat="server">
-                                    </td>
-                                    <td style="width: 15px; cursor: hand;" bgcolor="lightskyblue" runat="server">
-                                    </td>
-                                </tr>
-                                <tr runat="server">
-                                    <td style="width: 15px; cursor: hand;" bgcolor="#ffffcc" runat="server">
-                                    </td>
-                                    <td style="width: 15px; cursor: hand;" bgcolor="#cc66ff" runat="server">
-                                    </td>
-                                    <td style="width: 15px; cursor: hand;" bgcolor="#66ffcc" runat="server">
-                                    </td>
-                                    <td style="width: 15px; cursor: hand;" bgcolor="orange" runat="server">
-                                    </td>
-                                    <td style="width: 15px; cursor: hand;" bgcolor="tan" runat="server">
-                                    </td>
-                                </tr>
-                            </table>
                         </td>
                     </tr>
                     <tr>
@@ -247,7 +213,7 @@
                         <td colspan="2" >
                                 
                                 <sgr:Panel ID="pnlTopo" runat="server" Height="100px" Width="100%">
-                                    <img id="imgView" src="" /></sgr:Panel>
+                                    <img id="imgView" src="" style="position: relative" runat="server" /></sgr:Panel>
                         </td>
                     </tr>
                 </table>

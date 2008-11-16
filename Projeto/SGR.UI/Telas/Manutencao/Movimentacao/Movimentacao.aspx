@@ -68,8 +68,7 @@
                                         <sgr:Label ID="Label2" runat="server">Data:</sgr:Label>
                                     </td>
                                     <td colspan="3">
-                                        <sgr:TextBox ID="txtData" runat="server"></sgr:TextBox>
-                                        <sgrAjax:Calendar ID="Calendar1" runat="server" TargetControlID="txtData">
+                                        <sgr:TextBox ID="txtData" runat="server"></sgr:TextBox><sgrAjax:Calendar ID="Calendar1" runat="server" TargetControlID="txtData">
                                         </sgrAjax:Calendar>
                                     </td>
                                 </tr>
@@ -96,7 +95,7 @@
                                                         </table>
                                                     </td>
                                                     <td style="width: 95px">
-                                                        <sgr:Label ID="lblTransportadosText" runat="server">Transportados:</sgr:Label>
+                                                        <sgr:Label ID="lblTransportadosText" runat="server" >Transportados:</sgr:Label>
                                                     </td>
                                                     <td>
                                                         <sgr:Label ID="lblTransportados" runat="server"></sgr:Label>
@@ -122,7 +121,7 @@
                                 </tr>
                                 <tr>
                                     <td align="right" colspan="4">
-                                        <sgr:Button ID="btnGravar" OnClick="btnGravar_Click" runat="server" Text="Gravar"></sgr:Button>
+                                        <sgr:Button ID="btnGravar" OnClick="btnGravar_Click" runat="server" Text="Gravar" ></sgr:Button>
                                         <sgr:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click">
                                         </sgr:Button>
                                     </td>
@@ -139,13 +138,11 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <sgr:Label ID="Label4" runat="server">Últimas movimentações</sgr:Label>
-                                                    </td>
-                                                    <td>
+                                                        <sgr:Label ID="Label4" runat="server">Últimas movimentações</sgr:Label></td>
+                                                    <td style="width: 6px">
                                                     </td>
                                                     <td align="right">
-                                                        <sgr:Button ID="btnApagarMovimentacao" runat="server" Text="Apagar movimentação"></sgr:Button>
-                                                    </td>
+                                                        &nbsp;</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -157,13 +154,14 @@
                                                 <asp:TemplateField ShowHeader="False">
                                                     <itemtemplate>
                                                         <sgr:ImageButton id="imgEditar" runat="server" Text="Editar" OnCommand="imgEditar_Command" CommandName="0" ImageUrl="~/Images/Padrao/editar.gif" CausesValidation="false" ></sgr:ImageButton> 
-                                                    </itemtemplate>
+                                                    
+</itemtemplate>
                                                     <itemstyle width="20px"></itemstyle>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField ShowHeader="False">
                                                     <itemtemplate>
-                                                        <sgr:ImageButton id="imgExcluir" runat="server" Text="Excluir" OnCommand="imgExcluir_Command" CommandName="1" ImageUrl="~/Images/Padrao/excluir.gif" CausesValidation="false" ></sgr:ImageButton> 
-                                                    </itemtemplate>
+<sgr:ImageButton id="imgExcluir" runat="server" Text="Excluir" CausesValidation="false" ImageUrl="~/Images/Padrao/excluir.gif" CommandName="1" OnCommand="imgExcluir_Command" __designer:wfdid="w2"></sgr:ImageButton> 
+</itemtemplate>
                                                     <itemstyle width="20px"></itemstyle>
                                                 </asp:TemplateField>
                                             </Columns>
