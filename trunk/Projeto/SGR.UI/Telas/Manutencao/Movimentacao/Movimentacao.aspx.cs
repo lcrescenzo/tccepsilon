@@ -32,10 +32,20 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
     {
         if (retorno == RetornoConfirm.Sim)
         {
-            GravarMovimentacao();
+            if (ViewState["idExcluir"] == null)
+            {
+                GravarMovimentacao();
+            }
+            else
+            {
+                ApagarTransporte((int)ViewState["idExcluir"]);
+                
+            }
         }
+        CarregarMovimentacao(MovimentacaoSelecionada);
     }
 
+    
     protected void ddlResiduo_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlCadri.SelectedValue != string.Empty)
@@ -86,7 +96,7 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
 
     protected void imgExcluir_Command(object sender, System.Web.UI.WebControls.CommandEventArgs e)
     {
-        //base.Remover(new CADRI(int.Parse(e.CommandArgument.ToString()), false));
+        ConfirmaExcluirTransporte(int.Parse(e.CommandArgument.ToString()));
     }
 
     protected void imgEditar_Command(object sender, System.Web.UI.WebControls.CommandEventArgs e)
@@ -318,7 +328,7 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
     private void CarregaDadosTransporte(Transporte transporte)
     {
         txtData.Text = transporte.Data.ToString(Util.Formatacao.Data.ShortDatePattern);
-        txtQuantidade.Text =  transporte.Quantidade.ToString("#0.00", Util.Formatacao.Numero);
+        txtQuantidade.Text =  transporte.Quantidade.ToString(",#0.00", Util.Formatacao.Numero);
         txtTransportadora.Text = transporte.Transportadora;
     }
 
@@ -354,6 +364,19 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
         transporte.Quantidade = double.Parse(txtQuantidade.Text, Util.Formatacao.Numero);
         transporte.Transportadora = txtTransportadora.Text;
         transporte.Alterar();
+    }
+
+    private void ApagarTransporte(int _id)
+    {
+        Transporte transporte = new Transporte(_id, false);
+        transporte.Excluir();
+    }
+
+
+    private void ConfirmaExcluirTransporte(int _id)
+    {
+        Confirm.Mostrar("Deseja realmente excluir este transporte?");
+        ViewState["idExcluir"] = _id;
     }
 
     private void LimparTransporte()

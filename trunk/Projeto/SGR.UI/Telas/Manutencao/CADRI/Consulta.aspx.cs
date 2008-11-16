@@ -12,6 +12,7 @@ using SGR.BP.Objeto;
 using SGR.BP.Objeto.Filtro;
 using Util;
 using SGR.BP.Bases;
+using SGR.BP.Util;
 
 public partial class Telas_Manutencao_CADRI_Consulta : PageBaseConsulta
 {
@@ -49,7 +50,15 @@ public partial class Telas_Manutencao_CADRI_Consulta : PageBaseConsulta
 
     protected void imgExcluir_Command(object sender, CommandEventArgs e)
     {
-        base.Remover(new CADRI(int.Parse(e.CommandArgument.ToString()), false));
+        try
+        {
+            base.Remover(new CADRI(int.Parse(e.CommandArgument.ToString()), false));
+
+        }
+        catch (SGRException ex)
+        {
+            Mensagem1.Mostrar(ex);
+        }
     }
 
     protected void imgEditar_Command(object sender, CommandEventArgs e)
@@ -103,8 +112,5 @@ public partial class Telas_Manutencao_CADRI_Consulta : PageBaseConsulta
     #region Metodos
     
     #endregion
-    protected void gdvLista_RowCreated(object sender, GridViewRowEventArgs e)
-    {
-        
-    }
+    
 }

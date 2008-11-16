@@ -23,14 +23,14 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
             CarregarTipoResiduo();
             CarregarClasse();
             CarregaConfiguracao();
-            Cores();
+            //Cores();
         }
     }
 
-    private void Cores()
-    {
-        tblCores.Attributes["onclick"] = "tblCores_onclick(event.srcElement.bgColor,'" + txtCor.ClientID + "');";
-    }
+    //private void Cores()
+    //{
+    //    tblCores.Attributes["onclick"] = "tblCores_onclick(event.srcElement.bgColor,'" + txtCor.ClientID + "');";
+    //}
         
     #region Metodos de Carga
     private void CarregarTipoResiduo()
@@ -58,13 +58,11 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
             txtCADRI.Text = configuracao["Home.CADRI"];
             ddlMesesGrafico.SelectedValue = configuracao["Home.GrafMeses"];
             ddlQtdResiduos.SelectedValue = configuracao["Home.GrafQtdResiduo"];
-            txtCor.Value = configuracao["Apar.CorTopo"];
-            txtCor.Style.Add(HtmlTextWriterStyle.BackgroundColor, configuracao["Apar.CorTopo"]);
-            //configuracao["Apar.LogoNomeArq"];
-            //configuracao["Apar.LogoTop"] = "10";
-            //configuracao["Apar.LogoLeft"] = "10";
+            ddlCor.Items.FindByValue(configuracao["Apar.CorTopo"]);
+            imgView.Src = "~/Images/Logo/" + configuracao["Apar.LogoNomeArq"];
+            imgView.Style[HtmlTextWriterStyle.Top] = configuracao["Apar.LogoTop"];
+            imgView.Style[HtmlTextWriterStyle.Left] = configuracao["Apar.LogoLeft"];
         }
-
     }
     
     private void GravarConfiguracoes()
@@ -74,7 +72,7 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
         configuracao["Home.CADRI"] = txtCADRI.Text;
         configuracao["Home.GrafMeses"] = ddlMesesGrafico.SelectedValue;
         configuracao["Home.GrafQtdResiduo"] = ddlQtdResiduos.SelectedValue;
-        configuracao["Apar.CorTopo"] = txtCor.Value;
+        configuracao["Apar.CorTopo"] = ddlCor.Items[ddlCor.SelectedIndex].Value;
         string filename = GravarImagem();
         if (filename != string.Empty)
             configuracao["Apar.LogoNomeArq"] = filename;

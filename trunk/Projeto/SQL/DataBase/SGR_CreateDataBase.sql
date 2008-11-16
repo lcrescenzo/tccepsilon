@@ -301,4 +301,6 @@ INSERT INTO TipoRecurso VALUES ('A', 'Ação');
 -- Usuário admin
 INSERT INTO Usuario VALUES (-1, 'Grupo Epsilon', NULL, '000000000000', 'grupoepsilon@gmail.com', '00000000', 'USCS - Universidade de São Caetano do Sul');
 INSERT INTO Login VALUES (-1, 'epsilon', '846c81d2255f2922e3c5ad9bbaa70c2a');-- sgrweb
-																					
+
+-- Estado
+INSERT INTO estado (idEstado, descricao) VALUES (0,'NULO');
