@@ -1,9 +1,11 @@
 <%@ Page Language="C#" MasterPageFile="~/Master/MasterGeral.master" AutoEventWireup="true"
     CodeFile="Consulta.aspx.cs" Inherits="Telas_Manutencao_Residuos_Consulta" Title="Untitled Page" %>
+
+<%@ Register Src="../../../Controles/Mensagem.ascx" TagName="Mensagem" TagPrefix="uc1" %>
 <%@ Register Assembly="SGR.Web.Controls" Namespace="SGR.Web.Controls.Ajax.Sistema"
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-      <sgr:Label id="lblTitulo" runat="server" Text="Resíduos"></sgr:Label>
+      <sgr:Label id="lblTitulo" SkinID="lblTitulo" runat="server" Text="Resíduos"></sgr:Label>
         <br />
         <br />
     <ajax:ScriptManager id="ScriptManager1" runat="server" />
@@ -62,4 +64,5 @@
         <ajax:AsyncPostBackTrigger ControlID="btnPesquisar" EventName="Click"></ajax:AsyncPostBackTrigger>
     </triggers>
     </ajax:UpdatePanel>
+    <uc1:Mensagem ID="Mensagem1" runat="server" />
 </asp:Content>

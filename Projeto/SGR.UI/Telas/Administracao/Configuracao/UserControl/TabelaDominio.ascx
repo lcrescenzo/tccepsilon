@@ -2,13 +2,14 @@
 <table width="100%">
     <tr>
         <td style="width: 100%">
-            <sgr:TextBox ID="txtDescricao" runat="server" Width="100%"></sgr:TextBox></td>
+            <sgr:TextBox ID="txtDescricao" runat="server" Width="100%"></sgr:TextBox>
+            </td>
         <td width="100">
             <sgr:Panel ID="pnlAdicionar" runat="server">
             <sgr:Button ID="btnAdicionar" runat="server" Text="Adicionar" Width="100px" OnClick="btnAdicionar_Click" /></sgr:Panel>
             <sgr:Panel ID="pnlEditar" Wrap="false" Visible="false" runat="server">
             <sgr:Button ID="btnAlterar" runat="server" Text="Alterar" Width="100px" OnClick="btnAlterar_Click" />&nbsp;
-            <sgr:Button ID="btnCancelar" runat="server" Text="Cancelar" Width="100px" OnClick="btnCancelar_Click" />
+            <sgr:Button ID="btnCancelar" runat="server" Text="Cancelar" Width="100px" OnClick="btnCancelar_Click" CausesValidation="False" />
             </sgr:Panel>
         </td>
     </tr>

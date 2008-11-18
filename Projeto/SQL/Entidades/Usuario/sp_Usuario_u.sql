@@ -9,7 +9,8 @@ CREATE PROCEDURE sp_Usuario_u
 	p_idPerfil INT,
 	p_email VARCHAR(100),
 	p_telefone VARCHAR(10),
-	p_endereco VARCHAR(200) 
+	p_endereco VARCHAR(200),
+	p_idUsuarioAcao INT
 )
 BEGIN
 	
@@ -25,5 +26,6 @@ BEGIN
 		idUsuario = p_idUsuario
 	;
 
+	CALL sp_HistoricoExcluir_i(p_idUsuarioAcao,	8, p_idUsuario);
 	
 END

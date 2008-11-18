@@ -6,10 +6,11 @@
 <%@ Register Src="UserControl/TabelaDominio.ascx" TagName="TabelaDominio" TagPrefix="uc1" %>
     
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-<script src="../../../Script/Telas.js" type="text/javascript"></script>
+    <script src="../../../Script/Telas.js" type="text/javascript"></script>
+    
     <ajax:ScriptManager ID="ScriptManager1" runat="server">
     </ajax:ScriptManager>
-    <sgr:Label id="lblTitulo" runat="server" Text="Configuração do Sistema"></sgr:Label>
+    <sgr:Label id="lblTitulo" SkinID="lblTitulo" runat="server" Text="Configuração do Sistema"></sgr:Label>
     <br />
     <br />
     <sgrAjax:TabContainer ID="tbcSistemas" runat="server" ActiveTabIndex="2">
@@ -228,7 +229,7 @@
                     <table style="width: 100%">
                         <tr>
                             <td align="right">
-                                <sgr:Button ID="btnGravar" runat="server" OnClick="btnGravar_Click" Text="Gravar Alterações" /></td>
+                                <sgr:Button ID="btnGravar" runat="server" OnClick="btnGravar_Click" Text="Gravar Alterações" CausesValidation="False" /></td>
                         </tr>
                     </table>
 </asp:Content>

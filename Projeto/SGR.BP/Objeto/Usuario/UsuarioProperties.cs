@@ -36,7 +36,7 @@ namespace SGR.BP.Objeto
         private string _telefone;
         private string _endereco;
         private Login _login;
-
+        private Login _loginUltimaAlteracao;
         #region OnDemand
         private int _idPerfil = int.MinValue;
         #endregion
@@ -103,7 +103,18 @@ namespace SGR.BP.Objeto
                 _login = value; 
             }
         }
-
+        
+        public Login LoginUltimaAlteracao
+        {
+            get
+            {
+                return _loginUltimaAlteracao;
+            }
+            set
+            {
+                _loginUltimaAlteracao = value;
+            }
+        }
         #endregion
 
         #region Data

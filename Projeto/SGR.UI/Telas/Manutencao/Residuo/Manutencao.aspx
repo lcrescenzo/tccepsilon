@@ -6,24 +6,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <ajax:ScriptManager id="ScriptManager1" runat="server">
     </ajax:ScriptManager>
-    <sgr:Label id="lblTitulo" runat="server" Text="Resíduos"></sgr:Label>
+    <sgr:Label id="lblTitulo" SkinID="lblTitulo" runat="server" Text="Resíduos"></sgr:Label>&nbsp;<br />
         <br />
-        <br />
-    <cc1:Panel ID="Panel2" runat="server" Width="100%">
-        &nbsp;</cc1:Panel>
-    <cc1:Panel ID="Panel5" runat="server" Width="100%">
-        &nbsp; &nbsp; &nbsp;&nbsp;
-    </cc1:Panel>
-    <cc1:Panel ID="Panel1" runat="server" Width="100%">
-        &nbsp; &nbsp; &nbsp;</cc1:Panel>
-    <asp:Panel ID="Panel3" runat="server" Width="100%">
-        &nbsp;</asp:Panel>
+        &nbsp;
+        &nbsp;
     <table style="width: 100%">
         <tr>
             <td style="width: 135px">
         <cc1:Label ID="Label2" runat="server" Font-Bold="True">Nome: </cc1:Label></td>
             <td colspan="3">
-        <cc1:TextBox ID="txtNome" runat="server" Width="99%"></cc1:TextBox></td>
+        <cc1:TextBox ID="txtNome" runat="server" Width="99%"></cc1:TextBox><cc1:RequiredFieldValidator
+            ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNome" Display="None"
+            ErrorMessage="Campo Nome Obrigatório" SetFocusOnError="True" ToolTip="Campo Nome Obrigatório"></cc1:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td style="width: 135px">
@@ -39,7 +33,8 @@
             <asp:ListItem Value="t">
             </asp:ListItem>
             <asp:ListItem Value="mc">m&#179;</asp:ListItem>
-        </cc1:DropDownList></td>
+        </cc1:DropDownList><cc1:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="ddlUnidadeMedida"
+                    Display="None" ErrorMessage="Campo Unidade de Medida Obrigatório" ValueToCompare='-1' Operator="NotEqual"></cc1:CompareValidator></td>
             <td style="width: 120px">
         <cc1:Label ID="Label6" runat="server" Font-Bold="True">Classe: </cc1:Label></td>
             <td>
@@ -71,8 +66,9 @@
             </td>
         </tr>
     </table>
+    <cc1:ValidationSummary ID="ValidationSummary1" runat="server" />
     <br />
     <cc1:Button ID="btnGravar" runat="server" Text="Gravar" OnClick="btnGravar_Click" />
-    <cc1:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
+    <cc1:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CausesValidation="False" />
 </asp:Content>
 

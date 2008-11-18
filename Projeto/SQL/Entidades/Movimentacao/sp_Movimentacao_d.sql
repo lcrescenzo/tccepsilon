@@ -4,7 +4,8 @@ DROP PROCEDURE IF EXISTS sp_Movimentacao_d;
 
 CREATE PROCEDURE sp_Movimentacao_d
 (
-	p_idMovimentacao INT
+	p_idMovimentacao INT,
+	p_idUsuario INT
 )
 BEGIN
 	
@@ -12,5 +13,7 @@ BEGIN
 	WHERE 
 		idMovimentacao = p_idMovimentacao 
 	;
+
+	CALL sp_HistoricoExcluir_i(p_idUsuario,	11, p_idMovimentacao);
 
 END

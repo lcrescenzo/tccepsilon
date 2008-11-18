@@ -6,8 +6,9 @@
     TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    
     <ajax:ScriptManager id="ScriptManager1" runat="server" />
-        <sgr:Label id="lblTitulo" runat="server" Text="CADRI" ></sgr:Label>
+        <sgr:Label id="lblTitulo" SkinID="lblTitulo" runat="server" Text="CADRI" ></sgr:Label>
         <br />
         <br />
         <cc1:Filtro ID="Filtro1" runat="server" CollapsedImage="~/images/Padrao/mais.gif" ExpandedImage="~/images/Padrao/menos.gif">

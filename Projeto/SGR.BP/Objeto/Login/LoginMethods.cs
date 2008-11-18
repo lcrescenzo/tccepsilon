@@ -43,7 +43,7 @@ namespace SGR.BP.Objeto
         {
             string corpo = string.Empty;
             string endereco = urlBase + "?h=" + this.Senha + "&u=" + Convert.ToBase64String(Encoding.Unicode.GetBytes(this.Usuario));
-            
+
             corpo += "Sua senha foi apagada, para cadastrar uma nova senha <a href='" + endereco + "'>clique aqui</a>, </ br>";
             corpo += "caso o link não funcione, copie o endereço abaixo, cole na barra de endereços de seu navergador.</ br></ br>";
 
@@ -52,7 +52,14 @@ namespace SGR.BP.Objeto
 
             corpo += "Este e-mail foi enviado automaticamente pelo sistema SGR, não será possível respondê-lo.";
 
-            Util.General.EnviarEmail("[SGR] - Senha", corpo, "nao-responda@sgr.com.br", email);
+            try
+            {
+                Util.General.EnviarEmail("[SGR] - Senha", corpo, "nao-responda@sgr.com.br", email);
+            }
+            catch (Exception)
+            {
+                throw new SGRErroException("Ocorreu um erro no envio do e-mail.                 Para que o usuário possa alterar a senha padrão envie este link para o e-mail, para que o mesmo possa acessá-lo.                                                       " + endereco);
+            }
         }
 
         public static Login ValidarPorEmail(string login, string email)

@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <ajax:ScriptManager ID="ScriptManager1" runat="server">
     </ajax:ScriptManager>
-        <sgr:Label id="lblTitulo" runat="server" Text="Configuração do Usuário"></sgr:Label>
+        <sgr:Label id="lblTitulo" SkinID="lblTitulo" runat="server" Text="Configuração do Usuário"></sgr:Label>
         <br />
         <br />
 

@@ -22,7 +22,7 @@ namespace SGR.BP.Util
                     disposed = field;
                 }
             }
-                //"m_fDisposed", 
+            
             if (disposed == null)
             {
                 return false;
@@ -41,6 +41,7 @@ namespace SGR.BP.Util
         public static void EnviarEmail(string assunto, string conteudo, string remetente, string destinatario)
         {
             SmtpClient smtp = new SmtpClient();
+            smtp.EnableSsl = true;
 
             MailMessage message = new MailMessage(remetente, destinatario);
 

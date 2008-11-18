@@ -98,6 +98,7 @@ namespace SGR.BP.Dao
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idTransporte", DbType.Int32, objeto.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 

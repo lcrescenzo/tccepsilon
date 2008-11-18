@@ -27,7 +27,7 @@ public partial class Login_EsqueciMinhaSenha : System.Web.UI.Page
         }
         catch (SGRException exception)
         {
-            msg.Mostrar(exception);
+            MenssagemOK1.Mostrar(exception.Message);
         }
     }
 

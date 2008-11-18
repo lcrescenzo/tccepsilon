@@ -12,6 +12,7 @@ using SGR.BP.Objeto;
 using SGR.BP.Objeto.Filtro;
 using Util;
 using SGR.BP.Bases;
+using SGR.BP.Util;
 
 public partial class Telas_Manutencao_Residuos_Consulta : PageBaseConsulta
 {
@@ -35,7 +36,17 @@ public partial class Telas_Manutencao_Residuos_Consulta : PageBaseConsulta
 
     protected void imgExcluir_Command(object sender, CommandEventArgs e)
     {
-        base.Remover(new Residuo(int.Parse(e.CommandArgument.ToString()), false));
+        try
+        {
+            Residuo residuo = new Residuo(int.Parse(e.CommandArgument.ToString()), false);
+            residuo.LoginUltimaAlteracao = base.UsuarioLogado;
+            base.Remover(residuo);
+        }
+        catch (SGRException ex)
+        {
+            Mensagem1.Mostrar(ex);
+        }
+        
     }
 
     protected void imgEditar_Command(object sender, CommandEventArgs e)
@@ -105,5 +116,10 @@ public partial class Telas_Manutencao_Residuos_Consulta : PageBaseConsulta
         gdvLista.DataBind();
     }
     #endregion
-    
+
+    protected override int GridCount
+    {
+        get { return gdvLista.Rows.Count; }
+    }
+
 }

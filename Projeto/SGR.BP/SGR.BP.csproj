@@ -56,6 +56,7 @@
     <Compile Include="Objeto\Filtro\FiltroCADRI.cs" />
     <Compile Include="Objeto\Filtro\FiltroClasse.cs" />
     <Compile Include="Objeto\Filtro\FiltroGrupoResiduo.cs" />
+    <Compile Include="Objeto\Filtro\FiltroHistorico.cs" />
     <Compile Include="Objeto\Filtro\FiltroPerfil.cs" />
     <Compile Include="Objeto\Filtro\FiltroResiduo.cs" />
     <Compile Include="Objeto\CADRI\CADRIMethods.cs" />

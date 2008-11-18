@@ -55,10 +55,11 @@ public partial class Telas_Manutencao_CADRI_Manutencao : PageBaseManutencao<CADR
     {
         CADRI cadri = new CADRI();
         cadri.Destino = txtDestino.Text;
-        cadri.Numero = int.Parse(txtNumero.Text);
+        cadri.Numero = txtNumero.Text;
         cadri.OI = int.Parse(txtOI.Text);
         cadri.Quantidade = double.Parse(txtQuantidade.Text, Util.Formatacao.Numero);
         cadri.Validade = DateTime.Parse(txtValidade.Text, Util.Formatacao.Data);
+        cadri.LoginUltimaAlteracao = base.UsuarioLogado;
         cadri.Residuos.Clear();
         foreach (Residuo item in lstResiduo.SelectedItems)
         {
@@ -70,9 +71,10 @@ public partial class Telas_Manutencao_CADRI_Manutencao : PageBaseManutencao<CADR
     protected override void PreencherObjeto()
     {
         Objeto.Destino = txtDestino.Text;
-        Objeto.Numero = int.Parse(txtNumero.Text);
+        Objeto.Numero = txtNumero.Text;
         Objeto.OI = int.Parse(txtOI.Text);
         Objeto.Quantidade = double.Parse(txtQuantidade.Text);
+        Objeto.LoginUltimaAlteracao = base.UsuarioLogado;
         Objeto.Validade = DateTime.Parse(txtValidade.Text, Util.Formatacao.Data); 
         Objeto.Residuos.Clear();
         foreach (Residuo item in lstResiduo.SelectedItems)
@@ -84,7 +86,7 @@ public partial class Telas_Manutencao_CADRI_Manutencao : PageBaseManutencao<CADR
     protected override void PreencherCampos()
     {
         txtDestino.Text = Objeto.Destino;
-        txtNumero.Text = Objeto.Numero.ToString();
+        txtNumero.Text = Objeto.Numero;
         txtOI.Text = Objeto.OI.ToString();
         txtQuantidade.Text = Objeto.Quantidade.ToString("0#.##", Util.Formatacao.Numero);
         txtValidade.Text = Objeto.Validade.ToString(Util.Formatacao.Data.ShortDatePattern);
@@ -110,8 +112,8 @@ public partial class Telas_Manutencao_CADRI_Manutencao : PageBaseManutencao<CADR
 
     private void CriaCamposNumerico()
     {
-        txtNumero.Attributes.Add("onkeypress", "return ValidarKeyPressInteger(this, 10);");
-        txtOI.Attributes.Add("onkeypress", "return ValidarKeyPressInteger(this, 10)");
+        txtNumero.Attributes.Add("onkeypress", "return ValidarKeyPressInteger(this, 30);");
+        txtOI.Attributes.Add("onkeypress", "return ValidarKeyPressInteger(this, 8)");
         txtQuantidade.Attributes.Add("onkeypress", "return ValidarKeyPressNumeric(this, '" + Util.Formatacao.Numero.CurrencyDecimalSeparator + "', 2);");
     }
    

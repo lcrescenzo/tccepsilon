@@ -39,8 +39,8 @@ public partial class Telas_Home : PageLogedBase
         lblLegendaVermelhoMovimentacao.Text = "Acima de " + movimentacao.ToString() + "%";
         lblLegendaAmareloMovimentacao.Text = "Entre " + (movimentacao - 10).ToString() + "% e " + movimentacao.ToString() + "%";
         // CADRI
-        lblLegendaVermelhoCadri.Text = "A " + cadri.ToString() + " dias do prazo de validade.";
-        lblLegendaAmareloCadri.Text = "A " + (cadri + 10).ToString() + " dias do prazo de validade.";
+        lblLegendaVermelhoCadri.Text = cadri.ToString() + " dias do prazo de validade.";
+        lblLegendaAmareloCadri.Text = (cadri + 10).ToString() + " dias do prazo de validade.";
     }
 
     private void AjustaGrafico()
@@ -79,7 +79,7 @@ public partial class Telas_Home : PageLogedBase
             
             lblPermitido.Text = movimentacao.Permitido.ToString(Util.Formatacao.Numero) + " " + movimentacao.Residuo.UnidadeMedida;
             lblUtilizados.Text = movimentacao.Transportado.ToString(Util.Formatacao.Numero) + " " + movimentacao.Residuo.UnidadeMedida;
-            lblCadri.Text = movimentacao.CADRI.Numero.ToString();
+            lblCadri.Text = movimentacao.CADRI.Numero;
             lblResiduo.Text = movimentacao.Residuo.Nome;
 
             switch (movimentacao.Criticidade)
@@ -98,7 +98,7 @@ public partial class Telas_Home : PageLogedBase
             Label lblCadri = (Label)e.Item.FindControl("lblCadri");
             Label lblData = (Label)e.Item.FindControl("lblData");
 
-            lblCadri.Text = cadri.Numero.ToString();
+            lblCadri.Text = cadri.Numero;
             lblData.Text = cadri.Validade.ToString(Util.Formatacao.Data.ShortDatePattern);
 
 

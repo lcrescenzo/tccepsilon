@@ -61,22 +61,6 @@ function ValidarKeyPressInteger(inputNumeric, casas)
     if (inputNumeric.value.length > casas)
         return false;
     
-    if(validaNumero.test(caracterDigitado))
-        return true;
+    return (validaNumero.test(caracterDigitado));
 }
 
-
-// Configuracao
-
-function previewImagem(field, image) 
-{
-    path = 'file://'+ field.value;
-    
-    var img = new Image();
-    img.src = path;
-    //path = path.replace(/\\/, '/'); // Fix Windows paths
-    image.src = img.src;
-    //image.style.display = 'block';
-    //image.style.width = "200px";
-    //image.style.height = "150px";
-}

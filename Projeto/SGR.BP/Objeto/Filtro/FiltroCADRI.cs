@@ -8,9 +8,9 @@ namespace SGR.BP.Objeto.Filtro
     [Serializable]
     public class FiltroCADRI : IFiltro
     {
-        private int? _numero = null;
+        private string _numero = null;
 
-        public int? Numero
+        public string Numero
         {
             get { return _numero; }
             set { _numero = value; }

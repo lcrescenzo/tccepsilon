@@ -88,6 +88,7 @@ namespace SGR.BP.Dao
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_estFisico", DbType.String, CapturaFlagEstadoFisico(objeto.EstadoFisico))); 
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_auditoria", DbType.Boolean, objeto.Auditoria));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_unidadeMedida", DbType.String, objeto.UnidadeMedida));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 
@@ -95,6 +96,7 @@ namespace SGR.BP.Dao
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idResiduo", DbType.Int32, objeto.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 
@@ -109,6 +111,7 @@ namespace SGR.BP.Dao
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_estFisico", DbType.String, CapturaFlagEstadoFisico(objeto.EstadoFisico))); 
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_auditoria", DbType.Boolean, objeto.Auditoria));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_unidadeMedida", DbType.String, objeto.UnidadeMedida));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 

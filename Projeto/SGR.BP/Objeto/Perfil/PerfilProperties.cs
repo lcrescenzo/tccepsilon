@@ -32,12 +32,25 @@ namespace SGR.BP.Objeto
         #region Atributos
 
         private string _nome;
-
+        private Login _loginUltimaAlteracao;
         private List<Recurso> _menu;
         #endregion
 
         #region Propriedades
-       
+
+        
+        public Login LoginUltimaAlteracao
+        {
+            get
+            {
+                return _loginUltimaAlteracao;
+            }
+            set
+            {
+                _loginUltimaAlteracao = value;
+            }
+        }
+
         public string Nome
         {
             get 

@@ -16,11 +16,11 @@ namespace SGR.BP.Objeto
         #endregion
 
         #region Atributos
-        private Entidade _entidade;
+        private string _entidade;
 
-        private ETipoManutencao _tipoManutencao;
+        private string _tipoManutencao;
 
-        private Login _login;
+        private string _login;
 
         private DateTime _data;
 
@@ -28,19 +28,19 @@ namespace SGR.BP.Objeto
         #endregion
 
         #region Propriedades
-        public Entidade Entidade
+        public string Entidade
         {
             get { return _entidade; }
             set { _entidade = value; }
         }
         
-        public ETipoManutencao Manutencao
+        public string Manutencao
         {
             get { return _tipoManutencao; }
             set { _tipoManutencao = value; }
         }
         
-        public Login Login
+        public string Login
         {
             get { return _login; }
             set { _login = value; }

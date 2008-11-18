@@ -45,7 +45,9 @@ public partial class Telas_Administracao_Perfil_Consulta : PageBaseConsulta
 
     protected void imgExcluir_Command(object sender, CommandEventArgs e)
     {
-        base.Remover(new Perfil(int.Parse(e.CommandArgument.ToString()), false));
+        Perfil perfil = new Perfil(int.Parse(e.CommandArgument.ToString()), false);
+        perfil.LoginUltimaAlteracao = base.UsuarioLogado;
+        base.Remover(perfil);
     }
 
     protected void imgEditar_Command(object sender, CommandEventArgs e)
@@ -93,4 +95,9 @@ public partial class Telas_Administracao_Perfil_Consulta : PageBaseConsulta
     }
 
     #endregion
+
+    protected override int GridCount
+    {
+        get { return gdvLista.Rows.Count; }
+    }
 }

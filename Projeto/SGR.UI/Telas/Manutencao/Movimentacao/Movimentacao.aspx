@@ -3,8 +3,7 @@
 <%@ Register Src="../../../Controles/Confirm.ascx" TagName="Confirm" TagPrefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-    <sgr:Label id="lblTitulo" runat="server" Text="Movimentação"></sgr:Label>
+    <sgr:Label id="lblTitulo" SkinID="lblTitulo" runat="server" Text="Movimentação"></sgr:Label>
         <br />
         <br />
     <script src="../../../Script/Telas.js" type="text/javascript"></script>
@@ -68,7 +67,9 @@
                                         <sgr:Label ID="Label2" runat="server">Data:</sgr:Label>
                                     </td>
                                     <td colspan="3">
-                                        <sgr:TextBox ID="txtData" runat="server"></sgr:TextBox><sgrAjax:Calendar ID="Calendar1" runat="server" TargetControlID="txtData">
+                                        <sgr:TextBox ID="txtData" runat="server"></sgr:TextBox><sgr:RequiredFieldValidator
+                                            ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtData" Display="None"
+                                            ErrorMessage="O campo Data é obrigatório."></sgr:RequiredFieldValidator><sgrAjax:Calendar ID="Calendar1" runat="server" TargetControlID="txtData">
                                         </sgrAjax:Calendar>
                                     </td>
                                 </tr>
@@ -93,6 +94,8 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
+                                                        <sgr:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtQuantidade"
+                                                            Display="None" ErrorMessage="O campo Quantidade é obrigatório."></sgr:RequiredFieldValidator>
                                                     </td>
                                                     <td style="width: 95px">
                                                         <sgr:Label ID="lblTransportadosText" runat="server" >Transportados:</sgr:Label>
@@ -122,7 +125,7 @@
                                 <tr>
                                     <td align="right" colspan="4">
                                         <sgr:Button ID="btnGravar" OnClick="btnGravar_Click" runat="server" Text="Gravar" ></sgr:Button>
-                                        <sgr:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click">
+                                        <sgr:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CausesValidation="False">
                                         </sgr:Button>
                                     </td>
                                 </tr>
@@ -130,6 +133,7 @@
                                     <td width="70">
                                     </td>
                                     <td colspan="3">
+                                        <sgr:ValidationSummary ID="ValidationSummary1" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>

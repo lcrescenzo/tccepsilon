@@ -41,6 +41,9 @@ INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, component
 INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (3201, 'A', 3200, 'Consultar', '');
 INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (3202, 'A', 3200, 'Manter', '');
 
+
+INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (3300, 'P', 3, 'Histórico', '~/Telas/Administracao/Historico/Consulta.aspx');
+
 -- Dados do usuário (Meus Dados) 
 -- INSERT INTO sgr.recurso (idRecurso, idTipoRecurso, idRecursoPai, nome, componente)  VALUES (4, 'P', NULL, 'Meus Dados', '~/Telas/MeusDados.aspx');
 

@@ -19,6 +19,8 @@ BEGIN
 	INSERT INTO sgr.transporte
 	(idTransporte, dataSaida, qtdSaida, transportadora, idEstado, idUsuario, idMovimentacao) 
 	VALUES (id, p_dataSaida, p_qtdSaida, p_transportadora, 0, p_idUsuario, p_idMovimentacao);
+	
+	CALL sp_HistoricoIncluir_i(p_idUsuario,	12, id);
 
 	SELECT id;
 	

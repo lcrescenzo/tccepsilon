@@ -56,7 +56,7 @@ public partial class Telas_Manutencao_Perfil_Manutencao : PageBaseManutencao<Per
     {
         Perfil perfil = new Perfil();
         perfil.Nome = txtNome.Text;
-
+        perfil.LoginUltimaAlteracao = base.UsuarioLogado;
         perfil.Recursos.Clear();
 
         foreach (int idRecursoSelecionado in TreeViewPerfil1.SelectedValues)
@@ -71,7 +71,7 @@ public partial class Telas_Manutencao_Perfil_Manutencao : PageBaseManutencao<Per
     protected override void PreencherObjeto()
     {
         Objeto.Nome = txtNome.Text;
-
+        Objeto.LoginUltimaAlteracao = base.UsuarioLogado;
         Objeto.Recursos.Clear();
 
         foreach (int idRecursoSelecionado in TreeViewPerfil1.SelectedValues)
