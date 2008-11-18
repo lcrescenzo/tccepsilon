@@ -50,6 +50,7 @@ public partial class Telas_Manutencao_Residuos_Manutencao : PageBaseManutencao<R
         residuo.Classe = new Classe(int.Parse(ddlClasse.SelectedValue), false);
         residuo.Grupo = new GrupoResiduo(int.Parse(ddlGrupoResiduo.SelectedValue), false);
         residuo.Nome = txtNome.Text;
+        residuo.LoginUltimaAlteracao = base.UsuarioLogado;
         residuo.TipoResiduo = new TipoResiduo(int.Parse(ddlTipoResiduo.SelectedValue), false);
         residuo.UnidadeMedida = ddlUnidadeMedida.SelectedValue;
         return residuo;
@@ -63,6 +64,7 @@ public partial class Telas_Manutencao_Residuos_Manutencao : PageBaseManutencao<R
         Objeto.TipoResiduo = new TipoResiduo(int.Parse(ddlTipoResiduo.SelectedValue), false);
         Objeto.UnidadeMedida = ddlUnidadeMedida.SelectedValue;
         Objeto.Grupo = new GrupoResiduo(int.Parse(ddlGrupoResiduo.SelectedValue), false);
+        Objeto.LoginUltimaAlteracao = base.UsuarioLogado;
         Objeto.EstadoFisico = CapturaEstadoFisico();
     }
 

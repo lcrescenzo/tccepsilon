@@ -19,4 +19,7 @@ BEGIN
 	WHERE 
 		((p_idTransporte IS NULL) OR (idTransporte = p_idTransporte))
 	;
+	
+	CALL sp_HistoricoAlterar_i(p_idUsuario,	12, p_idTransporte);
+	
 END

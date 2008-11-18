@@ -18,14 +18,7 @@ public partial class Master_Controls_Cabecalho : System.Web.UI.UserControl
         if(!IsPostBack)
         {
             ConfiguraCabecalho();
-            CarregarEstilo();
         }
-    }
-
-    private void CarregarEstilo()
-    {
-        if(!Page.ClientScript.IsClientScriptBlockRegistered("style"))
-           Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "style", "<link href='" + Util.UrlUtil.ResolveServerUrl("~/App_Themes/Css/geral.css") + "' type='text/css' />");
     }
 
     private void ConfiguraCabecalho()

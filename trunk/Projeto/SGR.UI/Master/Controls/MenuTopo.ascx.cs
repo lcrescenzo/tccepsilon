@@ -63,8 +63,8 @@ public partial class Master_Controls_MenuTopo : System.Web.UI.UserControl
         {
             string url = argumento.Split('|')[0];
             string id = argumento.Split('|')[1];
-            Context.Items.Add("id", int.Parse(id));
-            Server.Transfer(url);
+            Session.Add("id", int.Parse(id));
+            Response.Redirect(url);
         }
         else if (((LinkButton)sender).CommandName == "menu")
         {

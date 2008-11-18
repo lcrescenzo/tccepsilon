@@ -70,6 +70,7 @@ namespace SGR.BP.Dao
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_descricao", objeto.Descricao));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 
@@ -77,6 +78,7 @@ namespace SGR.BP.Dao
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idTipoResiduo", DbType.Int32, objeto.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 
@@ -85,6 +87,7 @@ namespace SGR.BP.Dao
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idTipoResiduo", DbType.Int32, objeto.ID));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_descricao", DbType.String, objeto.Descricao));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
     }

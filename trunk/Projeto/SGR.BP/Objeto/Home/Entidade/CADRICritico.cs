@@ -9,7 +9,7 @@ namespace SGR.BP.Objeto.Home.Entidade
     {
         #region Atributos
         private ECriticidade _criticidade;
-        private uint _numero;
+        private string _numero;
         private DateTime _validade;
         #endregion
 
@@ -20,7 +20,7 @@ namespace SGR.BP.Objeto.Home.Entidade
             get { return _criticidade; }
             set { _criticidade = value; }
         }
-        public uint Numero
+        public string Numero
         {
             get
             {
@@ -68,7 +68,7 @@ namespace SGR.BP.Objeto.Home.Entidade
         internal override void PreencheObjeto(System.Data.IDataReader reader)
         {
             this.ID = (int)reader["idCadri"]; 
-			this.Numero = Convert.ToUInt32(reader["numero"]);
+			this.Numero = reader["numero"].ToString();
 			this.Validade = Convert.ToDateTime(reader["validade"]);
             this.Criticidade = (ECriticidade)Convert.ToInt32(reader["criticidade"]);
         }

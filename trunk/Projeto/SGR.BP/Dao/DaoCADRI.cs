@@ -235,7 +235,7 @@ namespace SGR.BP.Dao
         private static List<IDataParameter> ParametrosLista(FiltroCADRI filtroCADRI)
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_numero", DbType.Int32, filtroCADRI.Numero));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_numero", DbType.String, filtroCADRI.Numero));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_destino", DbType.String, filtroCADRI.Destino));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_validade", DbType.DateTime, filtroCADRI.Validade));
             return parameters;
@@ -266,11 +266,12 @@ namespace SGR.BP.Dao
         public List<IDataParameter> ParametrosIncluir(CADRI objeto)
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_numero", DbType.Int32, objeto.Numero));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_numero", DbType.String, objeto.Numero));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_destino", DbType.String, objeto.Destino));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_OI", DbType.Int32, objeto.OI));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_quantidade", DbType.Double, objeto.Quantidade));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_validade", DbType.DateTime, objeto.Validade));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 
@@ -286,6 +287,7 @@ namespace SGR.BP.Dao
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idCadri", DbType.Int32, objeto.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 
@@ -293,11 +295,12 @@ namespace SGR.BP.Dao
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idCadri", DbType.Int32, objeto.ID));
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_numero", DbType.Int32, objeto.Numero));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_numero", DbType.String, objeto.Numero));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_destino", DbType.String, objeto.Destino));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_OI", DbType.Int32, objeto.OI));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_quantidade", DbType.Double, objeto.Quantidade));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_validade", DbType.DateTime, objeto.Validade));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 

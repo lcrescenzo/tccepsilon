@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <ajax:ScriptManager id="ScriptManager1" runat="server" />
-        <sgr:Label id="lblTitulo" runat="server" Text="Perfil"></sgr:Label>
+        <sgr:Label id="lblTitulo" SkinID="lblTitulo" runat="server" Text="Perfil"></sgr:Label>
         <br />
         <br />
 

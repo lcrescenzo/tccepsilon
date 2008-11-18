@@ -54,7 +54,7 @@ public partial class Master_Controls_MenuLateral : System.Web.UI.UserControl
             Recurso recurso = (Recurso)e.Item.DataItem;
             lnkMenu.Text = recurso.Nome;
             lnkMenu.CommandArgument = recurso.IdComponente + "|" + recurso.ID.ToString();
-            lnkMenu.CssClass = "submenu";
+            //lnkMenu.CssClass = "submenu";
         }
         
             

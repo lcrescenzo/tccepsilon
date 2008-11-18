@@ -45,7 +45,9 @@ public partial class Telas_Manutencao_GrupoResiduos_Consulta : PageBaseConsulta
 
     protected void imgExcluir_Command(object sender, CommandEventArgs e)
     {
-        base.Remover(new GrupoResiduo(int.Parse(e.CommandArgument.ToString()), false));
+        GrupoResiduo grupoResiduo = new GrupoResiduo(int.Parse(e.CommandArgument.ToString()), false);
+        grupoResiduo.LoginUltimaAlteracao = base.UsuarioLogado;
+        base.Remover(grupoResiduo);
     }
 
     protected void imgEditar_Command(object sender, CommandEventArgs e)
@@ -92,4 +94,10 @@ public partial class Telas_Manutencao_GrupoResiduos_Consulta : PageBaseConsulta
         gdvLista.DataBind();
     }
     #endregion
+
+    protected override int GridCount
+    {
+        get { return gdvLista.Rows.Count; }
+    }
+
 }

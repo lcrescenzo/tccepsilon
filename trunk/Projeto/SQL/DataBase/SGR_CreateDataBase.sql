@@ -1,4 +1,3 @@
-
 CREATE DATABASE SGR;
 
 USE sgr;
@@ -47,8 +46,8 @@ CREATE TABLE Classe (
 
 CREATE TABLE Cadri (
   idCadri INT NOT NULL,
-  numero INT UNSIGNED NOT NULL,
-  destino VARCHAR(45) NULL,
+  numero VARCHAR(30) NOT NULL,
+  destino VARCHAR(200) NULL,
   quantidade DECIMAL(20,4) NULL,
   OI INT NULL,
   validade DATETIME NULL,

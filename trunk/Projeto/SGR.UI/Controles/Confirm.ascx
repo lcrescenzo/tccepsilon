@@ -13,8 +13,8 @@
                 </tr>
                 <tr>
                     <td align="center" colspan="2" height="15" rowspan="">
-                        <sgr:Button ID="btnSim" runat="server" Text="Sim" OnClick="btnSim_Click" />
-                        <sgr:Button ID="btnNao" runat="server" Text="Não" OnClick="btnNao_Click" /></td>
+                        <sgr:Button ID="btnSim" runat="server" Text="Sim" OnClick="btnSim_Click" CausesValidation="False" />
+                        <sgr:Button ID="btnNao" runat="server" Text="Não" OnClick="btnNao_Click" CausesValidation="False" /></td>
                 </tr>
             </table>
         </asp:Panel>

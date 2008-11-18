@@ -19,9 +19,13 @@
                         <sgr:Panel ID="Panel1" runat="server" Width="188px" HorizontalAlign="Left">
                             <ajax:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
-                                    <sgr:Label ID="lblUsuario" runat="server">Usuário</sgr:Label><br />
+                                    <sgr:Label ID="lblUsuario" runat="server">Usuário</sgr:Label>
+                                    <sgr:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUsuario"
+                                        Display="None" ErrorMessage="Usuário obrigatório."></sgr:RequiredFieldValidator><br />
                                     <sgr:TextBox ID="txtUsuario" runat="server" Width="170px"></sgr:TextBox>
-                                    <sgr:Label ID="Label2" runat="server">Senha</sgr:Label><br />
+                                    <sgr:Label ID="Label2" runat="server">Senha</sgr:Label>
+                                    <sgr:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSenha"
+                                        Display="None" ErrorMessage="Senha obrigatória."></sgr:RequiredFieldValidator><br />
                                     <sgr:TextBox ID="txtSenha" runat="server" Width="170px" TextMode="Password"></sgr:TextBox>
                                 </ContentTemplate>
                                 <Triggers>
@@ -42,6 +46,7 @@
             </table>
         </sgr:Panel>
         <uc1:Mensagem ID="msg" runat="server" />
+        <sgr:ValidationSummary ID="ValidationSummary1" runat="server" />
         
     </form>
 </body>

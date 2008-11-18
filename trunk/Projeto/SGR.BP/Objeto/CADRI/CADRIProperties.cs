@@ -32,14 +32,27 @@ namespace SGR.BP.Objeto
 
         #region Atributos
         private List<Residuo> _residuos;
-        private int _numero;
+        private string _numero;
         private string _destino;
         private double _quantidade;
         private int _oi;
         private DateTime _validade;
+        private Login _loginUltimaAlteracao;
         #endregion
 
         #region Propriedades
+        
+        public Login LoginUltimaAlteracao
+        {
+            get
+            {
+                return _loginUltimaAlteracao;
+            }
+            set
+            {
+                _loginUltimaAlteracao = value;
+            }
+        }
         public List<Residuo> Residuos
         {
             get 
@@ -55,7 +68,7 @@ namespace SGR.BP.Objeto
             }
         }
 
-        public int Numero
+        public string Numero
         {
             get 
             { 

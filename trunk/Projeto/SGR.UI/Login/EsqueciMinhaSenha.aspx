@@ -1,5 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="EsqueciMinhaSenha.aspx.cs" Inherits="Login_EsqueciMinhaSenha" %>
 
+<%@ Register Src="../Controles/MenssagemOK.ascx" TagName="MenssagemOK" TagPrefix="uc2" %>
+
 <%@ Register Src="../Controles/Mensagem.ascx" TagName="Mensagem" TagPrefix="uc1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -25,19 +27,24 @@
         <sgr:Panel ID="Panel1" runat="server" HorizontalAlign="Left" Width="150px">
             <ajax:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <sgr:Label ID="Label1" runat="server">Usuário</sgr:Label><br />
+                    <sgr:Label ID="Label1" runat="server">Usuário</sgr:Label>
+                    <sgr:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUsuario"
+                        Display="None" ErrorMessage="Usuario obrigatório."></sgr:RequiredFieldValidator><br />
                     <sgr:TextBox ID="txtUsuario" runat="server"></sgr:TextBox><br />
-                    <sgr:Label ID="Label2" runat="server">E-mail</sgr:Label><br />
+                    <sgr:Label ID="Label2" runat="server">E-mail</sgr:Label>
+                    <sgr:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtEmail"
+                        Display="None" ErrorMessage="E-mail obrigatório."></sgr:RequiredFieldValidator><br />
                     <sgr:TextBox ID="txtEmail" runat="server"></sgr:TextBox><br />
                 </ContentTemplate>
                 <Triggers>
                     <ajax:AsyncPostBackTrigger ControlID="btnEnviarEmail" EventName="Click" />
                 </Triggers>
             </ajax:UpdatePanel>
+            <sgr:ValidationSummary ID="ValidationSummary1" runat="server" />
         </sgr:Panel>
-        <sgr:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
-        <sgr:Button ID="btnEnviarEmail" runat="server" Text="Enviar Email" OnClick="btnEnviarEmail_Click" />
-        <uc1:Mensagem ID="msg" runat="server" />
+        <sgr:Button ID="btnEnviarEmail" runat="server" Text="Enviar Email" OnClick="btnEnviarEmail_Click" /><uc2:MenssagemOK
+            ID="MenssagemOK1" runat="server" />
+        <sgr:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CausesValidation="False" />
     </form>
 </body>
 </html>

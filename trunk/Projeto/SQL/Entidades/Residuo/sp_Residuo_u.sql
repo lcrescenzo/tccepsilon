@@ -11,7 +11,8 @@ CREATE PROCEDURE sp_Residuo_u
   p_nome VARCHAR(100),
   p_estFisico CHAR(1),
   p_auditoria BIT,
-  p_unidadeMedida CHAR(3) 
+  p_unidadeMedida CHAR(3),
+	p_idUsuario INT
 )
 BEGIN
 	
@@ -27,5 +28,7 @@ BEGIN
 	WHERE 
 		idResiduo = p_idResiduo
 ;
+
+	CALL sp_HistoricoAlterar_i(p_idUsuario,	10, p_idResiduo);
 	
 END

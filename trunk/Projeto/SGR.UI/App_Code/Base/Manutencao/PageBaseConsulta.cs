@@ -74,7 +74,7 @@ public abstract class PageBaseConsulta : PageLogedBase
     protected void Novo()
     {
         Context.Items["TipoManutencao"] = (int)ETipoManutencao.Inclusao;
-        Context.Items["filtro"] = MontaFiltro();
+        Context.Items["filtro"] = (GridCount > 0) ? MontaFiltro() : null;
         Server.Transfer("Manutencao.aspx");
     }
     
@@ -94,11 +94,13 @@ public abstract class PageBaseConsulta : PageLogedBase
 
     private void AplicarFiltro()
     {
-        if (Context.Items["filtro"] != null)
+        if (Context.Items["filtro"] != null || Session["filtro"] != null)
         {
-            IFiltro filtro = (IFiltro)Context.Items["filtro"];
+            IFiltro filtro = (Context.Items["filtro"] != null) ? (IFiltro)Context.Items["filtro"] : (IFiltro)Session["filtro"];
             CarregaFiltro(filtro);
             CarregaLista(filtro);
+            if (Session["filtro"] != null)
+                Session.Remove("filtro");
         }
     }
 
@@ -113,5 +115,7 @@ public abstract class PageBaseConsulta : PageLogedBase
     protected abstract void CarregaFiltro(IFiltro filtro);
 
     protected abstract WebControl BotaoNovo { get; }
+
+    protected abstract int GridCount { get; }
 
 }

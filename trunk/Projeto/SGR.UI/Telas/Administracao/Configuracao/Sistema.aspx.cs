@@ -23,14 +23,10 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
             CarregarTipoResiduo();
             CarregarClasse();
             CarregaConfiguracao();
-           //PreviewLogo();
         }
     }
 
-    //private void PreviewLogo()
-    //{
-    //    fluLogo.Attributes.Add("onchange", "previewImagem(this,document.getElementById('" + imgView.ClientID + "'));"); 
-    //}
+
 
     #region Metodos de Carga
     private void CarregarTipoResiduo()
@@ -77,7 +73,7 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
         if (filename != string.Empty)
             configuracao["Apar.LogoNomeArq"] = filename;
         else
-            configuracao["Apar.LogoNomeArq"] = Configuracao.ValorDe(null, "Apar.LogoNomeArq");
+            configuracao["Apar.LogoNomeArq"] = base.ConfiguracaoSistema["Apar.LogoNomeArq"];
         configuracao["Apar.LogoTop"] = "10";
         configuracao["Apar.LogoLeft"] = "10";
         configuracao.Alterar();
@@ -102,12 +98,14 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
     {
         TipoResiduo tipoResiduo = new TipoResiduo();
         tipoResiduo.Descricao = texto;
+        tipoResiduo.LoginUltimaAlteracao = base.UsuarioLogado;
         tipoResiduo.Inserir();
         CarregarTipoResiduo();
     }
     protected void tbdTipoResiduo_Remover(int Key, EventArgs e)
     {
         TipoResiduo tipoResiduo = new TipoResiduo(Key);
+        tipoResiduo.LoginUltimaAlteracao = base.UsuarioLogado;
         tipoResiduo.Excluir();
         CarregarTipoResiduo();
     }
@@ -115,6 +113,7 @@ public partial class Telas_Administracao_Configuracao_Sistema : PageLogedBase
     {
         TipoResiduo tipoResiduo = new TipoResiduo(Key);
         tipoResiduo.Descricao = Descricao;
+        tipoResiduo.LoginUltimaAlteracao = base.UsuarioLogado;
         tipoResiduo.Alterar();
         CarregarTipoResiduo();
     }

@@ -94,11 +94,7 @@ namespace SGR.BP.Dao
                         
                         id = (int)DaoUtil.ExecuteQuery(comm, DaoUtil.ETipoExecucao.Incluir); 
                             
-                        //DaoTransporte dao = new DaoTransporte();
-                        //foreach (Transporte transporte in objeto.Transportes)
-                        //{
-                        //    dao.Incluir(transporte, connection);
-                        //}
+                        
                     }
                     transaction.Commit();
                 }
@@ -117,7 +113,7 @@ namespace SGR.BP.Dao
 
         public void Alterar(Movimentacao objeto)
         {
-            //DaoUtil.Execute("", ParametrosAlterar(objeto), DaoUtil.ETipoExecucao.Alterar);
+            
         }
 
         public void Excluir(Movimentacao objeto)
@@ -167,6 +163,7 @@ namespace SGR.BP.Dao
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idMovimentacao", DbType.Int32, objeto.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.Login.ID));
             return parameters;
         }
 

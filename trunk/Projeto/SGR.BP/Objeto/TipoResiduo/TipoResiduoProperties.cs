@@ -33,6 +33,7 @@ namespace SGR.BP.Objeto
 
         #region Atributos
         private string _descricao;
+        private Login _loginUltimaAlteracao;
         #endregion
 
         #region Propriedades
@@ -43,6 +44,18 @@ namespace SGR.BP.Objeto
             set { _descricao = value; }
         }
 
+        
+        public Login LoginUltimaAlteracao
+        {
+            get
+            {
+                return _loginUltimaAlteracao;
+            }
+            set
+            {
+                _loginUltimaAlteracao = value;
+            }
+        }
         #endregion
 
         #region Data

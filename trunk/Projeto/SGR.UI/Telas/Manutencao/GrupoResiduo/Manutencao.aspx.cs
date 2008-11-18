@@ -42,12 +42,14 @@ public partial class Telas_Manutencao_GrupoResiduos_Manutencao : PageBaseManuten
     {
         GrupoResiduo grupoResiduo = new GrupoResiduo();
         grupoResiduo.Nome = txtNome.Text;
+        grupoResiduo.LoginUltimaAlteracao = base.UsuarioLogado;
         return grupoResiduo;
     }
 
     protected override void PreencherObjeto()
     {
         Objeto.Nome = txtNome.Text;
+        Objeto.LoginUltimaAlteracao = base.UsuarioLogado;
     }
 
     protected override void PreencherCampos()

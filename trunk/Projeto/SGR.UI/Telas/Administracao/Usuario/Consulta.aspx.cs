@@ -11,6 +11,7 @@ using SGR.BP.Objeto.Filtro;
 using Util;
 using SGR.BP.Bases;
 using SGR.Web.Controls.Common;
+using SGR.BP.Util;
 
 public partial class Telas_Administracao_Usuario_Consulta : PageBaseConsulta
 {
@@ -51,12 +52,22 @@ public partial class Telas_Administracao_Usuario_Consulta : PageBaseConsulta
     protected void imgApagar_Command(object sender, System.Web.UI.WebControls.CommandEventArgs e)
     {
         Usuario usuario = new Usuario(int.Parse(e.CommandArgument.ToString()));
-        usuario.Login.NovaSenha(Util.UrlUtil.ResolveServerUrl("~/Login/NovaSenha.aspx"), usuario.EMail);// Envia Email ao usuario
+        try
+        {
+            usuario.Login.NovaSenha(Util.UrlUtil.ResolveServerUrl("~/Login/NovaSenha.aspx"), usuario.EMail);// Envia Email ao usuario
+
+        }
+        catch (SGRException ex)
+        {
+            Mensagem1.Mostrar(ex);
+        }
     }
 
     protected void imgExcluir_Command(object sender, System.Web.UI.WebControls.CommandEventArgs e)
     {
-        base.Remover(new Usuario(int.Parse(e.CommandArgument.ToString()), false));
+        Usuario usuario = new Usuario(int.Parse(e.CommandArgument.ToString()), false);
+        usuario.LoginUltimaAlteracao = base.UsuarioLogado;
+        base.Remover(usuario);
     }
 
     protected void imgEditar_Command(object sender, System.Web.UI.WebControls.CommandEventArgs e)
@@ -125,4 +136,10 @@ public partial class Telas_Administracao_Usuario_Consulta : PageBaseConsulta
         gdvLista.DataBind();
     }
     #endregion
+
+    protected override int GridCount
+    {
+        get { return gdvLista.Rows.Count; }
+    }
+
 }

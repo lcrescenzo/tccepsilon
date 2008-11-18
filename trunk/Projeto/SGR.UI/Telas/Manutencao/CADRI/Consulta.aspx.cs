@@ -52,8 +52,9 @@ public partial class Telas_Manutencao_CADRI_Consulta : PageBaseConsulta
     {
         try
         {
-            base.Remover(new CADRI(int.Parse(e.CommandArgument.ToString()), false));
-
+            CADRI cadri = new CADRI(int.Parse(e.CommandArgument.ToString()), false);
+            cadri.LoginUltimaAlteracao = base.UsuarioLogado;
+            base.Remover(cadri);
         }
         catch (SGRException ex)
         {
@@ -82,8 +83,8 @@ public partial class Telas_Manutencao_CADRI_Consulta : PageBaseConsulta
     protected override IFiltro MontaFiltro()
     {
         FiltroCADRI filtroCADRI = new FiltroCADRI();
-        filtroCADRI.Numero = (txtNumero.Text != string.Empty) ? (int?)int.Parse(txtNumero.Text) : null;
-        filtroCADRI.Destino = txtNumero.Text;
+        filtroCADRI.Numero = txtNumero.Text;
+        filtroCADRI.Destino = txtDestino.Text;
         filtroCADRI.Validade = cldValidade.SelectedDate;
         return (IFiltro)filtroCADRI;
     }
@@ -92,7 +93,7 @@ public partial class Telas_Manutencao_CADRI_Consulta : PageBaseConsulta
     {
         FiltroCADRI oFiltro = (FiltroCADRI)filtro;
 
-        txtNumero.Text = oFiltro.Numero.ToString();
+        txtNumero.Text = oFiltro.Numero;
         txtDestino.Text = oFiltro.Destino;
         cldValidade.SelectedDate = oFiltro.Validade;
     }
@@ -112,5 +113,9 @@ public partial class Telas_Manutencao_CADRI_Consulta : PageBaseConsulta
     #region Metodos
     
     #endregion
-    
+    protected override int GridCount
+    {
+        get { return gdvLista.Rows.Count; }
+    }
+
 }

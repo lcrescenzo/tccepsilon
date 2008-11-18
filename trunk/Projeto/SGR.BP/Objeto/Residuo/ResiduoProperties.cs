@@ -40,7 +40,7 @@ namespace SGR.BP.Objeto
         private bool _auditoria;
         private string _unidadeMedida;
         private GrupoResiduo _grupo;
-        
+        private Login _loginUltimaAlteracao;
         #region OnDemand
         private int _idTipoResiduo = -1;
         private int _idClasse = -1;
@@ -50,6 +50,18 @@ namespace SGR.BP.Objeto
         #endregion
 
         #region Propriedades
+
+        public Login LoginUltimaAlteracao
+        {
+            get
+            {
+                return _loginUltimaAlteracao;
+            }
+            set
+            {
+                _loginUltimaAlteracao = value;
+            }
+        }
         public string Nome
         {
             get { return _nome; }

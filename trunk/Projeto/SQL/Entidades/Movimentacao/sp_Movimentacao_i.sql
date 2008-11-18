@@ -19,7 +19,7 @@ BEGIN
 	VALUES (id, p_idResiduo, p_idCadri, p_idUsuario);
 
 
-
+	CALL sp_HistoricoIncluir_i(p_idUsuario,	11, id);
 
 
 	SELECT id;

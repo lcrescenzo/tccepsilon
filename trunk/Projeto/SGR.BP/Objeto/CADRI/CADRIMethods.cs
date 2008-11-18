@@ -30,7 +30,7 @@ namespace SGR.BP.Objeto
         {
             base.ID = Convert.ToInt32(reader["idCadri"]);
             this.Destino = reader["destino"].ToString();
-            this.Numero = Convert.ToInt32(reader["numero"]);
+            this.Numero = reader["numero"].ToString();
             this.OI = Convert.ToInt32(reader["OI"]);
             this.Quantidade = Convert.ToDouble(reader["quantidade"]);
             this.Validade = Convert.ToDateTime(reader["validade"]);

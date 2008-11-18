@@ -13,7 +13,6 @@ using System.Globalization;
 
 public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
 {
-
     #region Atributos
     private const int _quantidadeTransportes = 60;
     
@@ -365,6 +364,7 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
     private void ApagarTransporte(int _id)
     {
         Transporte transporte = new Transporte(_id, false);
+        transporte.LoginUltimaAlteracao = base.UsuarioLogado;
         transporte.Excluir();
     }
 
@@ -383,5 +383,4 @@ public partial class Telas_Manutencao_Movimentacao_Movimentacao : PageLogedBase
         txtTransportadora.Text = string.Empty;
     }
     #endregion
-
 }

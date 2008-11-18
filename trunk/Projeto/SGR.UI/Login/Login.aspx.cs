@@ -18,7 +18,14 @@ public partial class Login_Login : System.Web.UI.Page
         {
             GeraCriptografiaSenha();
             CapturaLink();
+            CarregarLogo();
         }
+    }
+
+    private void CarregarLogo()
+    {
+        Configuracao configuracao = Configuracao.Carregar(null);
+        imgLogo.ImageUrl = "~/Images/Logo/" + configuracao["Apar.LogoNomeArq"];
     }
 
     private void CapturaLink()

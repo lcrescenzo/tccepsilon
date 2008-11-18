@@ -126,6 +126,7 @@ namespace SGR.BP.Dao
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_email", DbType.String, objeto.EMail));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_telefone", DbType.String, objeto.Telefone));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_endereco", DbType.String, objeto.Endereco));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuarioAcao", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 
@@ -133,6 +134,7 @@ namespace SGR.BP.Dao
         {
             List<IDataParameter> parameters = new List<IDataParameter>();
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuario", DbType.Int32, objeto.ID));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuarioAcao", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 
@@ -144,7 +146,8 @@ namespace SGR.BP.Dao
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idPerfil", DbType.Int32, objeto.Perfil.ID));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_email", DbType.String, objeto.EMail));
             parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_telefone", DbType.String, objeto.Telefone));
-            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_endereco", DbType.String, objeto.Endereco)); 
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_endereco", DbType.String, objeto.Endereco));
+            parameters.Add(Util.DaoUtil.DataBase.NewParameter("p_idUsuarioAcao", DbType.Int32, objeto.LoginUltimaAlteracao.ID));
             return parameters;
         }
 
